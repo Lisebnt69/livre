@@ -1,0 +1,75 @@
+export const home = {
+  hero: {
+    badge: "Guide pratique • Lycéens & parents",
+    title: "Votre enfant part étudier aux États-Unis.",
+    titleEmphasis: "Êtes-vous vraiment prêt ?",
+    lead:
+      "Une année de High School, c’est incroyable. Mais entre l’excitation du départ et la réalité sur place, il y a des questions, des doutes, et parfois des situations que personne n’avait anticipées. Ce guide est là pour vous préparer, vraiment.",
+    ctaPrimary: "Découvrir le livre",
+    ctaSecondary: "Acheter sur Amazon",
+  },
+
+  fear: {
+    title: "Ce n’est pas la peur qui est le problème. C’est l’impréparation.",
+    bullets: [
+      "solitude / isolement dans la famille d’accueil",
+      "choc culturel + perte de repères",
+      "démarches et règles mal comprises",
+      "retour en France plus difficile que prévu",
+    ],
+    text:
+      "Vous ne pouvez pas tout contrôler. Mais vous pouvez comprendre, anticiper et accompagner. Ce livre vous donne des repères clairs et des solutions concrètes.",
+  },
+
+  honesty: {
+    title: "Ici, pas une brochure. Du vécu. Du vrai.",
+    text:
+      "Ce que les brochures ne racontent pas. Ce que les organismes n’ont pas toujours le temps d’expliquer. Ce que les parents découvrent parfois une fois que l’enfant est déjà sur place. Ce livre répond à ces questions sans filtre : ce qui est bien, et ce qui est moins bien — avec des solutions.",
+  },
+
+  credibility: {
+    title: "Écrit par une mère qui l’a vécu avec ses deux enfants.",
+    text:
+      "Je ne suis ni une agence, ni un organisme. Je suis une maman. J’ai vécu les moments de joie, les doutes, les difficultés et les réussites. Ce livre est le guide que j’aurais voulu avoir avant leur départ.",
+  },
+
+  trio: [
+    { title: "Avant", desc: "Démarches, budget, choix du programme." },
+    { title: "Pendant", desc: "École, host family, intégration." },
+    { title: "Après", desc: "Retour, équivalences, réadaptation." },
+  ],
+
+  offer: {
+    title: "Ce que vous allez obtenir",
+    subtitle: "Des réponses nettes + des checklists + des conseils terrain.",
+    cards: [
+      { title: "Comprendre J-1 vs F-1", desc: "Choisir sans regret et éviter les pièges." },
+      { title: "Préparer le départ", desc: "Papiers, assurances, budget, organisation." },
+      { title: "Réussir l’intégration", desc: "École, famille d’accueil, codes culturels." },
+      { title: "Gérer le retour", desc: "Administratif + émotionnel + scolaire." },
+    ],
+  },
+
+  stats: {
+    title: "Un guide construit sur le réel",
+    items: [
+      { label: "Retours d’expérience utilisés", value: "+100" },
+      { label: "Situations concrètes & conseils actionnables", value: "+50" },
+      { label: "Objectif", value: "Préparer + rassurer" },
+    ],
+    
+  },
+
+  video: {
+    title: "Pourquoi j’ai écrit ce livre",
+    subtitle: "Parce qu’aucun parent ne devrait envoyer son enfant à l’étranger sans réponses claires.",
+    youtubeUrl: "", // laisse vide si pas encore la vidéo
+    cta: "Voir le livre sur Amazon",
+  },
+
+  finalCta: {
+    title: "Votre enfant va vivre une des plus belles expériences de sa vie.",
+    subtitle: "Préparez-la avec lui.",
+    button: "Acheter le livre",
+  },
+};
