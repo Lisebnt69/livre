@@ -30,7 +30,7 @@ const Livre = () => {
           loaded.push(url);
           idx++;
 
-          if (idx > 14) break; 
+          if (idx > 12) break; 
         } catch {
           break;
         }
@@ -140,12 +140,12 @@ const Livre = () => {
           une High School américaine.
         </p>
         <p>
-          Mais derrière le rêve (casiers colorés, football du vendredi soir,
-          Prom Night), se cachent des décisions complexes, des démarches
-          exigeantes et une réalité culturelle parfois déroutante.
+          Derrière le rêve (casiers colorés, football du vendredi soir,
+          Prom Night), se cachent des décisions parfois plus complexes, des démarches
+          exigeantes et une réalité culturelle diiférente.
         </p>
         <p>
-          Ce guide a été conçu pour accompagner pas à pas les étudiants d’échange
+          Ce guide a été conçu pour accompagner les étudiants d’échange
           et leurs parents, avant le départ, pendant le séjour et au retour. Vous
           y trouverez notamment :
         </p>
@@ -167,12 +167,11 @@ const Livre = () => {
           <li>un accompagnement précieux pour le retour</li>
         </ul>
 
-        <p>Nourri de nombreuses expériences de terrain, ce livre ne vend pas un rêve idéalisé.</p>
-        <p>Il prépare, rassure et éclaire, sans dramatiser.</p>
+        <p>Nourri de nombreuses expériences de terrain, ce livre prépare, rassure et éclaire, sans dramatiser.</p>
         <p>
           Un guide de référence pour aider les parents à dire « oui » en
           confiance, et permettre aux jeunes de vivre pleinement l’une des
-          expériences les plus fondatrices.
+          expériences les plus fondatrices de leur vie.
         </p>
       </section>
     </main>

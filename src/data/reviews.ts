@@ -1,23 +1,63 @@
-export type Review = {
-  source: "Proche" | "Amazon";
-  name: string;
-  role: "Parent" | "Étudiant" | "Famille";
-  stars: 4 | 5;
-  text: string;
+export type ReviewKind = "screenshot" | "text";
+
+export type ReviewItem = {
+  id: string;
+  kind: ReviewKind;
+  source: "Amazon" | "Réseaux" | "Proche";
+  rating?: 4 | 5;
+  name?: string; // optionnel si tu veux anonymiser
+  role?: "Parent" | "Étudiant" | "Famille";
+  text?: string; // pour les avis texte
+  image?: string; // pour screenshots (path public)
+  dateLabel?: string; // ex: "Fév. 2026"
+  highlight?: boolean; // pour l’avis hero
 };
 
-export const reviews: Review[] = [
-  // Proches (preuve sociale humaine)
-  { source: "Proche", name: "Claire", role: "Parent", stars: 5, text: "J’aurais aimé lire ça avant le départ. On se sent guidés, pas jugés." },
-  { source: "Proche", name: "Nicolas", role: "Parent", stars: 5, text: "Clair, concret, zéro blabla. On sait quoi faire et quand." },
-  { source: "Proche", name: "Emma", role: "Étudiant", stars: 5, text: "Ça m’a aidé à comprendre l’école, la host family, et surtout les codes." },
-  { source: "Proche", name: "Sophie", role: "Famille", stars: 4, text: "Très rassurant. Et honnête : ça parle aussi des difficultés." },
+export const reviews: ReviewItem[] = [
+  
 
-  // Amazon (sélection manuelle, pas de scraping)
-  { source: "Amazon", name: "Camille", role: "Parent", stars: 5, text: "On a évité des erreurs bêtes. Le chapitre sur l’intégration est précieux." },
-  { source: "Amazon", name: "Thomas", role: "Parent", stars: 5, text: "J-1 vs F-1 enfin expliqué simplement. Je recommande." },
-  { source: "Amazon", name: "Léa", role: "Parent", stars: 5, text: "On sent le vécu. C’est exactement ce qu’il manquait." },
-  { source: "Amazon", name: "Nina", role: "Étudiant", stars: 5, text: "Ça m’a donné des repères quand ça allait moins bien." },
-  { source: "Amazon", name: "Mehdi", role: "Parent", stars: 5, text: "Le retour en France est rarement abordé. Ici oui. Gros plus." },
-  { source: "Amazon", name: "Sarah", role: "Parent", stars: 4, text: "Très complet et rassurant. À lire dès le début des démarches." },
+  // Avis texte (SEO + lisible)
+  {
+    id: "text-1",
+    kind: "text",
+    source: "Réseaux",
+    rating: 5,
+    role: "Parent",
+    name: "Parent (témoignage)",
+    text:
+      "Ce guide manquait sincèrement. J’aurais tellement aimé en avoir un avant le départ de ma fille. Un support concret, basé sur du vécu réel, des conseils authentiques et l’expérience de parents déjà passés par là… c’est précieux.",
+    dateLabel: "Fév. 2026",
+  },
+  {
+  id: "text-parent-short-1",
+  kind: "text",
+  source: "Réseaux",
+  rating: 5,
+  role: "Parent",
+  name: "Parent (groupe d’échange)",
+  text: "Bravo pour cette initiative 👏 Je suis sûre que votre guide aidera de nombreuses familles. Un tel ouvrage manquait !",
+  dateLabel: "Fév. 2026",
+},
+{
+  id: "text-parent-short-2",
+  kind: "text",
+  source: "Réseaux",
+  rating: 5,
+  role: "Parent",
+  name: "Parent (groupe d’échange)",
+  text: "Bravo pour ce livre : à part ce groupe, on se sent un peu seul quand on démarre cette aventure. Ce guide va aider les prochaines familles.",
+  dateLabel: "Fév. 2026",
+},
+
+
+// Story Insta
+{
+  id: "insta-story-1",
+  kind: "screenshot",
+  source: "Réseaux",
+  image: "/reviews/story-1.png",
+  dateLabel: "Story Instagram",
+},
+
+
 ];

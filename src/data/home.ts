@@ -1,16 +1,16 @@
 export const home = {
   hero: {
     badge: "Guide pratique • Lycéens & parents",
-    title: "Votre enfant part étudier aux États-Unis.",
-    titleEmphasis: "Êtes-vous vraiment prêt ?",
+    title: "Préparer une année de High School aux États-Unis, ",
+    titleEmphasis: "en toute confiance.",
     lead:
-      "Une année de High School, c’est incroyable. Mais entre l’excitation du départ et la réalité sur place, il y a des questions, des doutes, et parfois des situations que personne n’avait anticipées. Ce guide est là pour vous préparer, vraiment.",
+      " Un guide clair et rassurant pour répondre à toutes les questions que l’on se pose avant le départ et accompagner l’étudiant d’échange à chaque étape de son année",
     ctaPrimary: "Découvrir le livre",
     ctaSecondary: "Acheter sur Amazon",
   },
 
   fear: {
-    title: "Ce n’est pas la peur qui est le problème. C’est l’impréparation.",
+    title: " Anticiper pour être correctement préparé et éviter les soucis ",
     bullets: [
       "solitude / isolement dans la famille d’accueil",
       "choc culturel + perte de repères",
@@ -62,7 +62,7 @@ export const home = {
 
   video: {
     title: "Pourquoi j’ai écrit ce livre",
-    subtitle: "Parce qu’aucun parent ne devrait envoyer son enfant à l’étranger sans réponses claires.",
+    subtitle: "Parce qu’il est primordial de savoir pour évaluer si c’est le bon moment pour partir",
     youtubeUrl: "", // laisse vide si pas encore la vidéo
     cta: "Voir le livre sur Amazon",
   },

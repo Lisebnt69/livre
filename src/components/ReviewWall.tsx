@@ -1,32 +1,35 @@
-import { motion } from 'framer-motion';
-import { reviews } from '../data/reviews';
+import { ReviewItem } from "../data/reviews";
 
-const ReviewWall = () => {
+type Props = {
+  items: ReviewItem[];
+};
+
+export default function ReviewWall({ items }: Props) {
+  const shots = items.filter((r) => r.kind === "screenshot" && !r.highlight);
+
   return (
-    <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-      {reviews.map((review, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: index * 0.1 }}
-          className="break-inside-avoid bg-white p-4 rounded-lg shadow-md"
+    <div className="columns-1 sm:columns-2 lg:columns-3 gap-6 [column-fill:_balance]">
+      {shots.map((r) => (
+        <figure
+          key={r.id}
+          className="mb-6 break-inside-avoid bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition"
         >
-          <div className="flex items-center mb-2">
-            <span className="text-sm text-gray-500">{review.source}</span>
-            <span className="ml-2 text-sm text-primary">{review.role}</span>
-            <div className="ml-auto flex">
-              {Array.from({ length: 5 }, (_, i) => (
-                <span key={i} className={i < review.stars ? 'text-yellow-400' : 'text-gray-300'}>★</span>
-              ))}
-            </div>
-          </div>
-          <p className="text-sm italic">"{review.text}"</p>
-          <p className="text-sm font-semibold mt-2">- {review.name}</p>
-        </motion.div>
+          <img
+            src={r.image}
+            alt={`Avis (capture) - ${r.source}`}
+            className="w-full h-auto"
+            loading="lazy"
+          />
+          <figcaption className="p-4 flex items-center justify-between">
+            <span className="text-xs font-semibold text-primaryBlue/80">
+              Capture • {r.source}
+            </span>
+            {r.dateLabel && (
+              <span className="text-xs text-primaryBlue/60">{r.dateLabel}</span>
+            )}
+          </figcaption>
+        </figure>
       ))}
     </div>
   );
-};
-
-export default ReviewWall;
+}

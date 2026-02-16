@@ -9,7 +9,7 @@ export const book = {
   themes: [
     { title: "J-1 vs F-1", desc: "Comprendre, choisir, éviter les pièges." },
     { title: "Préparation", desc: "Dossier, budget, assurances, organisation." },
-    { title: "Vie sur place", desc: "École, host family, intégration, culture." },
+    { title: "Vie sur place", desc: "École, host family, internat, intégration, culture." },
     { title: "Retour", desc: "Choc du retour, administratif, réadaptation." },
   ],
 };
