@@ -332,7 +332,7 @@ const Home = () => {
           </a>
         </div>
       </motion.section>
-
+<br />
 
       {/* Video intro header */}
       <motion.section
