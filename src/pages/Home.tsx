@@ -224,7 +224,6 @@ const Home = () => {
         </p>
         <h2 className="mt-3 text-3xl md:text-4xl font-black text-primaryBlue">
           Avis lecteurs
-          <span className="text-primaryRed"> — du vrai.</span>
         </h2>
         <p className="mt-4 text-base md:text-lg text-primaryBlue/75 max-w-2xl mx-auto">
           Des retours authentiques partagés par des parents et des proches.
