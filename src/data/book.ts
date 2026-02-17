@@ -4,7 +4,7 @@ export const book = {
   subtitle:
     "Le guide complet pour accompagner les lycéens et leurs parents avant, pendant et après une année scolaire aux États-Unis",
   amazonUrl: "https://www.amazon.fr/dp/B0GNHL49Q8",
-  formats: ["Kindle", "Broché (si dispo)"],
+  formats: ["Kindle", "Broché"],
   tagline: "Le guide que j’aurais voulu avoir avant le départ de mes enfants.",
   themes: [
     { title: "J-1 vs F-1", desc: "Comprendre, choisir, éviter les pièges." },

@@ -30,7 +30,7 @@ const Livre = () => {
           idx++;
 
           // limite pages pour éviter d’aspirer tout le dossier
-          if (idx > 12) break;
+          if (idx > 9) break;
         } catch {
           break;
         }
