@@ -212,11 +212,25 @@ const Home = () => {
 
       {/* ⭐ AVIS (HOME) — version + clean, + premium, + lisible */}
       <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 py-20"
+        className="max-w-6xl mx-auto px-6 md:px-10 "
         variants={fadeUp}
         {...sectionView}
         custom={0}
       >
+          {/* Titre section avis */}
+      <div className="text-center mb-12">
+        <p className="text-xs font-semibold tracking-widest uppercase text-primaryBlue/60">
+          Preuve sociale
+        </p>
+        <h2 className="mt-3 text-3xl md:text-4xl font-black text-primaryBlue">
+          Avis lecteurs
+          <span className="text-primaryRed"> — du vrai.</span>
+        </h2>
+        <p className="mt-4 text-base md:text-lg text-primaryBlue/75 max-w-2xl mx-auto">
+          Des retours authentiques partagés par des parents et des proches.
+        </p>
+      </div>
+
         {/* HERO review */}
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           {/* Screenshot (moins dominant, mieux “posé”) */}
