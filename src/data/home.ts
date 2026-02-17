@@ -1,7 +1,7 @@
 export const home = {
   hero: {
     badge: "Guide pratique • Lycéens & parents",
-    title: "Préparer une année de High School aux États-Unis, ",
+    title: "Préparer une année de High School aux USA, ",
     titleEmphasis: "en toute confiance.",
     lead:
       " Un guide clair et rassurant pour répondre à toutes les questions que l’on se pose avant le départ et accompagner l’étudiant d’échange à chaque étape de son année",
