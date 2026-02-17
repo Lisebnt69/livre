@@ -103,7 +103,7 @@ export default function Avis() {
             />
             <CTAButton
               label="Lire les premières pages"
-              href="/premieres-pages"
+              href="/livre#extrait"
               className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue"
             />
           </div>
@@ -348,7 +348,7 @@ export default function Avis() {
                 />
                 <CTAButton
                   label="Lire les premières pages"
-                  href="/premieres-pages"
+                  href="/livre#extrait"
                   className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue hover:text-white"
                 />
               </div>
