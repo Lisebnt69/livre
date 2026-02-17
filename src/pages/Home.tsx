@@ -85,7 +85,7 @@ const Home = () => {
 
           <div className="grid md:grid-cols-3 gap-8">
             {[
-              { big: "+650", small: "Retours d’expérience de Famille" },
+              { big: "+650", small: "Retours d’expérience de Familles" },
               { big: "+50", small: "Situations concrètes & conseils actionnables" },
               { big: "Préparer + rassurer", small: "L’objectif du livre", bigClass: "text-2xl md:text-3xl" },
             ].map((s, idx) => (
