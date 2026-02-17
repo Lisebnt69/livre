@@ -62,7 +62,7 @@ export const home = {
 
   video: {
     title: "Pourquoi j’ai écrit ce livre",
-    subtitle: "Parce qu’il est primordial de savoir pour évaluer si c’est le bon moment pour partir",
+    subtitle: "Parce qu’il n’en existait aucun pour accompagner à la fois les jeunes de 14 à 18 ans et leurs parents dans le cadre d’une année de scolarité aux États-Unis. Pourtant, leurs interrogations, leurs défis comme leurs moments inoubliables se ressemblent souvent. J’ai voulu répondre à ce besoin en proposant un guide concret qui aide les familles à aborder cette aventure avec confiance. Comprendre en amont ce que l’on va vivre permet de mieux se préparer, de prendre du recul et de profiter pleinement de cette expérience unique, que ce soit pour le jeune qui part ou pour ses parents qui l’accompagnent à distance.",
     youtubeUrl: "", // laisse vide si pas encore la vidéo
     cta: "Voir le livre sur Amazon",
   },
