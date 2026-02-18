@@ -5,6 +5,13 @@ import Livre from './pages/Livre';
 import Avis from './pages/Avis';
 import ScrollToTop from "./components/ScrollToTop";
 import AnalyticsPageView from "./components/AnalyticsPageView";
+import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
+
+<Route
+  path="/politique-confidentialite"
+  element={<PolitiqueConfidentialite />}
+/>
+
 
 function App() {
   return (
@@ -15,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/livre" element={<Livre />} />
+          <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
           <Route path="/avis" element={<Avis />} />
         </Routes>
       </Layout>

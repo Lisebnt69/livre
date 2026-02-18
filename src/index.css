@@ -7,57 +7,69 @@ html, body, #root {
   font-family: 'Inter', sans-serif;
 }
 
-/* === COOKIE CONSENT — THEME SITE === */
-
-.cc-window {
-  background: #ffffff !important;
-  border-radius: 1.25rem !important;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
-  border: 1px solid rgba(0,0,0,0.05) !important;
-  padding: 1.4rem !important;
-  max-width: 420px !important;
-  font-family: inherit !important;
+/* ===== Cookie Consent - custom brand ===== */
+#cc-main .cm,
+#cc-main .pm {
+  border-radius: 20px !important;
+  border: 1px solid rgba(15, 23, 42, 0.10) !important;
+  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.20) !important;
+  overflow: hidden !important;
 }
 
-.cc-title {
-  color: #384c8b !important;
+#cc-main .cm__title,
+#cc-main .pm__title {
+  color: #1f2f6f !important; /* primaryBlue (à ajuster si besoin) */
   font-weight: 800 !important;
 }
 
-.cc-description {
-  color: rgba(56, 76, 139, 0.8) !important;
-  font-size: 0.95rem !important;
+#cc-main .cm__desc,
+#cc-main .pm__desc,
+#cc-main .pm__section-desc {
+  color: rgba(31, 47, 111, 0.80) !important;
 }
 
-/* boutons */
-
-.cc-btn {
-  border-radius: 0.75rem !important;
-  font-weight: 600 !important;
-  padding: 0.65rem 1.2rem !important;
-  transition: all 0.25s ease !important;
+/* Boutons */
+#cc-main .cm__btn,
+#cc-main .pm__btn {
+  border-radius: 14px !important;
+  font-weight: 700 !important;
+  padding: 12px 14px !important;
 }
 
-/* bouton principal = bleu marine */
-.cc-btn-primary {
-  background: #384c8b !important;
-  border: none !important;
-  color: white !important;
+/* Accepter = bleu marine */
+#cc-main .cm__btn--accept,
+#cc-main .pm__btn--accept {
+  background: #1f2f6f !important;
+  color: #ffffff !important;
+  border: 1px solid #1f2f6f !important;
 }
 
-.cc-btn-primary:hover {
-  background: white !important;
-  color: #384c8b !important;
-  border: 1px solid #384c8b !important;
+/* Refuser = blanc bord bleu */
+#cc-main .cm__btn--reject,
+#cc-main .pm__btn--reject {
+  background: #ffffff !important;
+  color: #1f2f6f !important;
+  border: 1px solid rgba(31, 47, 111, 0.35) !important;
 }
 
-/* bouton secondaire */
-.cc-btn-secondary {
-  background: transparent !important;
-  color: #384c8b !important;
-  border: 1px solid rgba(56, 76, 139, 0.3) !important;
+/* Personnaliser = blanc bord léger */
+#cc-main .cm__btn--manage,
+#cc-main .pm__btn--save {
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #1f2f6f !important;
+  border: 1px solid rgba(15, 23, 42, 0.12) !important;
 }
 
-.cc-btn-secondary:hover {
-  border-color: #384c8b !important;
+/* Hover */
+#cc-main .cm__btn--accept:hover,
+#cc-main .pm__btn--accept:hover {
+  filter: brightness(1.05) !important;
+  transform: translateY(-1px);
+}
+
+#cc-main .cm__btn--reject:hover,
+#cc-main .cm__btn--manage:hover,
+#cc-main .pm__btn--reject:hover,
+#cc-main .pm__btn--save:hover {
+  border-color: rgba(31, 47, 111, 0.65) !important;
 }

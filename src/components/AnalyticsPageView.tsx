@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
-const GA_ID = "G-XXXXXXXXXX";
+const GA_ID = "G-TT502FRSXG";
 
 export default function AnalyticsPageView() {
   const location = useLocation();

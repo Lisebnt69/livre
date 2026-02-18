@@ -1,0 +1,45 @@
+#cc-main .cm {
+  font-family: inherit;
+  border-radius: 22px;
+  background: #ffffff;
+  color: #1f2a5a;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 30px 60px rgba(2,6,23,.18);
+  padding: 22px;
+  width: 360px;
+}
+
+/* boutons base */
+#cc-main .cm__btn {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 14px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: .2s;
+}
+
+/* accepter */
+#cc-main .cm__btn--acceptAll {
+  background: #1f2a5a;
+  color: white;
+}
+#cc-main .cm__btn--acceptAll:hover {
+  transform: translateY(-1px);
+}
+
+/* refuser */
+#cc-main .cm__btn--acceptNecessary {
+  border: 1px solid rgba(31,42,90,.3);
+  color: #1f2a5a;
+}
+
+/* personnaliser */
+#cc-main .cm__btn--showPreferences {
+  background: rgba(139,30,34,.08);
+  color: #8b1e22;
+}
