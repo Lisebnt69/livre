@@ -38,7 +38,7 @@ export default function Confidentialite() {
             <p className="mt-2">
               Responsable : <strong>Stéphanie Oyarsabal</strong>. <br />
               Contact : <strong>livrestephanieoyarsabal@gmail.com</strong>.
-            
+            </p>
           </section>
 
           <section>
@@ -86,8 +86,7 @@ export default function Confidentialite() {
             <h2 className="text-xl font-black">6) Vos droits</h2>
             <p className="mt-2">
               Vous pouvez retirer votre consentement (cookies) à tout moment via “Gérer mes cookies”. ;
-              Pour toute demande : <strong>livrestephanieoyarsabal@gmail.com
-</strong>.
+              Pour toute demande : <strong>livrestephanieoyarsabal@gmail.com</strong>.
             </p>
           </section>
         </div>
