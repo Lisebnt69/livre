@@ -7,16 +7,57 @@ html, body, #root {
   font-family: 'Inter', sans-serif;
 }
 
+/* === COOKIE CONSENT — THEME SITE === */
+
 .cc-window {
-  border-radius: 1rem !important;
-  font-family: inherit;
+  background: #ffffff !important;
+  border-radius: 1.25rem !important;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08) !important;
+  border: 1px solid rgba(0,0,0,0.05) !important;
+  padding: 1.4rem !important;
+  max-width: 420px !important;
+  font-family: inherit !important;
 }
 
+.cc-title {
+  color: #384c8b !important;
+  font-weight: 800 !important;
+}
+
+.cc-description {
+  color: rgba(56, 76, 139, 0.8) !important;
+  font-size: 0.95rem !important;
+}
+
+/* boutons */
+
+.cc-btn {
+  border-radius: 0.75rem !important;
+  font-weight: 600 !important;
+  padding: 0.65rem 1.2rem !important;
+  transition: all 0.25s ease !important;
+}
+
+/* bouton principal = bleu marine */
 .cc-btn-primary {
   background: #384c8b !important;
-  border-radius: 0.75rem !important;
+  border: none !important;
+  color: white !important;
 }
 
+.cc-btn-primary:hover {
+  background: white !important;
+  color: #384c8b !important;
+  border: 1px solid #384c8b !important;
+}
+
+/* bouton secondaire */
 .cc-btn-secondary {
-  border-radius: 0.75rem !important;
+  background: transparent !important;
+  color: #384c8b !important;
+  border: 1px solid rgba(56, 76, 139, 0.3) !important;
+}
+
+.cc-btn-secondary:hover {
+  border-color: #384c8b !important;
 }

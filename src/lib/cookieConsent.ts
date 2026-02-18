@@ -6,13 +6,10 @@ export const initCookieConsent = () => {
     guiOptions: {
       consentModal: {
         layout: "box",
-        position: "bottom right",
-        equalWeightButtons: true,
-      },
-      preferencesModal: {
-        layout: "box",
-      },
+        position: "bottom right"
+      }
     },
+
 
     categories: {
       necessary: {
@@ -21,34 +18,34 @@ export const initCookieConsent = () => {
       analytics: {}
     },
 
-    language: {
-      default: "fr",
-      translations: {
-        fr: {
-          consentModal: {
-            title: "On respecte ta vie privée 🛡️",
-            description:
-              "On utilise des cookies pour mesurer l’audience et améliorer l’expérience.",
-            acceptAllBtn: "Accepter",
-            acceptNecessaryBtn: "Refuser",
-            showPreferencesBtn: "Personnaliser"
-          },
-          preferencesModal: {
-            title: "Gestion des cookies",
-            acceptAllBtn: "Tout accepter",
-            acceptNecessaryBtn: "Tout refuser",
-            savePreferencesBtn: "Enregistrer",
-            sections: [
-              {
-                title: "Cookies analytiques",
-                description:
-                  "Ils nous permettent de mesurer les visites (Google Analytics).",
-                linkedCategory: "analytics"
-              }
-            ]
+      language: {
+        default: "fr",
+        translations: {
+          fr: {
+            consentModal: {
+              title: "🍪 Expérience améliorée",
+              description:
+                "Nous utilisons quelques cookies pour améliorer votre navigation et mesurer l’audience.",
+              acceptAllBtn: "Accepter",
+              acceptNecessaryBtn: "Refuser",
+              showPreferencesBtn: "Personnaliser"
+            },
+            preferencesModal: {
+              title: "Préférences cookies",
+              acceptAllBtn: "Tout accepter",
+              acceptNecessaryBtn: "Tout refuser",
+              savePreferencesBtn: "Enregistrer",
+              sections: [
+                {
+                  title: "Mesure d’audience",
+                  description:
+                    "Nous aide à comprendre l’utilisation du site pour l’améliorer.",
+                  linkedCategory: "analytics"
+                }
+              ]
+            }
           }
         }
       }
-    }
   });
 };
