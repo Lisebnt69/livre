@@ -51,11 +51,13 @@ const Home = () => {
                 label={home.hero.ctaPrimary}
                 href="/livre"
                 className="bg-red-900 hover:bg-red-700 shadow-lg hover:shadow-xl transition"
+                eventName="click_amazon"
               />
               <CTAButton
                 label={home.hero.ctaSecondary}
                 href={book.amazonUrl}
                 className="border border-black/10 hover:border-black/20 transition"
+                eventName="click_amazon"
               />
             </div>
           </motion.div>
@@ -279,6 +281,7 @@ const Home = () => {
                   label="Voir sur Amazon"
                   href={book.amazonUrl}
                   className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue"
+                  eventName="click_amazon"
                 />
 
                 <Link
@@ -357,7 +360,7 @@ const Home = () => {
         <div className="bg-primaryRed text-white rounded-3xl py-16 px-8 md:px-12 text-center shadow-xl">
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4">{home.finalCta.title}</h2>
           <p className="text-lg mb-10 opacity-95">{home.finalCta.subtitle}</p>
-          <CTAButton href={book.amazonUrl} label={home.finalCta.button} />
+          <CTAButton href={book.amazonUrl} label={home.finalCta.button} eventName="click_amazon"/>
         </div>
       </motion.section>
     </main>

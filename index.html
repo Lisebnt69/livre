@@ -11,6 +11,32 @@
     <meta property="og:description" content="Le guide complet pour une année de High School réussie aux USA." />
     <meta property="og:image" content="/cover.jpg" />
     <meta property="og:url" content="https://www.reussir-son-annee-de-high-school-aux-etats-unis.com" />
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      // RGPD : refus par défaut
+      gtag('consent', 'default', {
+        analytics_storage: 'denied',
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted'
+      });
+
+      gtag('js', new Date());
+
+      // config GA (sans pub + IP anonymisée)
+      gtag('config', 'G-XXXXXXXXXX', {
+        anonymize_ip: true,
+        allow_google_signals: false,
+        allow_ad_personalization_signals: false
+      });
+    </script>
   </head>
   <body>
     <div id="root"></div>

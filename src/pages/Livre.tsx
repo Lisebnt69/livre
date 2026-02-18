@@ -97,7 +97,7 @@ const Livre = () => {
 
               {/* CTA */}
               <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <CTAButton href={book.amazonUrl} label="Acheter le livre" />
+                <CTAButton href={book.amazonUrl} label="Acheter le livre" eventName="click_amazon"/>
                 <a
                   href="#extrait"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-white text-primaryBlue border border-black/10 hover:border-black/20 shadow-sm hover:shadow transition"
@@ -167,6 +167,7 @@ const Livre = () => {
                   href={book.amazonUrl}
                   label="Acheter sur Amazon"
                   className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue"
+                  eventName="click_amazon"
                 />
               </div>
             </div>

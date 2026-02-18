@@ -22,7 +22,7 @@ const Hero = () => {
             <li>✔ Vie scolaire, famille d’accueil ou internat</li>
             <li>✔ Les clés d’une année réussie</li>
           </ul>
-          <CTAButton href="#acheter" label="Découvrir le livre" className="mt-8" />
+          <CTAButton href="#acheter" label="Découvrir le livre" className="mt-8" eventName="click_amazon" />
         </div>
 
         {/* Image côté droit */}

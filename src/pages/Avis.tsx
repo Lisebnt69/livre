@@ -100,11 +100,13 @@ export default function Avis() {
               label="Acheter sur Amazon"
               href={book.amazonUrl}
               className="bg-primaryRed text-white hover:bg-primaryRed/90"
+              eventName="click_amazon"
             />
             <CTAButton
               label="Lire les premières pages"
               href="/livre#extrait"
               className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue"
+              eventName="click_amazon"
             />
           </div>
         </div>
@@ -345,11 +347,13 @@ export default function Avis() {
                   label="Acheter sur Amazon"
                   href={book.amazonUrl}
                   className="bg-primaryRed text-white hover:bg-primaryRed/90 hover:text-white"
+                  eventName="click_amazon"
                 />
                 <CTAButton
                   label="Lire les premières pages"
                   href="/livre#extrait"
                   className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue hover:text-white"
+                  eventName="click_amazon"
                 />
               </div>
             </div>

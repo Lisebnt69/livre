@@ -31,7 +31,7 @@ const VideoSection = () => {
             <p className="text-gray-500">Vidéo à venir...</p>
           </div>
         )}
-        <CTAButton href="/avis" label={video.cta} />
+        <CTAButton href="/avis" label={video.cta} eventName="click_amazon"/>
       </div>
     </motion.section>
   );

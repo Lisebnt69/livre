@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { trackEvent } from "../lib/ga";
 
 interface CTAButtonProps {
   label: string;
@@ -8,6 +9,9 @@ interface CTAButtonProps {
   fullWidth?: boolean;
   className?: string;
   disabled?: boolean;
+
+  eventName?: string;
+  eventParams?: Record<string, any>;
 }
 
 const CTAButton = ({
@@ -18,6 +22,8 @@ const CTAButton = ({
   fullWidth = false,
   className,
   disabled = false,
+  eventName,
+  eventParams,
 }: CTAButtonProps) => {
   const base =
     "inline-flex items-center justify-center font-semibold rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primaryBlue/30";
@@ -44,6 +50,16 @@ const CTAButton = ({
 
   const isExternal = href?.startsWith("http");
 
+  const handleClick = () => {
+    // tracking GA
+    if (eventName) {
+      trackEvent(eventName, eventParams);
+    }
+
+    // ton onClick custom
+    onClick?.();
+  };
+
   if (href) {
     return (
       <a
@@ -51,6 +67,7 @@ const CTAButton = ({
         className={classes}
         target={isExternal ? "_blank" : undefined}
         rel={isExternal ? "noopener noreferrer" : undefined}
+        onClick={handleClick}
       >
         {label}
       </a>
@@ -58,7 +75,11 @@ const CTAButton = ({
   }
 
   return (
-    <button onClick={onClick} className={classes} disabled={disabled}>
+    <button
+      onClick={handleClick}
+      className={classes}
+      disabled={disabled}
+    >
       {label}
     </button>
   );

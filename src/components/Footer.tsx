@@ -13,6 +13,7 @@ const Footer = () => {
           <CTAButton
             href={book.amazonUrl}
             label="Acheter sur Amazon"
+            eventName="click_amazon"
             className="bg-primaryRed hover:bg-secondaryBlue text-white w-full text-center py-3 rounded-lg shadow-lg transition-colors max-w-xs"
           />
         </div>
