@@ -48,7 +48,16 @@ export const reviews: ReviewItem[] = [
   text: "Bravo pour ce livre : à part ce groupe, on se sent un peu seul quand on démarre cette aventure. Ce guide va aider les prochaines familles.",
   dateLabel: "Fév. 2026",
 },
-
+{
+  id: "amazon-1",
+  kind: "text",
+  source: "Amazon",
+  rating: 5,
+  role: "Étudiant",
+  name: "Anonyme",
+  text: "",
+  dateLabel: "Fév. 2026",
+},
 
 // Story Insta
 {
