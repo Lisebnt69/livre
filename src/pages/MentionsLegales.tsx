@@ -51,7 +51,7 @@ export default function MentionsLegales() {
             <h2 className="text-xl font-bold text-primaryBlue mb-2">
               Contact
             </h2>
-            <p>contact@email.com</p>
+            <p>livrestephanieoyarsabal@gmail.com</p>
           </section>
 
           {/* Conception */}

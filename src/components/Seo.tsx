@@ -31,8 +31,8 @@ export default function Seo({ title, description, canonical, noindex }: SeoProps
       robots.setAttribute("name", "robots");
       document.head.appendChild(robots);
     }
-    robots.content = noindex ? "noindex,nofollow" : "index,follow";
-    const defaultImage = "https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/og-cover.jpg";
+    robots.content = "index,follow";
+    const defaultImage = "https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/cover.jpg";
 
         upsert("property", "og:title", title);
         upsert("property", "og:description", description);
