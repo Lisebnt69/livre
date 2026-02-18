@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import { trackEvent } from "../lib/ga";
+import { trackEvent } from "../data/ga";
 
 interface CTAButtonProps {
   label: string;
