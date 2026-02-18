@@ -19,7 +19,7 @@ export default function TextReviews({ items }: { items: ReviewItem[] }) {
           </div>
 
           <p className="mt-4 text-primaryBlue/85 leading-relaxed">
-            “{r.text}”
+            {r.text ? `“${r.text}”` : ""}
           </p>
 
           <div className="mt-5 text-xs text-primaryBlue/65">
