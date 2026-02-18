@@ -55,7 +55,6 @@ export const reviews: ReviewItem[] = [
   rating: 5,
   role: "Étudiant",
   name: "Anonyme",
-  text: "",
   dateLabel: "Fév. 2026",
 },
 
