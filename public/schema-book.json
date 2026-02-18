@@ -1,0 +1,13 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "Réussir son année de High School aux États-Unis",
+  "author": {
+    "@type": "Person",
+    "name": "Stéphanie Oyarsabal"
+  },
+  "bookFormat": "https://schema.org/Paperback",
+  "inLanguage": "fr",
+  "numberOfPages": 142,
+  "sameAs": "https://www.amazon.fr/dp/B0GNHL49Q8"
+}

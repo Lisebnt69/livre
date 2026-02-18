@@ -4,6 +4,8 @@ import Flipbook from "../components/Flipbook";
 import PdfViewer from "../components/PdfViewer";
 import CTAButton from "../components/CTAButton";
 import { book } from "../data/book";
+import Seo from "../components/Seo";
+import { site } from "../data/site";
 
 const Livre = () => {
   const [images, setImages] = useState<string[]>([]);
@@ -57,6 +59,12 @@ const Livre = () => {
     return (
       <main className="min-h-screen bg-bgLight">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-10 sm:py-14">
+          <Seo
+            title="Le livre | Réussir son année de High School aux États-Unis"
+            description="Découvrez le guide de Stéphanie Oyarsabal : sommaire, thèmes abordés, extrait à feuilleter, et lien d’achat Amazon (broché & Kindle)."
+            canonical={`${site.baseUrl}/livre`}
+          />
+
           {/* Info Livre */}
           <section className="grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             {/* Texte */}

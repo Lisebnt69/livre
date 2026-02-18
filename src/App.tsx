@@ -6,6 +6,9 @@ import Avis from './pages/Avis';
 import ScrollToTop from "./components/ScrollToTop";
 import AnalyticsPageView from "./components/AnalyticsPageView";
 import PolitiqueConfidentialite from "./pages/PolitiqueConfidentialite";
+import MentionsLegales from "./pages/MentionsLegales";
+import NotFound from "./pages/NotFound";
+
 
 <Route
   path="/politique-confidentialite"
@@ -23,7 +26,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/livre" element={<Livre />} />
           <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route path="/avis" element={<Avis />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>

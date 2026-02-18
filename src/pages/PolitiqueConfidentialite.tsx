@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
 import { openCookiePreferences } from "../lib/cookieConsent";
+import Seo from "../components/Seo";
+import { site } from "../data/site";
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -9,6 +12,13 @@ const fadeUp = {
 export default function Confidentialite() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue">
+      <Seo
+        title="Politique de confidentialité | Réussir son année de High School aux États-Unis"
+        description="Politique de confidentialité et cookies : données collectées, base légale, durée de conservation et gestion des préférences."
+        canonical={`${site.baseUrl}/confidentialite`}
+      />
+
+
       <motion.section
         className="max-w-4xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-16"
         initial="hidden"
@@ -18,25 +28,41 @@ export default function Confidentialite() {
         <h1 className="text-4xl md:text-5xl font-black tracking-tight">
           Politique de confidentialité
         </h1>
-        
+        <p className="mt-4 text-primaryBlue/75 leading-relaxed">
+          Ce site est un site vitrine. Nous appliquons le principe : minimum de données, maximum de clarté.
+        </p>
 
-        <div className="mt-10 space-y-8 text-sm md:text-base leading-relaxed text-primaryBlue/85">
+        <div className="mt-10 space-y-10 text-sm md:text-base leading-relaxed text-primaryBlue/85">
           <section>
-            <h2 className="text-xl font-black text-primaryBlue">1) Données collectées</h2>
+            <h2 className="text-xl font-black">1) Responsable de traitement</h2>
             <p className="mt-2">
-              Ce site ne propose pas de compte utilisateur, ni de formulaire de paiement.
-              Les seules données possibles sont :
+              Responsable : <strong>Stéphanie Oyarsabal</strong>. <br />
             </p>
-            <ul className="mt-3 list-disc list-inside space-y-1">
-              <li><span className="font-semibold">Cookies nécessaires</span> : fonctionnement technique du site.</li>
-              <li><span className="font-semibold">Mesure d’audience</span> (optionnelle) : uniquement si vous l’acceptez.</li>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-black">2) Données collectées</h2>
+            <ul className="mt-3 list-disc list-inside space-y-2">
+              <li><strong>Cookies nécessaires</strong> : fonctionnement du site et du module de consentement.</li>
+              <li><strong>Mesure d’audience</strong> (optionnelle) : uniquement si vous l’acceptez.</li>
+            </ul>
+            <p className="mt-3 text-primaryBlue/75">
+              Aucun compte, aucun paiement sur le site, pas de ciblage publicitaire via ce site.
+            </p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-black">3) Base légale</h2>
+            <ul className="mt-3 list-disc list-inside space-y-2">
+              <li>Cookies nécessaires : <strong>intérêt légitime</strong> (fonctionnement du site).</li>
+              <li>Mesure d’audience : <strong>consentement</strong>.</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-primaryBlue">2) Cookies</h2>
+            <h2 className="text-xl font-black">4) Cookies : gérer vos choix</h2>
             <p className="mt-2">
-              Vous pouvez accepter, refuser ou personnaliser vos cookies à tout moment.
+              Vous pouvez accepter, refuser ou modifier votre choix à tout moment.
             </p>
             <button
               type="button"
@@ -48,34 +74,17 @@ export default function Confidentialite() {
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-primaryBlue">3) Mesure d’audience (si acceptée)</h2>
-            <p className="mt-2">
-              Si vous acceptez la mesure d’audience, elle sert uniquement à comprendre
-              les pages les plus utiles et améliorer le site. L’adresse IP est anonymisée.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-black text-primaryBlue">4) Destinataires</h2>
-            <p className="mt-2">
-              Les données de mesure d’audience (si activées) sont traitées par le fournisseur d’analytics.
-              Aucune vente de données. Aucun ciblage publicitaire via ce site.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-black text-primaryBlue">5) Durée de conservation</h2>
+            <h2 className="text-xl font-black">5) Durées de conservation</h2>
             <p className="mt-2">
               Les cookies sont conservés selon les durées standard du module de consentement et de l’outil d’audience.
-              Vous pouvez les supprimer via votre navigateur.
+              Vous pouvez aussi les supprimer via votre navigateur.
             </p>
           </section>
 
           <section>
-            <h2 className="text-xl font-black text-primaryBlue">6) Vos droits</h2>
+            <h2 className="text-xl font-black">6) Vos droits</h2>
             <p className="mt-2">
-              Vous pouvez refuser ou retirer votre consentement à tout moment via “Gérer mes cookies”.
-             
+              Vous pouvez retirer votre consentement (cookies) à tout moment via “Gérer mes cookies”. ;
             </p>
           </section>
         </div>

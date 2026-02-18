@@ -51,6 +51,11 @@ const Footer = () => {
               </Link>
             </li>
             <li>
+              <Link to="/mentions-legales" className="hover:underline">
+                Mentions légales
+              </Link>
+              </li>
+            <li>
               <button
                 type="button"
                 onClick={openCookiePreferences}
