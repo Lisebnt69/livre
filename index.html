@@ -3,35 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Réussir son année de High School aux États-Unis - Guide complet</title>
+
+    <!-- SEO de base (le Seo.tsx mettra title/description/canonical par page) -->
     <meta name="description" content="Guide pratique pour accompagner les lycéens et leurs parents avant, pendant et après une année scolaire aux États-Unis. Écrit par Stéphanie Oyarsabal." />
-    <meta property="og:title" content="Réussir son année de High School aux États-Unis" />
-    <meta property="og:description" content="Le guide complet pour une année de High School réussie aux USA." />
-    <meta property="og:image" content="/cover.jpg" />
-    <script type="application/ld+json" src="/schema-book.json"></script>
-    <meta property="og:url" content="https://www.reussir-son-annee-de-high-school-aux-etats-unis.com" />
-    <!-- Google Analytics -->
-    
-<!-- Google tag (gtag.js) -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-TT502FRSXG"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
 
-        gtag('config', 'G-TT502FRSXG');
-      </script>
-
-  
-
-
+    <!-- Consent mode par défaut (RGPD) : REFUS analytics tant que pas accepté -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
 
-      // RGPD : refus par défaut
       gtag('consent', 'default', {
         analytics_storage: 'denied',
         ad_storage: 'denied',
@@ -40,19 +21,16 @@
         functionality_storage: 'granted',
         security_storage: 'granted'
       });
-
-      gtag('js', new Date());
-
-      // config GA (sans pub + IP anonymisée)
-      gtag('config', 'G-TT502FRSXG', {
-        anonymize_ip: true,
-        allow_google_signals: false,
-        allow_ad_personalization_signals: false
-      });
     </script>
+
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Cloudflare Pages Analytics -->
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token":"619650de6eb34f8fb9d6904dcbe6cafd"}'></script>
+    <!-- Cloudflare Pages Analytics -->
   </body>
 </html>

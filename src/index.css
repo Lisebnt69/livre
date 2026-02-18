@@ -7,69 +7,86 @@ html, body, #root {
   font-family: 'Inter', sans-serif;
 }
 
-/* ===== Cookie Consent - custom brand ===== */
-#cc-main .cm,
-#cc-main .pm {
-  border-radius: 20px !important;
-  border: 1px solid rgba(15, 23, 42, 0.10) !important;
-  box-shadow: 0 20px 60px rgba(2, 6, 23, 0.20) !important;
-  overflow: hidden !important;
+/* =========================
+   CookieConsent theme (site style)
+   ========================= */
+
+:root {
+  --cc-bg: rgba(255,255,255,.92);
+  --cc-text: #0b1b4b; /* primaryBlue */
+  --cc-border: rgba(11,27,75,.18);
+  --cc-shadow: 0 20px 50px rgba(0,0,0,.18);
+
+  --cc-btn-primary-bg: #0b1b4b;   /* primaryBlue */
+  --cc-btn-primary-text: #ffffff;
+  --cc-btn-primary-border: #0b1b4b;
+
+  --cc-btn-secondary-bg: #ffffff;
+  --cc-btn-secondary-text: #0b1b4b;
+  --cc-btn-secondary-border: rgba(11,27,75,.25);
+
+  --cc-radius: 18px;
 }
 
+/* container */
+#cc-main .cm,
+#cc-main .pm {
+  background: var(--cc-bg) !important;
+  color: var(--cc-text) !important;
+  border: 1px solid var(--cc-border) !important;
+  border-radius: var(--cc-radius) !important;
+  box-shadow: var(--cc-shadow) !important;
+  backdrop-filter: blur(12px);
+}
+
+/* titles/text */
 #cc-main .cm__title,
 #cc-main .pm__title {
-  color: #1f2f6f !important; /* primaryBlue (à ajuster si besoin) */
+  color: var(--cc-text) !important;
   font-weight: 800 !important;
 }
 
 #cc-main .cm__desc,
 #cc-main .pm__desc,
 #cc-main .pm__section-desc {
-  color: rgba(31, 47, 111, 0.80) !important;
+  color: rgba(11,27,75,.8) !important;
 }
 
-/* Boutons */
+/* buttons */
 #cc-main .cm__btn,
 #cc-main .pm__btn {
   border-radius: 14px !important;
   font-weight: 700 !important;
-  padding: 12px 14px !important;
+  padding: 10px 14px !important;
+  border: 1px solid transparent !important;
+  transition: transform .15s ease, box-shadow .15s ease !important;
 }
 
-/* Accepter = bleu marine */
+#cc-main .cm__btn:hover,
+#cc-main .pm__btn:hover {
+  transform: translateY(-1px) !important;
+}
+
+/* primary button */
 #cc-main .cm__btn--accept,
 #cc-main .pm__btn--accept {
-  background: #1f2f6f !important;
-  color: #ffffff !important;
-  border: 1px solid #1f2f6f !important;
+  background: var(--cc-btn-primary-bg) !important;
+  color: var(--cc-btn-primary-text) !important;
+  border-color: var(--cc-btn-primary-border) !important;
 }
 
-/* Refuser = blanc bord bleu */
+/* secondary buttons */
 #cc-main .cm__btn--reject,
-#cc-main .pm__btn--reject {
-  background: #ffffff !important;
-  color: #1f2f6f !important;
-  border: 1px solid rgba(31, 47, 111, 0.35) !important;
-}
-
-/* Personnaliser = blanc bord léger */
 #cc-main .cm__btn--manage,
+#cc-main .pm__btn--reject,
 #cc-main .pm__btn--save {
-  background: rgba(255, 255, 255, 0.92) !important;
-  color: #1f2f6f !important;
-  border: 1px solid rgba(15, 23, 42, 0.12) !important;
+  background: var(--cc-btn-secondary-bg) !important;
+  color: var(--cc-btn-secondary-text) !important;
+  border-color: var(--cc-btn-secondary-border) !important;
 }
 
-/* Hover */
-#cc-main .cm__btn--accept:hover,
-#cc-main .pm__btn--accept:hover {
-  filter: brightness(1.05) !important;
-  transform: translateY(-1px);
-}
-
-#cc-main .cm__btn--reject:hover,
-#cc-main .cm__btn--manage:hover,
-#cc-main .pm__btn--reject:hover,
-#cc-main .pm__btn--save:hover {
-  border-color: rgba(31, 47, 111, 0.65) !important;
+/* links */
+#cc-main a {
+  color: #d11f3a !important; /* primaryRed */
+  font-weight: 700 !important;
 }
