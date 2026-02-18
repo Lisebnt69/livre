@@ -3,10 +3,12 @@ import Layout from './components/Layout';
 import Home from './pages/Home';
 import Livre from './pages/Livre';
 import Avis from './pages/Avis';
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />

@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import HTMLFlipBook from "react-pageflip";
+import FlipbookCTA from "./FlipbookCTA";
+
 
 interface Flipbook{
   images: string[];
@@ -8,7 +10,8 @@ interface Flipbook{
 const Flipbook = ({ images }: Flipbook) => {
   const [zoom, setZoom] = useState(false);
 
-  const pages = useMemo(() => images ?? [], [images]);
+  const pages = useMemo(() => [...images, "CTA"], [images]);
+
 
   useEffect(() => {
     if (!zoom) return;
@@ -65,21 +68,28 @@ const Flipbook = ({ images }: Flipbook) => {
       mobileScrollSupport={true}
       maxShadowOpacity={0.25}
       className="mx-auto"
+      
+
     >
       {pages.map((src, index) => (
         <div
-          key={src}
+          key={`${src}-${index}`}
           className="bg-white w-full h-full flex items-center justify-center overflow-hidden select-none"
           style={{ userSelect: "none" }}
         >
-          <img
-            src={src}
-            alt={`Page ${index}`}
-            className="w-full h-full object-contain"
-            draggable={false}
-          />
+          {src === "CTA" ? (
+            <FlipbookCTA />
+          ) : (
+            <img
+              src={src}
+              alt={`Page ${index}`}
+              className="w-full h-full object-contain"
+              draggable={false}
+            />
+          )}
         </div>
       ))}
+
     </HTMLFlipBook>
   );
 
