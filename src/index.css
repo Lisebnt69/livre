@@ -7,3 +7,16 @@ html, body, #root {
   font-family: 'Inter', sans-serif;
 }
 
+.cc-window {
+  border-radius: 1rem !important;
+  font-family: inherit;
+}
+
+.cc-btn-primary {
+  background: #384c8b !important;
+  border-radius: 0.75rem !important;
+}
+
+.cc-btn-secondary {
+  border-radius: 0.75rem !important;
+}

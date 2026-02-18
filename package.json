@@ -16,7 +16,8 @@
     "react-dom": "^18.2.0",
     "react-pageflip": "^2.0.3",
     "react-pdf": "^7.7.3",
-    "react-router-dom": "^6.30.3"
+    "react-router-dom": "^6.30.3",
+    "vanilla-cookieconsent": "^3.1.0"
   },
   "devDependencies": {
     "@types/node": "^25.2.3",

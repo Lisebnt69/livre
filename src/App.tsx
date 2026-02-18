@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import Livre from './pages/Livre';
 import Avis from './pages/Avis';
 import ScrollToTop from "./components/ScrollToTop";
-import CookieBanner from "./components/CookieBanner";
 import AnalyticsPageView from "./components/AnalyticsPageView";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
           <Route path="/avis" element={<Avis />} />
         </Routes>
       </Layout>
-      <CookieBanner />
     </Router>
   );
 }
