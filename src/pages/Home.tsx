@@ -3,6 +3,8 @@ import CTAButton from "../components/CTAButton";
 import { home } from "../data/home";
 import { book } from "../data/book";
 import { Link } from "react-router-dom";
+import Seo from "../components/Seo";
+import { site } from "../data/site";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 26 },
@@ -22,6 +24,12 @@ const sectionView = {
 const Home = () => {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue font-sans">
+      <Seo
+        title="Réussir son année de High School aux États-Unis | Guide complet"
+        description="Préparez votre année de high school aux États-Unis : démarches, conseils et retours d’expérience pour vivre une aventure unique."
+        canonical={`${site.baseUrl}/`}
+      />
+
       {/* HERO */}
       <motion.section
         className="max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-14"
@@ -35,12 +43,12 @@ const Home = () => {
               {home.hero.badge}
             </span>
 
-            <h1 className="max-w-3xl text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] md:leading-[1.02] mb-6 text-primaryBlue">
+            <span className="max-w-3xl text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] md:leading-[1.02] mb-6 text-primaryBlue">
               {home.hero.title}
               <span className="block text-primaryRed mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
                 {home.hero.titleEmphasis}
               </span>
-            </h1>
+            </span>
 
             <p className="max-w-xl text-base sm:text-lg md:text-xl text-textDark mb-10 leading-relaxed">
               {home.hero.lead}
@@ -50,14 +58,14 @@ const Home = () => {
               <CTAButton
                 label={home.hero.ctaPrimary}
                 href="/livre"
-                className="bg-red-900 hover:bg-red-700 shadow-lg hover:shadow-xl transition"
                 eventName="click_amazon"
+                className="bg-red-900 hover:bg-red-700 shadow-lg hover:shadow-xl transition"
               />
               <CTAButton
                 label={home.hero.ctaSecondary}
                 href={book.amazonUrl}
-                className="border border-black/10 hover:border-black/20 transition"
                 eventName="click_amazon"
+                className="border border-black/10 hover:border-black/20 transition"
               />
             </div>
           </motion.div>
@@ -335,7 +343,6 @@ const Home = () => {
           </a>
         </div>
       </motion.section>
-<br />
 
       {/* Video intro header */}
       <motion.section

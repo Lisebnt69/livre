@@ -109,6 +109,18 @@ export default function MentionsLegales() {
             
           </section>
 
+          {/* Affiliation */}
+          <section>
+            <h2 className="text-xl font-bold text-primaryBlue mb-2">
+              Affiliation
+            </h2>
+            <p>
+              Ce site participe au Programme Partenaires d’Amazon EU, un programme d’affiliation conçu pour permettre à des sites de percevoir une rémunération grâce à la création de liens vers Amazon.fr.
+              Certains liens sont des liens d’affiliation : si vous effectuez un achat via ces liens, une commission peut être perçue, sans que cela n’entraîne de coût supplémentaire pour vous.
+            </p>
+            
+          </section>
+
         </div>
       </motion.section>
     </main>
