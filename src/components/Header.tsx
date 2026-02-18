@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+import { book } from "../data/book";
 
 const navLinks = [
   { to: "/", label: "Accueil" },
@@ -9,7 +10,7 @@ const navLinks = [
   { to: "/avis", label: "Avis" },
 ];
 
-const amazonUrl = "https://www.amazon.fr/dp/B0GNHL49Q8";
+
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -90,7 +91,7 @@ export default function Header() {
           <div className="flex items-center gap-3">
             {/* Desktop CTA */}
             <a
-              href={amazonUrl}
+              href={book.amazonUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:inline-flex items-center justify-center px-4 py-2 rounded-xl text-sm font-semibold
@@ -160,7 +161,7 @@ export default function Header() {
                 </div>
 
                 <a
-                  href={amazonUrl}
+                  href={book.amazonUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-3 inline-flex items-center justify-center w-full px-4 py-3 rounded-2xl text-white font-semibold

@@ -85,7 +85,7 @@ export default function Confidentialite() {
           <section>
             <h2 className="text-xl font-black">6) Vos droits</h2>
             <p className="mt-2">
-              Vous pouvez retirer votre consentement (cookies) à tout moment via “Gérer mes cookies”. ;
+              Vous pouvez retirer votre consentement (cookies) à tout moment via “Gérer mes cookies”.<br />
               Pour toute demande : <strong>livrestephanieoyarsabal@gmail.com</strong>.
             </p>
           </section>

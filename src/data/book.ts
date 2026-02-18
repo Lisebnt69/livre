@@ -3,8 +3,8 @@ export const book = {
   title: "Réussir son année de High School aux États-Unis",
   subtitle:
     "Le guide complet pour accompagner les lycéens et leurs parents avant, pendant et après une année scolaire aux États-Unis",
-  amazonUrl: "https://www.amazon.fr/R%C3%A9ussir-ann%C3%A9e-High-School-%C3%89tats-Unis/dp/B0GN4WDVWC/ref=tmm_pap_swatch_0",
-  kindleUrl: "https://www.amazon.fr/dp/B0GNHL49Q8/ref=tmm_kin_swatch_0",
+  amazonUrl: "https://www.amazon.fr/dp/B0GN4WDVWC?tag=guideusa-21",
+  kindleUrl: "https://www.amazon.fr/dp/B0GNHL49Q8?tag=guideusa-21",
   formats: ["Kindle", "Broché"],
   tagline: "Le guide que j’aurais voulu avoir avant le départ de mes enfants.",
   themes: [

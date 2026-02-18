@@ -51,12 +51,14 @@ const CTAButton = ({
   const isExternal = href?.startsWith("http");
 
   const handleClick = () => {
+    if (disabled) return;
+
     // tracking GA
     if (eventName) {
       trackEvent(eventName, eventParams);
     }
 
-    // ton onClick custom
+    // custom
     onClick?.();
   };
 
@@ -66,7 +68,7 @@ const CTAButton = ({
         href={href}
         className={classes}
         target={isExternal ? "_blank" : undefined}
-        rel={isExternal ? "noopener noreferrer" : undefined}
+        rel={isExternal ? "noopener noreferrer sponsored" : undefined}
         onClick={handleClick}
       >
         {label}
@@ -75,11 +77,7 @@ const CTAButton = ({
   }
 
   return (
-    <button
-      onClick={handleClick}
-      className={classes}
-      disabled={disabled}
-    >
+    <button onClick={handleClick} className={classes} disabled={disabled}>
       {label}
     </button>
   );
