@@ -2,19 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://reussir-son-annee-de-high-school-aux-etats-unis.com/</loc>
+    <loc>https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/</loc>
+    <priority>1.0</priority>
   </url>
 
   <url>
-    <loc>https://reussir-son-annee-de-high-school-aux-etats-unis.com/livre</loc>
+    <loc>https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/livre</loc>
+    <priority>0.9</priority>
   </url>
 
   <url>
-    <loc>https://reussir-son-annee-de-high-school-aux-etats-unis.com/avis</loc>
+    <loc>https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/avis</loc>
+    <priority>0.8</priority>
   </url>
 
   <url>
-    <loc>https://reussir-son-annee-de-high-school-aux-etats-unis.com/mentions-legales</loc>
+    <loc>https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/mentions-legales</loc>
+    <priority>0.3</priority>
+  </url>
+
+  <url>
+    <loc>https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/politique-confidentialite</loc>
+    <priority>0.3</priority>
   </url>
 
 </urlset>
