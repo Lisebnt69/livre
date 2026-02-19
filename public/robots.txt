@@ -5,4 +5,4 @@ Disallow: /admin
 Disallow: /private
 Disallow: /api
 
-Sitemap: https://reussir-son-annee-de-high-school-aux-etats-unis.com/sitemap.xml
+Sitemap: https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/sitemap.xml
