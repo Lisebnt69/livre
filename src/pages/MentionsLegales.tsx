@@ -89,7 +89,7 @@ export default function MentionsLegales() {
             </h2>
             <p>
               L’ensemble des contenus présents sur ce site (textes, images,
-              graphismes, logo, vidéos) est protégé par le droit d’auteur.
+              graphismes) est protégé par le droit d’auteur.
               Toute reproduction, représentation, modification ou adaptation,
               totale ou partielle, est interdite sans autorisation préalable.
             </p>
