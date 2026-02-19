@@ -1,62 +1,48 @@
-import { useEffect } from "react";
+// src/components/Seo.tsx
+import { Helmet } from "react-helmet-async";
 
 type SeoProps = {
   title: string;
   description: string;
   canonical?: string;
   noindex?: boolean;
+  image?: string;
 };
 
-export default function Seo({ title, description, canonical, noindex }: SeoProps) {
-  useEffect(() => {
-    document.title = title;
+export default function Seo({
+  title,
+  description,
+  canonical,
+  noindex = false,
+  image,
+}: SeoProps) {
+  const defaultImage =
+    image ??
+    "https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/cover.jpg";
 
-    const upsert = (nameOrProp: "name" | "property", key: string, content: string) => {
-      const selector = `meta[${nameOrProp}="${key}"]`;
-      let el = document.head.querySelector(selector) as HTMLMetaElement | null;
-      if (!el) {
-        el = document.createElement("meta");
-        el.setAttribute(nameOrProp, key);
-        document.head.appendChild(el);
-      }
-      el.content = content;
-    };
+  const robots = "index,follow";
 
-    upsert("name", "description", description);
+  return (
+    <Helmet>
+      <title>{title}</title>
 
-    // robots
-    let robots = document.head.querySelector(`meta[name="robots"]`) as HTMLMetaElement | null;
-    if (!robots) {
-      robots = document.createElement("meta");
-      robots.setAttribute("name", "robots");
-      document.head.appendChild(robots);
-    }
-    robots.content = "index,follow";
-    const defaultImage = "https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/cover.jpg";
+      <meta name="description" content={description} />
+      <meta name="robots" content={robots} />
 
-        upsert("property", "og:title", title);
-        upsert("property", "og:description", description);
-        upsert("property", "og:type", "website");
-        upsert("property", "og:image", defaultImage);
-        if (canonical) upsert("property", "og:url", canonical);
+      {canonical ? <link rel="canonical" href={canonical} /> : null}
 
-        upsert("name", "twitter:card", "summary_large_image");
-        upsert("name", "twitter:title", title);
-        upsert("name", "twitter:description", description);
-        upsert("name", "twitter:image", defaultImage);
+      {/* Open Graph */}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content={defaultImage} />
+      {canonical ? <meta property="og:url" content={canonical} /> : null}
 
-
-    // canonical
-    if (canonical) {
-      let link = document.head.querySelector(`link[rel="canonical"]`) as HTMLLinkElement | null;
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "canonical";
-        document.head.appendChild(link);
-      }
-      link.href = canonical;
-    }
-  }, [title, description, canonical, noindex]);
-
-  return null;
+      {/* Twitter */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={defaultImage} />
+    </Helmet>
+  );
 }
