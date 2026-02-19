@@ -1,5 +1,6 @@
 // src/components/Seo.tsx
 import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 type SeoProps = {
   title: string;
@@ -13,7 +14,6 @@ export default function Seo({
   title,
   description,
   canonical,
-  noindex = false,
   image,
 }: SeoProps) {
   const defaultImage =
@@ -21,6 +21,10 @@ export default function Seo({
     "https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/cover.jpg";
 
   const robots = "index,follow";
+
+  useEffect(() => {
+    document.title = title;
+  }, [title]);
 
   return (
     <Helmet>
