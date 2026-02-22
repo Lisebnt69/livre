@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 
 type Props = {
   images: string[];
-  intervalMs?: number; // durée par slide
+  intervalMs?: number;
   className?: string;
-  alt?: string;
 };
 
 const swipeConfidenceThreshold = 8000;
@@ -16,20 +16,16 @@ function swipePower(offset: number, velocity: number) {
 
 export default function StoryPhoneCarousel({
   images,
-  intervalMs = 2200, // ✅ plus “story”
+  intervalMs = 2500,
   className = "",
-  alt = "Story Instagram",
 }: Props) {
   const count = images.length;
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
-
-  // pour éviter les clicks multiples trop rapides
   const lockRef = useRef(false);
 
   const goTo = (i: number) => {
-    if (count <= 0) return;
-    const next = ((i % count) + count) % count; // ✅ boucle infinie
+    const next = ((i % count) + count) % count;
     setIndex(next);
   };
 
@@ -38,7 +34,7 @@ export default function StoryPhoneCarousel({
 
   const current = useMemo(() => images[index], [images, index]);
 
-  // ✅ Autoplay fiable (timeout, pas interval)
+  // Autoplay infini
   useEffect(() => {
     if (paused || count <= 1) return;
 
@@ -49,62 +45,30 @@ export default function StoryPhoneCarousel({
     return () => window.clearTimeout(t);
   }, [paused, intervalMs, count, index]);
 
-  // si images change et index out of range
-  useEffect(() => {
-    if (index >= count && count > 0) setIndex(0);
-  }, [count, index]);
-
   const safeNav = (fn: () => void) => {
     if (lockRef.current) return;
     lockRef.current = true;
     fn();
-    window.setTimeout(() => {
-      lockRef.current = false;
-    }, 250);
+    setTimeout(() => (lockRef.current = false), 250);
   };
 
-  if (!images || images.length === 0) {
-    return (
-      <div
-        className={[
-          "relative grid place-items-center bg-black text-white/70",
-          className,
-        ].join(" ")}
-      >
-        Aucune image
-      </div>
-    );
-  }
+  if (!images?.length) return null;
 
   return (
-    <div
-      className={["relative w-full h-full", className].join(" ")}
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onTouchStart={() => setPaused(true)}
-      onTouchEnd={() => setPaused(false)}
-    >
-      {/* ✅ Barres de progression style story */}
+    <div className={["relative w-full h-full", className].join(" ")}>
+      {/* Barre progression */}
       <div className="absolute left-3 right-3 top-3 z-20 flex gap-1.5">
         {images.map((_, i) => {
           const isDone = i < index;
           const isActive = i === index;
 
           return (
-            <div
-              key={i}
-              className="h-1 flex-1 overflow-hidden rounded-full bg-black/25"
-            >
-              {/* déjà vues */}
+            <div key={i} className="h-1 flex-1 rounded-full bg-black/25 overflow-hidden">
               {isDone && <div className="h-full w-full bg-white/90" />}
-
-              {/* pas encore vues */}
               {!isDone && !isActive && <div className="h-full w-0 bg-white/90" />}
-
-              {/* active : repart à 0 à chaque slide */}
-              {isActive && (
+              {isActive && !paused && (
                 <motion.div
-                  key={`progress-${index}`} // ✅ reset à chaque image
+                  key={`progress-${index}`}
                   className="h-full bg-white/90"
                   initial={{ width: "0%" }}
                   animate={{ width: "100%" }}
@@ -116,29 +80,17 @@ export default function StoryPhoneCarousel({
         })}
       </div>
 
-      {/* ✅ Zones tap/click (gauche/droite) */}
-      <button
-        aria-label="Précédent"
-        onClick={() => safeNav(prev)}
-        className="absolute inset-y-0 left-0 z-20 w-1/3 bg-transparent"
-      />
-      <button
-        aria-label="Suivant"
-        onClick={() => safeNav(next)}
-        className="absolute inset-y-0 right-0 z-20 w-1/3 bg-transparent"
-      />
-
-      {/* ✅ Image animée + swipe */}
+      {/* Image */}
       <AnimatePresence initial={false} mode="popLayout">
         <motion.img
           key={current}
           src={current}
-          alt={alt}
+          alt="Story Instagram"
           className="h-full w-full object-cover select-none"
           draggable={false}
-          initial={{ opacity: 0, x: 40, scale: 1.01 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: -40, scale: 1.01 }}
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
           transition={{ type: "spring", stiffness: 420, damping: 36 }}
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
@@ -151,9 +103,42 @@ export default function StoryPhoneCarousel({
         />
       </AnimatePresence>
 
-      {/* ✅ Overlay premium */}
+      {/* ⬅️ Flèche gauche */}
+      <button
+        onClick={() => safeNav(prev)}
+        aria-label="Image précédente"
+        className="absolute left-2 top-1/2 -translate-y-1/2 z-30 
+                   bg-black/40 hover:bg-black/60 text-white 
+                   rounded-full p-2 backdrop-blur transition"
+      >
+        <ChevronLeft size={20} />
+      </button>
+
+      {/* ➡️ Flèche droite */}
+      <button
+        onClick={() => safeNav(next)}
+        aria-label="Image suivante"
+        className="absolute right-2 top-1/2 -translate-y-1/2 z-30 
+                   bg-black/40 hover:bg-black/60 text-white 
+                   rounded-full p-2 backdrop-blur transition"
+      >
+        <ChevronRight size={20} />
+      </button>
+
+      {/* ⏸️ Pause / Play */}
+      <button
+        onClick={() => setPaused(!paused)}
+        aria-label={paused ? "Reprendre la lecture" : "Mettre en pause"}
+        className="absolute bottom-4 right-4 z-30 
+                   bg-white/90 hover:bg-white 
+                   text-primaryBlue rounded-full p-2 shadow-md transition"
+      >
+        {paused ? <Play size={18} /> : <Pause size={18} />}
+      </button>
+
+      {/* Overlay léger */}
       <div className="pointer-events-none absolute inset-0 z-10">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-black/10" />
       </div>
     </div>
   );
