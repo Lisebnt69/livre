@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import CTAButton from "../components/CTAButton";
 import { home } from "../data/home";
 import { book } from "../data/book";
-
+import FAQAccordion from "../components/FAQAccordion";
 
 
 const fadeUp = {
@@ -337,21 +337,34 @@ const Home = () => {
             Lire les avis Amazon →
           </a>
         </div>
+        <br />
       </motion.section>
 
-      {/* Video intro header */}
-      <motion.section
-        className="max-w-5xl mx-auto px-6 md:px-10 pb-6 text-center"
-        variants={fadeUp}
-        {...sectionView}
-        custom={0}
-      >
-        <h2 className="text-3xl font-semibold mb-4">Pourquoi j’ai écrit ce livre</h2>
-        <p className="mb-10 max-w-2xl mx-auto text-primaryBlue/90">
-          {home.video.subtitle}
-        </p>
-      </motion.section>
+      <section>
+        <div className="mx-auto max-w-3xl px-6 text-center">
 
+         
+          <h2 className="mt-6 text-3xl text-primaryBlue font-extrabold sm:text-4xl ">
+            Pourquoi j’ai écrit ce livre
+          </h2>
+
+          <p className="mt-6  leading-relaxed sm:text-lg text-primaryBlue/85">
+            Parce qu’il n’existait aucun guide pour accompagner à la fois les jeunes
+            de 14 à 18 ans et leurs parents dans le cadre d’une année de scolarité
+            aux États-Unis. Pourtant, leurs interrogations, leurs défis comme leurs
+            moments inoubliables se ressemblent souvent.
+          </p>
+
+          <p className="mt-4 text-base leading-relaxed sm:text-lg text-primaryBlue/85">
+            J’ai voulu répondre à ce besoin en proposant un guide concret qui aide
+            les familles à aborder cette aventure avec confiance. Comprendre en
+            amont ce que l’on va vivre permet de mieux se préparer, de prendre du
+            recul et de profiter pleinement de cette expérience unique.
+          </p>
+          <br />
+        </div>
+      </section>
+      <FAQAccordion />
       {/* CTA FINAL */}
       <motion.section
         className="max-w-6xl mx-auto px-6 md:px-10 pb-24"
@@ -366,6 +379,7 @@ const Home = () => {
         </div>
       </motion.section>
     </main>
+    
   );
 };
 
