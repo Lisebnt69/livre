@@ -1,7 +1,6 @@
 import { motion } from "framer-motion";
 import { openCookiePreferences } from "../lib/cookieConsent";
-import Seo from "../components/Seo";
-import { site } from "../data/site";
+
 
 
 const fadeUp = {
@@ -12,12 +11,7 @@ const fadeUp = {
 export default function Confidentialite() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue">
-      <Seo
-        title="Politique de confidentialité | Réussir son année de High School aux États-Unis"
-        description="Politique de confidentialité et cookies : données collectées, base légale, durée de conservation et gestion des préférences."
-        canonical={`${site.baseUrl}/confidentialite`}
-      />
-
+     
 
       <motion.section
         className="max-w-4xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-16"

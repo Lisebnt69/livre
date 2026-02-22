@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// src/components/Footer.tsx
 import { book } from "../data/book";
 import CTAButton from "./CTAButton";
 import { openCookiePreferences } from "../lib/cookieConsent";
@@ -9,9 +9,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 grid gap-10 md:grid-cols-12">
         {/* Brand */}
         <div className="md:col-span-4">
-          <p className="text-xl font-black tracking-tight">
-            {book.author}
-          </p>
+          <p className="text-xl font-black tracking-tight">{book.author}</p>
           <p className="mt-2 text-white/75 text-sm leading-relaxed">
             Guide concret pour préparer une année de High School aux États-Unis,
             côté parents et côté jeunes.
@@ -32,10 +30,14 @@ const Footer = () => {
             Navigation
           </p>
           <ul className="mt-4 space-y-2 text-sm">
-            <li><Link className="hover:underline" to="/">Accueil</Link></li>
-            <li><Link className="hover:underline" to="/livre">Le livre</Link></li>
-            <li><Link className="hover:underline" to="/avis">Avis</Link></li>
-            <li><a className="hover:underline" href={book.amazonUrl} target="_blank" rel="noreferrer">Amazon</a></li>
+            <li><a className="hover:underline" href="/">Accueil</a></li>
+            <li><a className="hover:underline" href="/livre/">Le livre</a></li>
+            <li><a className="hover:underline" href="/avis/">Avis</a></li>
+            <li>
+              <a className="hover:underline" href={book.amazonUrl} target="_blank" rel="noreferrer">
+                Amazon
+              </a>
+            </li>
           </ul>
         </div>
 
@@ -46,15 +48,15 @@ const Footer = () => {
           </p>
           <ul className="mt-4 space-y-2 text-sm">
             <li>
-              <Link className="hover:underline" to="/politique-confidentialite">
+              <a className="hover:underline" href="/politique-confidentialite/">
                 Politique de confidentialité
-              </Link>
+              </a>
             </li>
             <li>
-              <Link to="/mentions-legales" className="hover:underline">
+              <a className="hover:underline" href="/mentions-legales/">
                 Mentions légales
-              </Link>
-              </li>
+              </a>
+            </li>
             <li>
               <button
                 type="button"
@@ -63,10 +65,6 @@ const Footer = () => {
               >
                 Gérer mes cookies
               </button>
-            </li>
-            <li className="text-white/70">
-              
-              
             </li>
           </ul>
         </div>

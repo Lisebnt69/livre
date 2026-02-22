@@ -1,17 +1,10 @@
 import { Link } from "react-router-dom";
-import Seo from "../components/Seo";
-import { site } from "../data/site";
+
 
 export default function NotFound() {
   return (
     <main className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-white to-slate-50">
-        <Seo
-            title="Page introuvable"
-            description="Cette page n’existe pas."
-            canonical={`${site.baseUrl}/404`}
-            noindex
-        />
-
+     
 
       <h1 className="text-6xl font-black text-primaryRed mb-6">404</h1>
 

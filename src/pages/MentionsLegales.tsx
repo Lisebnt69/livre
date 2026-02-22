@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
-import Seo from "../components/Seo";
-import { site } from "../data/site";
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 18 },
@@ -11,13 +10,7 @@ export default function MentionsLegales() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue">
 
-      <Seo
-        title="Mentions légales | Réussir son année de High School aux États-Unis"
-        description="Mentions légales : éditeur du site, responsable de publication, hébergement, propriété intellectuelle et contact."
-        canonical={`${site.baseUrl}/mentions-legales`}
-        />
-
-
+      
       <motion.section
         className="max-w-4xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-20"
         initial="hidden"

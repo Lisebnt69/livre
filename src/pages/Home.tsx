@@ -3,8 +3,7 @@ import CTAButton from "../components/CTAButton";
 import { home } from "../data/home";
 import { book } from "../data/book";
 import { Link } from "react-router-dom";
-import Seo from "../components/Seo";
-import { site } from "../data/site";
+
 
 const fadeUp = {
   hidden: { opacity: 0, y: 26 },
@@ -24,11 +23,7 @@ const sectionView = {
 const Home = () => {
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue font-sans">
-      <Seo
-        title="Réussir son année de High School aux États-Unis | Guide complet"
-        description="Préparez votre année de high school aux États-Unis : démarches, conseils et retours d’expérience pour vivre une aventure unique."
-        canonical={`${site.baseUrl}/`}
-      />
+    
 
       {/* HERO */}
       <motion.section

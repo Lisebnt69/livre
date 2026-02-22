@@ -1,21 +1,42 @@
 // src/components/Header.tsx
-import { useEffect, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { book } from "../data/book";
 
-const navLinks = [
-  { to: "/", label: "Accueil" },
-  { to: "/livre", label: "Le livre" },
-  { to: "/avis", label: "Avis" },
+type NavItem = { href: string; label: string };
+
+const navLinks: NavItem[] = [
+  { href: "/", label: "Accueil" },
+  { href: "/livre/", label: "Le livre" },
+  { href: "/avis/", label: "Avis" },
+  // si tu crées ces pages en MPA aussi :
+  // { href: "/politique-confidentialite/", label: "Confidentialité" },
+  // { href: "/mentions-legales/", label: "Mentions légales" },
 ];
 
+function normalizePath(pathname: string) {
+  // enlève query/hash, force trailing slash pour comparer proprement
+  let p = pathname.split("?")[0].split("#")[0] || "/";
+  if (!p.endsWith("/")) p += "/";
+  return p;
+}
 
+function isActive(currentPath: string, href: string) {
+  const cur = normalizePath(currentPath);
+  const target = normalizePath(href);
+
+  if (target === "/") return cur === "/";
+  return cur.startsWith(target);
+}
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const location = useLocation();
+
+  const currentPath = useMemo(() => {
+    if (typeof window === "undefined") return "/";
+    return window.location.pathname || "/";
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -24,12 +45,9 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    setOpen(false);
-  }, [location.pathname]);
-
-  const isActivePath = (to: string) =>
-    to === "/" ? location.pathname === "/" : location.pathname.startsWith(to);
+  // ferme le menu mobile quand on change de page (clic sur lien)
+  // en MPA, la navigation recharge la page de toute façon, mais ça évite le flash
+  const handleNavClick = () => setOpen(false);
 
   return (
     <header className="sticky top-0 z-50">
@@ -43,53 +61,46 @@ export default function Header() {
       >
         <nav className="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
           {/* Brand */}
-          <Link to="/" className="group flex flex-col leading-tight">
+          <a href="/" className="group flex flex-col leading-tight" onClick={handleNavClick}>
             <span className="text-base md:text-lg font-extrabold text-[#384c8b] group-hover:text-primaryRed transition">
               Stéphanie Oyarsabal
             </span>
 
-            {/* ✅ Baseline masquée sur mobile, visible dès md */}
             <span className="hidden md:block text-xs text-[#384c8b]/70 font-semibold">
               Guide concret pour une année de High School aux États-Unis
             </span>
-          </Link>
+          </a>
 
-
-          {/* Desktop nav: underline premium */}
+          {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((l) => (
-              <NavLink
-                key={l.to}
-                to={l.to}
-                end={l.to === "/"}
-                className={({ isActive }) =>
-                  [
+            {navLinks.map((l) => {
+              const active = isActive(currentPath, l.href);
+              return (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={handleNavClick}
+                  className={[
                     "relative text-sm font-semibold tracking-tight transition-colors",
-                    isActive ? "text-[#384c8b]" : "text-[#384c8b]/80 hover:text-[#384c8b]",
-                  ].join(" ")
-                }
-              >
-                {({ isActive }) => (
+                    active ? "text-[#384c8b]" : "text-[#384c8b]/80 hover:text-[#384c8b]",
+                  ].join(" ")}
+                >
                   <span className="relative">
                     {l.label}
-                    {/* underline */}
                     <span
                       className={[
                         "absolute left-0 -bottom-2 h-[2px] rounded-full transition-all",
-                        isActive
-                          ? "w-full bg-primaryRed"
-                          : "w-0 bg-primaryRed group-hover:w-full",
+                        active ? "w-full bg-primaryRed" : "w-0 bg-primaryRed hover:w-full",
                       ].join(" ")}
                     />
                   </span>
-                )}
-              </NavLink>
-            ))}
+                </a>
+              );
+            })}
           </div>
 
           {/* Right side */}
           <div className="flex items-center gap-3">
-            {/* Desktop CTA */}
             <a
               href={book.amazonUrl}
               target="_blank"
@@ -100,11 +111,9 @@ export default function Header() {
                          hover:bg-red-700
                          ring-1 ring-red-900/20 hover:ring-red-700/30"
             >
-              Acheter
-              <span className="ml-2 opacity-90">↗</span>
+              Acheter <span className="ml-2 opacity-90">↗</span>
             </a>
 
-            {/* Mobile menu button */}
             <button
               onClick={() => setOpen((v) => !v)}
               className="md:hidden inline-flex items-center justify-center h-10 w-10 rounded-xl
@@ -127,7 +136,7 @@ export default function Header() {
           </div>
         </nav>
 
-        {/* Mobile dropdown (premium + compact) */}
+        {/* Mobile dropdown */}
         <AnimatePresence>
           {open && (
             <motion.div
@@ -140,12 +149,12 @@ export default function Header() {
               <div className="max-w-6xl mx-auto px-6 py-5">
                 <div className="rounded-2xl border border-black/10 bg-white shadow-sm p-2">
                   {navLinks.map((l) => {
-                    const active = isActivePath(l.to);
+                    const active = isActive(currentPath, l.href);
                     return (
-                      <NavLink
-                        key={l.to}
-                        to={l.to}
-                        end={l.to === "/"}
+                      <a
+                        key={l.href}
+                        href={l.href}
+                        onClick={handleNavClick}
                         className={[
                           "flex items-center justify-between px-4 py-3 rounded-xl font-semibold transition",
                           active
@@ -155,7 +164,7 @@ export default function Header() {
                       >
                         <span>{l.label}</span>
                         <span className={active ? "text-primaryRed" : "text-[#384c8b]/40"}>›</span>
-                      </NavLink>
+                      </a>
                     );
                   })}
                 </div>

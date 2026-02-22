@@ -5,8 +5,7 @@ import ReviewHighlight from "../components/ReviewHighlight";
 import TextReviews from "../components/TextReviews";
 import { reviews } from "../data/reviews";
 import { book } from "../data/book";
-import Seo from "../components/Seo";
-import { site } from "../data/site";
+
 
 
 const fadeUp = {
@@ -70,11 +69,6 @@ export default function Avis() {
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue">
-      <Seo
-        title="Avis lecteurs | Réussir son année de High School aux États-Unis"
-        description="Avis de parents, d’étudiants et de proches sur le guide : retours authentiques, captures et extraits lisibles."
-        canonical={`${site.baseUrl}/avis`}
-      />
 
       {/* BG blobs */}
       <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
