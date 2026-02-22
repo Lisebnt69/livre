@@ -302,7 +302,7 @@ export default function Avis() {
             Vu sur Instagram
           </p>
           <h2 className="mt-2 text-3xl md:text-4xl font-black text-primaryBlue">
-            La story qui résume tout
+            Les stories qui résument tout
           </h2>
           
         </div>
