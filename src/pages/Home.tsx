@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import CTAButton from "../components/CTAButton";
 import { home } from "../data/home";
 import { book } from "../data/book";
-import { Link } from "react-router-dom";
+
 
 
 const fadeUp = {
@@ -287,12 +287,12 @@ const Home = () => {
                   eventName="click_amazon"
                 />
 
-                <Link
-                  to="/avis"
+                <a
+                  href="/avis"
                   className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-white text-primaryBlue border border-primaryBlue/30 hover:border-primaryBlue/60 shadow-sm hover:shadow transition"
                 >
                   Voir tous les avis →
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>
