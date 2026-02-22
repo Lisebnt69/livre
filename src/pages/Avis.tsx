@@ -5,7 +5,7 @@ import ReviewHighlight from "../components/ReviewHighlight";
 import TextReviews from "../components/TextReviews";
 import { reviews } from "../data/reviews";
 import { book } from "../data/book";
-
+import StoryPhoneCarousel from "../components/StoryPhoneCarousel";
 
 
 const fadeUp = {
@@ -313,13 +313,16 @@ export default function Avis() {
               <div className="absolute -inset-5 bg-gradient-to-r from-primaryRed/15 to-primaryBlue/20 blur-2xl opacity-70" />
               <div className="relative rounded-[2.4rem] bg-slate-900 p-3 shadow-2xl">
                 <div className="rounded-[1.9rem] bg-white overflow-hidden">
-                  <img
-                    src="/reviews/story-1.png"
-                    alt="Story Instagram - avis"
-                    className="w-full h-auto"
-                    loading="lazy"
-                    draggable={false}
-                  />
+                  <div className="aspect-[9/16] w-full">
+                    <StoryPhoneCarousel
+                      images={[
+                        "/reviews/story-1.png",
+                        "/reviews/story-2.png"
+                      ]}
+                      intervalMs={3200}
+                      className="h-full w-full"
+                    />
+                  </div>
                 </div>
               </div>
               <p className="mt-3 text-xs text-primaryBlue/60 text-center">

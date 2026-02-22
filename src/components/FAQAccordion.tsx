@@ -34,24 +34,6 @@ export default function FAQAccordion() {
         answer:
           "Un coordinateur local, mandaté par l'organisme américain, rencontre chaque famille. Il visite leur maison, discute de leurs motivations et s'assure que leur environnement est chaleureux et sécurisé pour le jeune. Ces familles participent bénévolement au programme J-1, avec une vraie envie de partage culturel. Leur profil est varié : on y trouve des couples avec enfants, des parents seuls, des retraités ou des personnes ayant déjà vécu l'expérience. Le placement est personnalisé. On étudie attentivement le dossier du jeune, sa lettre, ses photos, ses résultats, pour trouver une famille dont les valeurs et le mode de vie lui correspondent. Car au fond, la clé d'un séjour réussi réside dans cette relation humaine, qui se construit jour après jour grâce à une communication ouverte et une adaptation réciproque.",
       },
-      {
-        tag: "Format",
-        question: "Le livre existe en quelle version ?",
-        answer:
-          "Disponible en version broché (papier) et en version Kindle. Le broché est idéal pour annoter et surligner. La version Kindle est parfaite si tu préfères lire sur tablette ou téléphone, partout, à ton rythme.",
-      },
-      {
-        tag: "Timing",
-        question: "Quand faut-il commencer ?",
-        answer:
-          "L’idéal est de commencer plusieurs mois à l’avance. Plus tu anticipes, plus tu gardes le contrôle sur les démarches. S’y prendre à la dernière minute, c’est ajouter du stress inutile.",
-      },
-      {
-        tag: "Achat",
-        question: "Où acheter le livre ?",
-        answer:
-          "Le livre est disponible sur Amazon, en version broché et Kindle. Tu choisis ton format, tu commandes, et tu passes à l’action.",
-      },
         {
         tag: "Budget",
         question: "Combien coûte une année scolaire aux États-unis ?",
@@ -75,6 +57,24 @@ export default function FAQAccordion() {
         question: "Comment avoir une bourse sportive en High School américaine ?",
         answer:
           "Quelques établissements privés aux États-Unis proposent des aides financières sportives totales ou partielles afin d’attirer des athlètes du monde entier. Celles-ci peuvent couvrir les dépenses d’inscription, de résidence ou une portion des sommes associées au cursus. Les disciplines les plus convoitées englobent le basketball, le soccer, le tennis, la natation et l’athlétisme. L’aptitude sportive doit être remarquable et s’accompagner d’un bon historique scolaire et de conduite. Une aide financière exige une implication sérieuse : des pratiques forcées, de la rigueur et la conservation des notes scolaires.",
+      },
+      {
+        tag: "Timing",
+        question: "Quand faut-il commencer à se préparer ?",
+        answer:
+          "L’idéal est de commencer plusieurs mois à l’avance. Plus tu anticipes, plus tu gardes le contrôle sur les démarches. S’y prendre à la dernière minute, c’est ajouter du stress inutile.",
+      },
+      {
+        tag: "Achat",
+        question: "Où acheter le livre ?",
+        answer:
+          "Le livre est disponible sur Amazon, en version broché et Kindle. Tu choisis ton format, tu commandes, et tu passes à l’action.",
+      },
+      {
+        tag: "Format",
+        question: "Le livre existe en quelle version ?",
+        answer:
+          "Disponible en version broché (papier) et en version Kindle. Le broché est idéal pour annoter et surligner. La version Kindle est parfaite si tu préfères lire sur tablette ou téléphone, partout, à ton rythme.",
       }
     ],
     []
