@@ -91,7 +91,7 @@ export default function FAQAccordion() {
               >
                 Kindle
               </a>
-              . Tu choisis ton format, tu commandes, et tu passes à l’action.
+              . Tu choisis le format, tu commandes, et tu passes à l’action.
             </>
           ),
         },
@@ -119,8 +119,8 @@ export default function FAQAccordion() {
             Kindle
           </a>
           . Le broché est idéal pour annoter et surligner. La version Kindle est
-          parfaite si tu préfères lire sur tablette ou téléphone, partout, à ton
-          rythme.
+          parfaite si tu préfères lire sur tablette ou téléphone, partout, au
+          rythme souhaité.
         </>
       ),
     }
