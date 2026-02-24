@@ -4,7 +4,7 @@ import CTAButton from "./CTAButton";
 import { openCookiePreferences } from "../lib/cookieConsent";
 
 const INSTAGRAM_URL = "https://www.instagram.com/high_school_aux_usa/";
-const INSTAGRAM_ICON_SRC = "/public/instagram_logo_blanc.png"; 
+const INSTAGRAM_ICON_SRC = "/instagram_logo_blanc.png"; 
 
 const Footer = () => {
   return (

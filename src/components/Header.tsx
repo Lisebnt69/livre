@@ -12,7 +12,7 @@ const navLinks: NavItem[] = [
 ];
 
 const INSTAGRAM_URL = "https://www.instagram.com/high_school_aux_usa/";
-const INSTAGRAM_ICON_SRC = "/public/instagram_logo_bleu.png"; 
+const INSTAGRAM_ICON_SRC = "/instagram_logo_bleu.png"; 
 
 function normalizePath(pathname: string) {
   let p = pathname.split("?")[0].split("#")[0] || "/";
