@@ -425,7 +425,7 @@ export default function Livre() {
       <div className="sm:hidden h-24" />
       {/* FAQ ACHAT */}
       <motion.section
-        className="mt-12 sm:mt-16 pb-20"
+        className="sm:mt-16 pb-20"
         variants={fadeUp}
         {...sectionView}
       >
