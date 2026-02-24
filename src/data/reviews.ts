@@ -34,7 +34,7 @@ export const reviews: ReviewItem[] = [
   source: "Réseaux",
   rating: 5,
   role: "Parent",
-  name: "Parent (groupe d’échange)",
+  name: "Parent (groupe d’échange facebook))",
   text: "Bravo pour cette initiative 👏 Je suis sûre que votre guide aidera de nombreuses familles. Un tel ouvrage manquait !",
   dateLabel: "Fév. 2026",
 },
@@ -44,7 +44,7 @@ export const reviews: ReviewItem[] = [
   source: "Réseaux",
   rating: 5,
   role: "Parent",
-  name: "Parent (groupe d’échange)",
+  name: "Parent (groupe d’échange facebook)",
   text: "Bravo pour ce livre : à part ce groupe, on se sent un peu seul quand on démarre cette aventure. Ce guide va aider les prochaines familles.",
   dateLabel: "Fév. 2026",
 },
@@ -57,15 +57,17 @@ export const reviews: ReviewItem[] = [
   name: "Anonyme",
   dateLabel: "Fév. 2026",
 },
-
-// Story Insta
 {
-  id: "insta-story-1",
-  kind: "screenshot",
+  id: "text-parent-short-3",
+  kind: "text",
   source: "Réseaux",
-  image: "/reviews/story-1.png",
-  dateLabel: "Story Instagram",
+  rating: 5,
+  role: "Parent",
+  name: "Parent (groupe d’échange facebook)",
+  text: "Commandé par ma fille qui part cet été, elle est ravie !",
+  dateLabel: "Fév. 2026",
 },
+
 
 
 ];
