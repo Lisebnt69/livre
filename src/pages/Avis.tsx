@@ -156,7 +156,10 @@ export default function Avis() {
                         "/reviews/story-1.png",
                         "/reviews/story-2.png",
                         "/reviews/story-3.png",
-                        "/reviews/story-4.png"
+                        "/reviews/story-4.png",
+                        "/reviews/story-5.jpg",
+                        "/reviews/story-6.jpg",
+                        "/reviews/story-7.jpg"
                       ]}
                       intervalMs={3200}
                       className="h-full w-full"
