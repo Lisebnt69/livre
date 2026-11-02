@@ -19,7 +19,6 @@ export function MentionsLegales() {
       <section><h2>Éditeur du site</h2><p>{book.author}</p></section>
       <section><h2>Responsable de la publication</h2><p>{book.author}</p></section>
       <section><h2>Contact</h2><p>{book.email}</p></section>
-      <section><h2>Conception et réalisation</h2><p>Lise Benoit</p></section>
       <section>
         <h2>Hébergement</h2>
         <p>

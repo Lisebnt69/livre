@@ -3,12 +3,21 @@
 Site vitrine d'un seul livre, dont la seule mission est de **pousser le clic vers la fiche Amazon** et de **ranker en SEO**.
 Vite + React + TypeScript + Tailwind. Pas de backend.
 
+## Mode actuel : page unique
+
+Depuis le 2 novembre 2026, seul **une page (couverture + lien Amazon)** est publiée ; le site complet est masqué
+mais intact dans ce dépôt. `npm run build` construit la page unique par défaut (`SITE_MODE=minimal`, source :
+`landing/index.html`). Pour remettre le site complet en ligne : `SITE_MODE=full` dans Cloudflare Pages, ou
+`npm run build:full` en local. **Mode d'emploi détaillé et liste de ce qui reste à faire : `docs/ARCHIVE-SITE-COMPLET.md`.**
+
 ## Commandes
 
 ```bash
 npm install
 npm run dev        # développement (rendu client)
-npm run build      # build + pré-rendu statique de toutes les pages dans dist/
+npm run build      # page unique par défaut (SITE_MODE=minimal)
+npm run build:full # site complet : build + pré-rendu statique de toutes les pages dans dist/
+npm run build:minimal
 npm run preview    # servir dist/ en local
 npm run typecheck
 ```
