@@ -1,28 +1,21 @@
 import { Link } from "react-router-dom";
-
+import { guides } from "../data/guides";
+import { AmazonButton } from "../components/Amazon";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center text-center px-6 bg-gradient-to-b from-white to-slate-50">
-     
-
-      <h1 className="text-6xl font-black text-primaryRed mb-6">404</h1>
-
-      <h2 className="text-2xl md:text-3xl font-bold text-primaryBlue mb-4">
-        Oups… cette page n’existe pas.
-      </h2>
-
-      <p className="text-primaryBlue/70 max-w-md mb-8">
-        Mais votre projet d’année aux États-Unis peut toujours réussir 😉
-      </p>
-
-      <Link
-        to="/"
-        className="bg-primaryBlue text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition"
-      >
-        Retour à l’accueil
-      </Link>
-
-    </main>
+    <div className="wrap py-20 sm:py-28">
+      <p className="font-display text-7xl font-extrabold text-locker" style={{ fontStretch: "75%" }}>404</p>
+      <h1 className="mt-4 max-w-2xl text-display-l">Cette page n’existe pas, mais votre projet peut encore réussir.</h1>
+      <div className="mt-8 flex flex-wrap gap-3">
+        <Link to="/" className="btn-ink">Retour à l’accueil</Link>
+        <AmazonButton placement="404" variant="ghost">Voir le livre sur Amazon</AmazonButton>
+      </div>
+      <ul className="mt-12 grid gap-2 sm:grid-cols-2">
+        {guides.map((g) => (
+          <li key={g.slug}><Link to={g.path} className="link">{g.short}</Link></li>
+        ))}
+      </ul>
+    </div>
   );
 }

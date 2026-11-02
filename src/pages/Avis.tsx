@@ -1,207 +1,99 @@
-import { motion } from "framer-motion";
-import CTAButton from "../components/CTAButton";
-import ReviewHighlight from "../components/ReviewHighlight";
-import TextReviews from "../components/TextReviews";
-import { reviews } from "../data/reviews";
 import { book } from "../data/book";
-import StoryPhoneCarousel from "../components/StoryPhoneCarousel";
+import { reviews, stories } from "../data/reviews";
+import { Breadcrumb, Section, SectionHead } from "../components/Ui";
+import { AmazonButton } from "../components/Amazon";
+import { FinalCta } from "../components/Blocks";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 18 },
-  visible: (custom = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: custom * 0.08, duration: 0.55, ease: "easeOut" },
-  }),
-};
+const REVIEW_URL = "https://www.amazon.fr/review/create-review?asin=B0GN4WDVWC";
 
-const sectionView = {
-  initial: "hidden" as const,
-  whileInView: "visible" as const,
-  viewport: { once: true, amount: 0.22 },
-};
-
-export default function Avis() {
-  const hero = reviews.find((r) => r.highlight);
-
+export default function Avis({ crumbs }: { crumbs: { name: string; path: string }[] }) {
+  const [main, ...others] = reviews;
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue">
-
-      {/* HERO */}
-      <motion.section
-        className="max-w-5xl mx-auto px-6 md:px-10 pt-20 pb-14 text-center"
-        variants={fadeUp}
-        {...sectionView}
-      >
-        <p className="text-xs font-semibold tracking-widest uppercase text-primaryBlue/60">
-          Preuve sociale
-        </p>
-
-        <h1 className="mt-3 text-4xl md:text-6xl font-black tracking-tight">
-          Avis lecteurs
-        </h1>
-
-        <p className="mt-5 text-lg md:text-xl text-primaryBlue/80 max-w-3xl mx-auto leading-relaxed">
-          Les premiers parents et étudiants partagent leur retour.
-          Leur point commun ? Le soulagement d’avoir anticipé.
-        </p>
-
-        {/* Note lancement */}
-        <div className="mt-10 bg-white rounded-2xl border border-black/5 shadow-sm px-6 py-6 max-w-3xl mx-auto">
-          <div className="text-3xl font-black text-primaryBlue">★★★★★</div>
-          <p className="mt-2 text-primaryBlue/70">
-            <span className="font-semibold text-primaryBlue">5,0/5</span> —
-            Premiers retours depuis la sortie du livre.
+    <>
+      <header className="border-b border-rule">
+        <div className="wrap py-10 sm:py-14">
+          <Breadcrumb items={crumbs} />
+          <h1 className="mt-6 max-w-4xl text-display-xl !text-[clamp(2.2rem,5vw,4.2rem)]">
+            Ce que disent les premiers parents et lecteurs du guide.
+          </h1>
+          <p className="mt-5 max-w-[38rem] text-lg leading-relaxed text-ink/85 sm:text-xl">
+            Des retours spontanés, publiés dans des groupes d’échange ou envoyés à l’autrice. Leur point commun : le
+            soulagement d’avoir anticipé.
           </p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <AmazonButton placement="avis-hero">Lire les avis sur Amazon</AmazonButton>
+          </div>
         </div>
+      </header>
 
-        <div className="mt-10 flex flex-col sm:flex-row gap-3 justify-center">
-          <CTAButton
-            label="Acheter sur Amazon"
-            href={book.amazonUrl}
-            className="bg-primaryRed text-white hover:bg-primaryRed/90"
-            eventName="click_amazon"
-          />
-          <CTAButton
-            label="Lire les premières pages"
-            href="/livre#extrait"
-            className="bg-primaryBlue text-white hover:bg-primaryBlue/90"
-            eventName="click_amazon"
-          />
+      <Section tone="card">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+          <figure className="lg:col-span-7">
+            <blockquote className="font-display text-display-m font-bold leading-snug text-ink" style={{ fontStretch: "92%" }}>
+              « {main.text} »
+            </blockquote>
+            <figcaption className="mt-5 text-muted">
+              {main.role}, {main.source.toLowerCase()} · {main.dateLabel}
+            </figcaption>
+          </figure>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <img
+              src={main.image}
+              alt="Capture d’écran du commentaire d’un parent dans un groupe Facebook d’échange scolaire"
+              width={720}
+              height={1280}
+              loading="lazy"
+              className="mx-auto max-h-[460px] w-auto rounded-[8px] border border-rule object-cover object-top shadow-lift"
+            />
+          </div>
         </div>
-      </motion.section>
+      </Section>
 
-      {/* Avis principal mis en avant */}
-      {hero && (
-        <motion.section
-          className="max-w-5xl mx-auto px-6 md:px-10 pb-16"
-          variants={fadeUp}
-          {...sectionView}
+      <Section>
+        <SectionHead title="D’autres retours." />
+        <ul className="mt-10 grid gap-6 md:grid-cols-3">
+          {others.map((r) => (
+            <li key={r.id} className="flex flex-col rounded-2xl border border-rule bg-card p-6">
+              <p className="flex-1 text-[18px] leading-relaxed text-ink">« {r.text} »</p>
+              <p className="mt-5 border-t border-rule pt-3 text-sm text-muted">
+                {r.role} · {r.source} · {r.dateLabel}
+              </p>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-sm text-muted">
+          Ces commentaires sont des retours de lecteurs, pas des notes Amazon. Les avis vérifiés se trouvent sur la fiche du livre.
+        </p>
+      </Section>
+
+      <Section tone="mist">
+        <SectionHead title="Le livre vu sur Instagram." lead="Les stories de familles et d’étudiants qui en parlent." />
+        <ul
+          className="-mx-4 mt-10 flex snap-x snap-mandatory gap-4 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0"
+          aria-label="Stories Instagram"
+          tabIndex={0}
         >
-          <ReviewHighlight item={hero} amazonUrl={book.amazonUrl} />
-        </motion.section>
-      )}
+          {stories.map((src, i) => (
+            <li key={src} className="w-[200px] shrink-0 snap-start sm:w-[230px]">
+              <img src={src} alt={`Story Instagram ${i + 1} parlant du livre`} loading="lazy" width={230} height={409} className="aspect-[9/16] w-full rounded-[14px] border border-rule object-cover shadow-lift" />
+            </li>
+          ))}
+        </ul>
+      </Section>
 
-      {/* Citation forte */}
-      <motion.section
-        className="max-w-5xl mx-auto px-6 md:px-10 pb-16"
-        variants={fadeUp}
-        {...sectionView}
-      >
-        <div className="bg-white rounded-3xl border border-black/10 shadow-xl p-8 md:p-10 text-center">
-          <p className="text-xs font-semibold tracking-widest uppercase text-primaryBlue/60">
-            Le retour qui résume tout
+      <Section tone="card">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-display-m">Vous avez lu le guide ?</h2>
+          <p className="mt-3 text-lg leading-relaxed text-ink/85">
+            Votre avis honnête, positif ou non, aide les prochaines familles à choisir. Il se dépose directement sur la fiche Amazon.
           </p>
-          <p className="mt-4 text-2xl md:text-3xl font-black text-primaryBlue leading-snug">
-            “Un guide concret, basé sur du vécu réel. C’est précieux.”
-          </p>
-          <p className="mt-4 text-sm text-primaryBlue/60">
-            — Parent d’élève parti aux États-Unis
-          </p>
-        </div>
-      </motion.section>
-
-      {/* Tous les avis */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 pb-20"
-        variants={fadeUp}
-        {...sectionView}
-      >
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-black text-primaryBlue">
-            Ce que disent les lecteurs
-          </h2>
-          <p className="mt-3 text-primaryBlue/70 max-w-2xl mx-auto">
-            Des retours spontanés, authentiques et non sponsorisés.
-          </p>
-        </div>
-
-        <TextReviews items={reviews} />
-
-        <div className="text-center mt-12">
-          <a
-            href={book.amazonUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3 rounded-2xl font-semibold bg-primaryBlue text-white hover:bg-primaryBlue/90 transition"
-          >
-            Voir les avis sur Amazon →
+          <a href={REVIEW_URL} target="_blank" rel="noopener" className="btn-ghost mt-6">
+            Donner mon avis sur Amazon
           </a>
         </div>
-      </motion.section>
+      </Section>
 
-      {/* Stories Instagram */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 pb-24"
-        variants={fadeUp}
-        {...sectionView}
-      >
-        <div className="mb-10 text-center">
-          <p className="text-xs font-semibold tracking-widest uppercase text-primaryBlue/60">
-            Vu sur Instagram
-          </p>
-          <h2 className="mt-2 text-3xl md:text-4xl font-black text-primaryBlue">
-            Les stories qui parlent du livre
-          </h2>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
-          <div className="lg:col-span-5">
-            <div className="relative mx-auto w-[300px] sm:w-[340px]">
-              <div className="relative rounded-[2.4rem] bg-slate-900 p-3 shadow-2xl">
-                <div className="rounded-[1.9rem] bg-white overflow-hidden">
-                  <div className="aspect-[9/16] w-full">
-                    <StoryPhoneCarousel
-                      images={[
-                        "/reviews/story-1.png",
-                        "/reviews/story-2.png",
-                        "/reviews/story-3.png",
-                        "/reviews/story-4.png",
-                        "/reviews/story-5.jpg",
-                        "/reviews/story-6.jpg",
-                        "/reviews/story-7.jpg"
-                      ]}
-                      intervalMs={3200}
-                      className="h-full w-full"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-black/10 shadow-xl p-7 md:p-9">
-              <h3 className="text-2xl md:text-3xl font-black text-primaryBlue">
-                Un guide qui rassure, même à distance.
-              </h3>
-
-              <p className="mt-4 text-lg text-primaryBlue/80 leading-relaxed">
-                Démarches, intégration, imprévus, retour…
-                <span className="font-semibold text-primaryBlue">
-                  l’idée c’est d’être prêt, pas surpris.
-                </span>
-              </p>
-
-              <div className="mt-8 flex flex-col sm:flex-row gap-3">
-                <CTAButton
-                  label="Acheter sur Amazon"
-                  href={book.amazonUrl}
-                  className="bg-primaryRed text-white hover:bg-primaryRed/90"
-                  eventName="click_amazon"
-                />
-                <CTAButton
-                  label="Lire les premières pages"
-                  href="/livre#extrait"
-                  className="bg-primaryBlue text-white hover:bg-primaryBlue/90"
-                  eventName="click_amazon"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </motion.section>
-
-    </main>
+      <FinalCta placement="avis-final" title={`Lire le guide de ${book.author}`} />
+    </>
   );
 }

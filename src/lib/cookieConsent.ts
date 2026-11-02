@@ -1,78 +1,41 @@
-import "vanilla-cookieconsent/dist/cookieconsent.css";
-import * as CookieConsent from "vanilla-cookieconsent";
+import { setAnalyticsConsent } from "./analytics";
 
-const GA_ID = "G-TT502FRSXG"; // <- ton ID
-
-declare global {
-  interface Window {
-    dataLayer: any[];
-    gtag: (...args: any[]) => void;
-    __gaLoaded?: boolean;
-  }
-}
-
-function loadGA() {
-  if (window.__gaLoaded) return;
-  window.__gaLoaded = true;
-
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function () {
-    window.dataLayer.push(arguments);
-  };
-
-  const s = document.createElement("script");
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
-  document.head.appendChild(s);
-
-  window.gtag("js", new Date());
-  window.gtag("config", GA_ID, { anonymize_ip: true });
-}
+// La bibliothèque est chargée dynamiquement : elle ne doit jamais s'exécuter pendant le pré-rendu.
+type CC = typeof import("vanilla-cookieconsent");
+let cc: CC | null = null;
 
 export function openCookiePreferences() {
-  // @ts-ignore
-  if (CookieConsent?.showPreferences) CookieConsent.showPreferences();
+  void import("vanilla-cookieconsent").then((m) => m.showPreferences());
 }
 
-export const initCookieConsent = () => {
-  // évite double init (React StrictMode)
-  // @ts-ignore
+export const initCookieConsent = async () => {
   if (window.__ccInited) return;
-  // @ts-ignore
   window.__ccInited = true;
 
-  CookieConsent.run({
+  await import("vanilla-cookieconsent/dist/cookieconsent.css");
+  cc = await import("vanilla-cookieconsent");
+  const sync = () => setAnalyticsConsent(cc!.acceptedCategory("analytics"));
+
+  cc.run({
     guiOptions: {
       consentModal: { layout: "box", position: "bottom right" },
       preferencesModal: { layout: "box" },
     },
-
     categories: {
-      necessary: { readOnly: true },
+      necessary: { enabled: true, readOnly: true },
       analytics: {},
     },
-
-    onAccept: ({ cookie }) => {
-      if (cookie.categories.includes("analytics")) loadGA();
-    },
-
-    onChange: ({ changedCategories, cookie }) => {
-      if (
-        changedCategories.includes("analytics") &&
-        cookie.categories.includes("analytics")
-      ) {
-        loadGA();
-      }
-    },
-
+    // Appelé au premier choix ET à chaque visite suivante
+    onConsent: sync,
+    onChange: sync,
     language: {
       default: "fr",
       translations: {
         fr: {
           consentModal: {
-            title: "🍪 Expérience améliorée",
+            title: "Mesure d’audience",
             description:
-              "On utilise quelques cookies pour améliorer votre expérience. Vous pouvez accepter, refuser, ou personnaliser.",
+              "Ce site utilise un outil de mesure d’audience pour comprendre quelles pages aident le plus les familles. Rien n’est activé sans votre accord.",
             acceptAllBtn: "Accepter",
             acceptNecessaryBtn: "Refuser",
             showPreferencesBtn: "Personnaliser",
@@ -84,9 +47,13 @@ export const initCookieConsent = () => {
             savePreferencesBtn: "Enregistrer",
             sections: [
               {
+                title: "Cookies nécessaires",
+                description: "Indispensables au fonctionnement du site et à la mémorisation de votre choix.",
+                linkedCategory: "necessary",
+              },
+              {
                 title: "Mesure d’audience",
-                description:
-                  "Nous aide à comprendre l’utilisation du site pour l’améliorer.",
+                description: "Nous aide à comprendre l’utilisation du site pour l’améliorer.",
                 linkedCategory: "analytics",
               },
             ],

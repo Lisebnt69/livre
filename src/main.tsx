@@ -1,16 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.tsx";
+import { StrictMode } from "react";
+import { createRoot, hydrateRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import "@fontsource-variable/archivo/standard.css";
+import "@fontsource-variable/public-sans";
 import "./index.css";
-import { HelmetProvider } from "react-helmet-async";
-import { initCookieConsent } from "./lib/cookieConsent.ts";
+import App from "./App";
+import { initCookieConsent } from "./lib/cookieConsent";
 
-initCookieConsent();
-
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <HelmetProvider>
+const el = document.getElementById("root")!;
+const app = (
+  <StrictMode>
+    <BrowserRouter>
       <App />
-    </HelmetProvider>
-  </React.StrictMode>
+    </BrowserRouter>
+  </StrictMode>
 );
+
+// Page pré-rendue : on « hydrate » le HTML existant. Sinon (vite dev), rendu classique.
+if (el.hasChildNodes()) hydrateRoot(el, app);
+else createRoot(el).render(app);
+
+void initCookieConsent();
