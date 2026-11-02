@@ -8,6 +8,7 @@ import { openCookiePreferences } from "../lib/cookieConsent";
 import { trackEvent, trackPageView } from "../lib/analytics";
 import { Rich } from "../lib/rich";
 import { StarRow, StripesBand, UsFlag } from "./Us";
+import { SocialLinks } from "./Social";
 
 const nav = [
   { to: "/livre/", label: "Le livre" },
@@ -109,6 +110,10 @@ function Header() {
               </li>
             ))}
           </ul>
+          <div className="wrap pb-5">
+            <p className="mb-3 text-sm font-semibold text-muted">Suivre le guide</p>
+            <SocialLinks placement="menu-mobile" />
+          </div>
         </nav>
       )}
     </header>
@@ -136,16 +141,8 @@ function Footer() {
               <AmazonButton variant="light" placement="footer">
                 Voir le livre sur Amazon
               </AmazonButton>
-              <a
-                href={book.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn border border-card/25 text-card hover:bg-card/10"
-              >
-                <img src="/instagram_logo_blanc.png" alt="" width={18} height={18} className="h-[18px] w-[18px]" />
-                Instagram
-              </a>
             </div>
+            <SocialLinks dark iconOnly placement="footer" className="mt-4" />
           </div>
 
           <nav aria-label="Pages du livre" className="lg:col-span-3 lg:col-start-7">

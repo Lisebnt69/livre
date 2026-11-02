@@ -10,7 +10,7 @@ export const personSchema = () => ({
   name: book.author,
   url: abs("/autrice/"),
   image: abs("/author.jpg"),
-  sameAs: [book.instagram],
+  sameAs: [book.instagram, book.youtube, book.tiktok, book.facebook],
   jobTitle: "Autrice",
   description:
     "Maman de deux fils partis en échange scolaire aux États-Unis (visa J-1 et visa F-1), autrice du guide Réussir son année de High School aux États-Unis.",
