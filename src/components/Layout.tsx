@@ -4,9 +4,9 @@ import { ArrowUpRight, Menu, X } from "lucide-react";
 import { book } from "../data/book";
 import { AffiliateNote, AmazonButton } from "./Amazon";
 import { openCookiePreferences } from "../lib/cookieConsent";
-import { trackPageView } from "../lib/analytics";
+import { trackEvent, trackPageView } from "../lib/analytics";
 import { Rich } from "../lib/rich";
-import { StripesBand, UsFlag } from "./Us";
+import { StarRow, StripesBand, UsFlag } from "./Us";
 
 const nav = [
   { to: "/livre/", label: "Le livre" },
@@ -25,6 +25,21 @@ function ScrollAndTrack() {
     trackPageView(pathname, document.title);
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
   return null;
+}
+
+function TopBar() {
+  return (
+    <div className="bg-blue text-card">
+      <div className="wrap flex items-center justify-center gap-3 py-2 text-[13px] font-semibold sm:text-sm">
+        <UsFlag className="hidden h-[15px] w-[28px] shrink-0 rounded-[2px] sm:block" />
+        <span className="truncate">Le guide des familles qui partent aux États-Unis</span>
+        <span aria-hidden="true" className="hidden text-[#FF9AA0] sm:inline">★ ★ ★</span>
+        <a href={book.paperbackUrl} target="_blank" rel="sponsored noopener" onClick={() => trackEvent("click_amazon", { placement: "topbar", format: "paperback", page_path: window.location.pathname })} className="hidden shrink-0 underline decoration-[#FF9AA0] decoration-2 underline-offset-4 hover:text-[#FFC2C6] md:inline">
+          Broché et Kindle sur Amazon
+        </a>
+      </div>
+    </div>
+  );
 }
 
 function Header() {
@@ -112,6 +127,7 @@ function Footer() {
             <p className="text-3xl font-bold leading-tight tracking-tight">
               <Rich text="**Réussir son année** de High School aux États-Unis" tone="dark" />
             </p>
+            <StarRow className="mt-4 h-4 w-[96px] text-[#FF9AA0]" />
             <p className="mt-3 max-w-md text-card/75">
               Le guide concret pour les lycéens et leurs parents, avant, pendant et après une année scolaire aux États-Unis.
             </p>
@@ -212,6 +228,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         Aller au contenu
       </a>
       <ScrollAndTrack />
+      <TopBar />
       <Header />
       <main id="contenu">{children}</main>
       <Footer />

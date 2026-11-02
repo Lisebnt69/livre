@@ -1,6 +1,7 @@
 import { Breadcrumb, Section } from "../components/Ui";
 import { ExtractEnd, ExtractViewer } from "../components/ExtractViewer";
 import { Rich } from "../lib/rich";
+import { StripesBand } from "../components/Us";
 
 export default function Extrait({ crumbs }: { crumbs: { name: string; path: string }[] }) {
   return (
@@ -8,7 +9,8 @@ export default function Extrait({ crumbs }: { crumbs: { name: string; path: stri
       <header className="pt-5 sm:pt-6">
         <div className="wrap"><Breadcrumb items={crumbs} /></div>
         <div className="wrap mt-4">
-         <div className="rounded-4xl bg-sky px-5 py-10 sm:rounded-5xl sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+         <div className="relative overflow-hidden rounded-4xl bg-sky px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-20 lg:pt-16">
+          <StripesBand className="absolute inset-x-0 bottom-0 !h-3" />
           <h1 className="max-w-4xl text-display-xl !text-[clamp(2.2rem,4.8vw,4rem)]">
             <Rich text="Feuilletez **les premières pages** du livre, gratuitement." />
           </h1>

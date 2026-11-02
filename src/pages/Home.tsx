@@ -8,7 +8,7 @@ import { Faq, Section, SectionHead, Tldr } from "../components/Ui";
 import { FinalCta, Toc, WorryTable } from "../components/Blocks";
 import type { FaqItem } from "../lib/schema";
 import { Rich } from "../lib/rich";
-import { StarRow, StripesBand, UsFlag } from "../components/Us";
+import { Bunting, STAR_PATTERN, StarRow, StripesBand, UsFlag, VarsityPatch } from "../components/Us";
 
 export const homeFaq: FaqItem[] = [
   {
@@ -93,7 +93,8 @@ export default function Home() {
         <div className="wrap">
           <div className="relative overflow-hidden rounded-4xl bg-lav px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-24 lg:pt-20">
             <StripesBand className="absolute inset-x-0 bottom-0 !h-3.5" />
-            <div className="grid items-center gap-12 lg:grid-cols-12">
+            <Bunting className="pointer-events-none absolute inset-x-0 top-0 h-7 w-full opacity-95 sm:h-9" />
+            <div className="grid items-center gap-12 pt-6 lg:grid-cols-12">
               <div className="lg:col-span-7">
                 <h1 className="text-display-xl">
                   Une année de High School aux <span className="whitespace-nowrap">États-Unis</span> : <Rich text="**partez préparés**" />, pas à l’aveugle.
@@ -127,7 +128,9 @@ export default function Home() {
               </div>
 
               <div className="relative mx-auto w-[min(70vw,330px)] lg:col-span-5 lg:w-full lg:max-w-[390px] lg:justify-self-end">
+                <UsFlag className="absolute -inset-x-6 -inset-y-5 h-[calc(100%+2.5rem)] w-[calc(100%+3rem)] rotate-[4deg] rounded-[18px] shadow-book sm:-inset-x-10" />
                 <Cover priority className="relative !rounded-[10px]" />
+                <VarsityPatch className="absolute -top-[72px] right-0 w-[88px] rotate-12 drop-shadow-lg sm:-top-[96px] sm:-right-2 sm:w-[112px]" />
                 <span aria-hidden="true" className="absolute -left-3 top-[38%] flex -rotate-6 items-center gap-2 rounded-full bg-card py-2 pl-2.5 pr-4 text-sm font-bold text-ink shadow-lift sm:-left-10">
                   <UsFlag className="h-[18px] w-[34px] rounded-[3px] ring-1 ring-ink/10" />
                   High School USA
@@ -225,17 +228,23 @@ export default function Home() {
       </Section>
 
       {/* L'AMÉRIQUE CÔTÉ LYCÉE */}
-      <Section tone="ink" className="!mt-0">
-        <div className="mx-auto max-w-3xl text-center">
-          <StarRow className="mx-auto h-5 w-[118px] text-[#FF9AA0]" />
-          <h2 className="mt-5 text-display-l !text-card">
-            <Rich text="L’Amérique côté lycée : **le vocabulaire** et les codes" tone="dark" />
-          </h2>
-          <p className="mt-4 text-lg leading-relaxed text-card/80">
-            Casiers, football, bal de fin d’année : le lycée américain a ses mots et ses règles. Mieux vaut les connaître
-            avant d’atterrir. Le chapitre 7 du guide les passe en revue.
-          </p>
-        </div>
+      <section className="py-3 sm:py-4">
+        <div className="wrap">
+          <div
+            className="relative overflow-hidden rounded-4xl bg-ink px-5 pb-16 pt-12 text-card sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-16 lg:px-16 lg:pb-24 lg:pt-20"
+            style={{ backgroundImage: STAR_PATTERN }}
+          >
+            <StripesBand className="absolute inset-x-0 top-0 !h-3.5" />
+            <div className="mx-auto max-w-3xl text-center">
+              <StarRow className="mx-auto h-5 w-[118px] text-[#FF9AA0]" />
+              <h2 className="mt-5 text-display-l !text-card">
+                <Rich text="L’Amérique côté lycée : **le vocabulaire** et les codes" tone="dark" />
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-card/80">
+                Casiers, football, bal de fin d’année : le lycée américain a ses mots et ses règles. Mieux vaut les connaître
+                avant d’atterrir. Le chapitre 7 du guide les passe en revue.
+              </p>
+            </div>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {usWords.map((w, i) => (
             <li key={w.term} className={`flex flex-col rounded-4xl p-7 ${["bg-sky", "bg-rose", "bg-lav", "bg-rose", "bg-sky", "bg-lav"][i]}`}>
@@ -247,7 +256,9 @@ export default function Home() {
             </li>
           ))}
         </ul>
-      </Section>
+      </div>
+        </div>
+      </section>
 
       {/* SOMMAIRE + EXTRAIT */}
       <Section tone="card" className="mt-3">

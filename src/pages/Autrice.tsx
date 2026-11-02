@@ -2,6 +2,7 @@ import { book } from "../data/book";
 import { Breadcrumb, Section } from "../components/Ui";
 import { FinalCta } from "../components/Blocks";
 import { Rich } from "../lib/rich";
+import { StripesBand } from "../components/Us";
 
 export default function Autrice({ crumbs }: { crumbs: { name: string; path: string }[] }) {
   return (
@@ -9,7 +10,8 @@ export default function Autrice({ crumbs }: { crumbs: { name: string; path: stri
       <header className="pt-5 sm:pt-6">
         <div className="wrap"><Breadcrumb items={crumbs} /></div>
         <div className="wrap mt-4">
-         <div className="rounded-4xl bg-rose px-5 py-10 sm:rounded-5xl sm:px-10 sm:py-14 lg:px-16 lg:py-16">
+         <div className="relative overflow-hidden rounded-4xl bg-rose px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-20 lg:pt-16">
+          <StripesBand className="absolute inset-x-0 bottom-0 !h-3" />
           <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-7">
               <h1 className="text-display-xl !text-[clamp(2.2rem,4.8vw,4rem)]">
