@@ -1,6 +1,7 @@
 import { book } from "../data/book";
 import { Breadcrumb, Section } from "../components/Ui";
 import { FinalCta } from "../components/Blocks";
+import { SocialLinks } from "../components/Social";
 import { Rich } from "../lib/rich";
 import { StripesBand } from "../components/Us";
 
@@ -69,9 +70,8 @@ export default function Autrice({ crumbs }: { crumbs: { name: string; path: stri
                 Pas de promesse commerciale d’organisme, pas de séjour à vendre. Un guide qui dit ce qui est bien, ce qui est
                 difficile, et ce qu’on peut faire, rien de plus.
               </p>
-              <p className="mt-4 text-[18px] leading-[1.7]">
-                <a href={book.instagram} target="_blank" rel="noopener noreferrer" className="link">Suivre le guide sur Instagram</a>
-              </p>
+              <p className="mt-6 text-[18px] font-semibold text-ink">Suivre le guide</p>
+              <SocialLinks placement="autrice" className="mt-3" />
             </section>
           </div>
         </div>

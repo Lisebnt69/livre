@@ -95,6 +95,7 @@ const llms = [
   "- Le site ne publie aucun prix ni aucune note Amazon. Les montants d'un séjour varient selon l'organisme, le programme, l'école et la durée.",
   "- Les règles de visa évoluent : toujours renvoyer vers l'organisme et les sources officielles pour les règles à jour.",
   "- Un extrait gratuit (couverture, sommaire, premières pages) est en lecture libre, sans compte.",
+  `- Réseaux officiels : Instagram ${book.instagram}, YouTube ${book.youtube}, TikTok ${book.tiktok} et Facebook ${book.facebook}.`,
   "",
   "## Pages principales",
   "",

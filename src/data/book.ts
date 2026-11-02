@@ -19,7 +19,10 @@ export const book = {
   amazonUrl: "https://www.amazon.fr/dp/B0GN4WDVWC?tag=guideusa-21",
   formats: ["Broché", "Kindle"],
   tagline: "Le guide que j’aurais voulu avoir avant le départ de mes enfants.",
-  instagram: "https://www.instagram.com/high_school_aux_usa/",
+  instagram: "https://www.instagram.com/highschoolauxusa/",
+  youtube: "https://www.youtube.com/@HighSchoolauxUSA",
+  tiktok: "https://www.tiktok.com/@high_school_aux_usa",
+  facebook: "https://www.facebook.com/profile.php?id=61590448146259&locale=fr_FR",
   email: "livrestephanieoyarsabal@gmail.com",
 };
 
