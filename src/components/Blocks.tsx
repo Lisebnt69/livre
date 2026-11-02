@@ -7,7 +7,7 @@ import { Section } from "./Ui";
 import type { Worry } from "../data/guides";
 import { Rich } from "../lib/rich";
 
-const PASTELS = ["bg-lav", "bg-peach", "bg-mint", "bg-rose", "bg-butter"] as const;
+const PASTELS = ["bg-lav", "bg-rose", "bg-sky", "bg-rose", "bg-lav"] as const;
 
 /** Problème -> réponse : chaque inquiétude renvoie à un chapitre précis du livre. */
 export function WorryTable({ title, worries }: { title: string; worries: Worry[] }) {
@@ -130,18 +130,18 @@ export function FinalCta({
   placement?: string;
 }) {
   return (
-    <Section tone="ink" className="!pb-6 sm:!pb-8">
+    <Section tone="red" className="!pb-6 sm:!pb-8">
       <div className="grid items-center gap-10 lg:grid-cols-12">
         <div className="lg:col-span-6">
           <h2 className="text-display-l !text-card">
-            <Rich text={title} tone="dark" />
+            <Rich text={title} tone="red" />
           </h2>
-          <p className="mt-4 max-w-prose text-lg leading-relaxed text-card/80">
-            <Rich text={text} tone="dark" />
+          <p className="mt-4 max-w-prose text-lg leading-relaxed text-card/90">
+            <Rich text={text} tone="red" />
           </p>
-          <p className="mt-6 text-card/70">
+          <p className="mt-6 text-card/85">
             Envie de goûter avant d’acheter ?{" "}
-            <Link to="/extrait/" className="font-semibold text-card underline decoration-[#FF9AA0] decoration-2 underline-offset-[5px]">
+            <Link to="/extrait/" className="font-semibold text-card underline decoration-[#FFC2C6] decoration-2 underline-offset-[5px]">
               Feuilleter les premières pages
             </Link>
           </p>

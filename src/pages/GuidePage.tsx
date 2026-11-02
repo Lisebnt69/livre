@@ -7,13 +7,13 @@ import type { Guide } from "../data/guides";
 import { Rich, plain } from "../lib/rich";
 
 const HERO_TONE: Record<string, string> = {
-  parents: "bg-peach",
-  lyceens: "bg-mint",
+  parents: "bg-rose",
+  lyceens: "bg-sky",
   "sport-etudes": "bg-rose",
   "j1-ou-f1": "bg-lav",
-  "famille-d-accueil": "bg-butter",
+  "famille-d-accueil": "bg-lav",
   "mal-du-pays": "bg-rose",
-  "retour-en-france": "bg-mint",
+  "retour-en-france": "bg-sky",
 };
 
 const COMPARISON: [string, string, string][] = [
@@ -132,11 +132,11 @@ export default function GuidePage({ guide: g, crumbs }: { guide: Guide; crumbs: 
             ))}
 
             {g.quote && (
-              <figure className="rounded-4xl bg-rose p-7 sm:p-9">
-                <blockquote className="text-2xl font-semibold leading-snug text-ink">
-                  « <Rich text={g.quote.text} /> »
+              <figure className="rounded-4xl bg-blue p-7 text-card sm:p-9">
+                <blockquote className="text-2xl font-semibold leading-snug text-card">
+                  « <Rich text={g.quote.text} tone="dark" /> »
                 </blockquote>
-                <figcaption className="mt-3 text-muted">{g.quote.who}</figcaption>
+                <figcaption className="mt-3 text-card/75">{g.quote.who}</figcaption>
               </figure>
             )}
           </div>

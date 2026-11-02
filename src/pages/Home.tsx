@@ -40,7 +40,8 @@ export const homeFaq: FaqItem[] = [
 const phases = [
   {
     label: "Avant",
-    tone: "bg-butter",
+    tone: "bg-blue text-card",
+    fg: "dark" as const,
     chapters: "Chapitres 1 à 4",
     text: "Choisir entre **J-1 et F-1**, comprendre le rôle de l’organisme, monter le dossier, gérer assurances, budget, santé, valise et premiers mots d’anglais.",
     to: "/j1-ou-f1/",
@@ -48,7 +49,8 @@ const phases = [
   },
   {
     label: "Pendant",
-    tone: "bg-mint",
+    tone: "bg-sky text-ink",
+    fg: "light" as const,
     chapters: "Chapitres 5 à 8",
     text: "Vivre en **famille d’accueil**, comprendre la High School américaine, se faire des amis, traverser le **mal du pays** et garder le lien à distance.",
     to: "/famille-d-accueil/",
@@ -56,7 +58,8 @@ const phases = [
   },
   {
     label: "Après",
-    tone: "bg-rose",
+    tone: "bg-locker text-card",
+    fg: "red" as const,
     chapters: "Chapitre 9",
     text: "Gérer le **choc du retour**, retrouver sa place à la maison, reprendre le lycée en France et valoriser l’année.",
     to: "/retour-en-france/",
@@ -73,10 +76,10 @@ const usWords = [
   { term: "Prom & co", text: "Les grands moments de l’année, du football au bal de fin d’année.", ref: "Chap. 7 · p.114" },
 ];
 
-const personaCards: Record<string, { label: string; tone: string }> = {
-  parents: { label: "Je suis parent", tone: "bg-peach" },
-  lyceens: { label: "Je suis lycéen", tone: "bg-mint" },
-  "sport-etudes": { label: "Je suis sportif", tone: "bg-rose" },
+const personaCards: Record<string, { label: string; tone: string; solid: boolean }> = {
+  parents: { label: "Je suis parent", tone: "bg-blue", solid: true },
+  lyceens: { label: "Je suis lycéen", tone: "bg-sky", solid: false },
+  "sport-etudes": { label: "Je suis sportif", tone: "bg-locker", solid: true },
 };
 
 export default function Home() {
@@ -129,7 +132,7 @@ export default function Home() {
                   <UsFlag className="h-[18px] w-[34px] rounded-[3px] ring-1 ring-ink/10" />
                   High School USA
                 </span>
-                <span aria-hidden="true" className="absolute -right-2 top-[64%] rotate-3 rounded-full bg-butter px-4 py-2 text-sm font-bold text-ink shadow-lift sm:-right-8">
+                <span aria-hidden="true" className="absolute -right-2 top-[64%] rotate-3 rounded-full bg-locker px-4 py-2 text-sm font-bold text-card shadow-lift sm:-right-8">
                   {book.pages} pages
                 </span>
               </div>
@@ -149,8 +152,8 @@ export default function Home() {
                 <li key={g.slug}>
                   <Link to={g.path} className={`group flex h-full min-h-[220px] flex-col justify-between rounded-4xl p-7 transition-transform hover:-translate-y-1 ${c.tone}`}>
                     <span>
-                      <span className="block text-3xl font-bold leading-tight tracking-tight text-ink">{c.label}</span>
-                      <span className="mt-2 block text-[16px] leading-snug text-ink/80">{g.forWho}</span>
+                      <span className={`block text-3xl font-bold leading-tight tracking-tight ${c.solid ? "text-card" : "text-ink"}`}>{c.label}</span>
+                      <span className={`mt-2 block text-[16px] leading-snug ${c.solid ? "text-card/85" : "text-ink/80"}`}>{g.forWho}</span>
                     </span>
                     <span className="mt-6 flex h-11 w-11 items-center justify-center self-end rounded-full bg-card text-locker">
                       <ArrowRight size={20} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
@@ -203,12 +206,19 @@ export default function Home() {
         <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {phases.map((p) => (
             <li key={p.label} className={`flex flex-col rounded-4xl p-7 sm:p-8 ${p.tone}`}>
-              <h3 className="text-5xl font-bold tracking-tight text-ink">{p.label}</h3>
-              <p className="mt-1 text-sm font-medium text-ink/70">{p.chapters}</p>
-              <p className="mt-5 flex-1 text-[17px] leading-relaxed text-ink/90">
-                <Rich text={p.text} />
+              <h3 className={`text-5xl font-bold tracking-tight ${p.fg === "light" ? "text-ink" : "!text-card"}`}>{p.label}</h3>
+              <p className={`mt-1 text-sm font-medium ${p.fg === "light" ? "text-ink/70" : "text-card/75"}`}>{p.chapters}</p>
+              <p className={`mt-5 flex-1 text-[17px] leading-relaxed ${p.fg === "light" ? "text-ink/90" : "text-card/90"}`}>
+                <Rich text={p.text} tone={p.fg} />
               </p>
-              <Link to={p.to} className="link mt-6 self-start">{p.toLabel}</Link>
+              <Link
+                to={p.to}
+                className={`mt-6 self-start font-semibold underline decoration-2 underline-offset-[5px] ${
+                  p.fg === "light" ? "text-ink decoration-locker hover:text-locker" : "text-card decoration-[#FFC2C6] hover:text-[#FFC2C6]"
+                }`}
+              >
+                {p.toLabel}
+              </Link>
             </li>
           ))}
         </ol>
@@ -228,7 +238,7 @@ export default function Home() {
         </div>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {usWords.map((w, i) => (
-            <li key={w.term} className={`flex flex-col rounded-4xl p-7 ${["bg-peach", "bg-mint", "bg-butter", "bg-rose", "bg-lav", "bg-peach"][i]}`}>
+            <li key={w.term} className={`flex flex-col rounded-4xl p-7 ${["bg-sky", "bg-rose", "bg-lav", "bg-rose", "bg-sky", "bg-lav"][i]}`}>
               <h3 className="text-3xl font-bold tracking-tight text-ink">{w.term}</h3>
               <p className="mt-2 flex-1 text-[16px] leading-snug text-ink/85">{w.text}</p>
               {w.ref && (
@@ -250,7 +260,7 @@ export default function Home() {
             <Link to="/livre/" className="link mt-6 inline-block">Voir le détail de chaque chapitre</Link>
           </div>
           <div className="lg:col-span-5">
-            <div className="rounded-4xl bg-lav p-6 sm:p-8">
+            <div className="rounded-4xl bg-sky p-6 sm:p-8">
               <h3 className="text-display-m">Feuilletez <span className="text-locker">avant d’acheter</span></h3>
               <p className="mt-3 text-[17px] leading-relaxed text-ink/85">
                 Préface, sommaire et premières pages en lecture libre, sans compte ni e-mail.
@@ -269,7 +279,7 @@ export default function Home() {
       </Section>
 
       {/* AUTRICE */}
-      <Section tone="peach" className="mt-3">
+      <Section tone="rose" className="mt-3">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <img
@@ -296,7 +306,7 @@ export default function Home() {
       </Section>
 
       {/* AVIS */}
-      <Section tone="rose" className="mt-3">
+      <Section tone="lav" className="mt-3">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <figure className="lg:col-span-7">
             <blockquote className="text-display-m font-semibold leading-snug text-ink">

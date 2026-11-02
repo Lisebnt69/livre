@@ -78,7 +78,7 @@ export default function Livre({ crumbs }: { crumbs: { name: string; path: string
         <SectionHead title="Ce que ce guide **change vraiment**." lead={book.tagline} center />
         <div className="mt-12 grid gap-4 sm:grid-cols-2">
           {benefits.map((b, i) => (
-            <div key={b.t} className={`rounded-4xl p-7 sm:p-9 ${["bg-peach", "bg-mint", "bg-rose", "bg-butter"][i]}`}>
+            <div key={b.t} className={`rounded-4xl p-7 sm:p-9 ${["bg-sky", "bg-rose", "bg-rose", "bg-sky"][i]}`}>
               <h3 className="text-2xl font-bold">{b.t}</h3>
               <p className="mt-2 text-[17px] leading-relaxed text-ink/85">{b.d}</p>
             </div>
@@ -133,7 +133,7 @@ export default function Livre({ crumbs }: { crumbs: { name: string; path: string
         </div>
       </Section>
 
-      <Section tone="peach">
+      <Section tone="rose">
         <GuideLinks slugs={guides.map((g) => g.slug)} title="Le livre, **selon votre situation**" />
       </Section>
 

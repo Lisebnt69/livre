@@ -14,13 +14,16 @@ export default {
         card: "#FFFFFF",
         rule: "#EBE3D3", // filets chauds
         muted: "#545B7A",
-        // blocs pastel
-        lav: "#E3E8FF",
-        peach: "#FFE5D0",
-        rose: "#FFE1E3",
-        butter: "#FFF3B8",
-        mint: "#D6F5E6",
-        mist: "#E3E8FF", // alias de lav
+        // teintes : uniquement du bleu et du rouge (les couleurs du drapeau et de la couverture)
+        lav: "#D9E3FF", // bleu clair
+        sky: "#BFD0FF", // bleu moyen
+        rose: "#FBD0D4", // rouge clair
+        blue: "#273472", // aplat bleu
+        mist: "#D9E3FF", // alias de lav
+        // anciens noms (remappés sur bleu / rouge)
+        peach: "#FBD0D4",
+        mint: "#BFD0FF",
+        butter: "#D9E3FF",
         // alias historiques
         primaryRed: "#A1232B",
         primaryBlue: "#273472",

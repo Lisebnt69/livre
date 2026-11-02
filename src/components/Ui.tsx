@@ -48,7 +48,7 @@ export function Faq({ items, id }: { items: FaqItem[]; id?: string }) {
 /** Bloc « L'essentiel en 30 secondes » : réponse directe, citable par Google et les moteurs IA. */
 export function Tldr({ items, title = "L’essentiel en 30 secondes" }: { items: string[]; title?: string }) {
   return (
-    <aside aria-label={title} className="rounded-4xl bg-butter p-6 sm:p-9">
+    <aside aria-label={title} className="rounded-4xl bg-sky p-6 sm:p-9">
       <h2 className="text-2xl sm:text-3xl">
         <Rich text={title} />
       </h2>
@@ -66,17 +66,20 @@ export function Tldr({ items, title = "L’essentiel en 30 secondes" }: { items:
   );
 }
 
-type Tone = "paper" | "lav" | "peach" | "rose" | "butter" | "mint" | "card" | "ink" | "mist";
+type Tone = "paper" | "lav" | "sky" | "peach" | "rose" | "butter" | "mint" | "card" | "ink" | "navy" | "red" | "mist";
 
 const PANEL: Record<Exclude<Tone, "paper">, string> = {
   lav: "bg-lav",
+  sky: "bg-sky",
   mist: "bg-lav",
-  peach: "bg-peach",
+  peach: "bg-rose",
   rose: "bg-rose",
-  butter: "bg-butter",
-  mint: "bg-mint",
+  butter: "bg-lav",
+  mint: "bg-sky",
   card: "bg-card shadow-lift",
   ink: "bg-ink text-card",
+  navy: "bg-blue text-card",
+  red: "bg-locker text-card",
 };
 
 /**

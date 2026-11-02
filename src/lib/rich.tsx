@@ -2,9 +2,9 @@
  * Mots importants : écrire **mot** dans un texte pour le mettre en rouge casier.
  * (rouge #A1232B sur fond clair, rose clair #FF9AA0 sur fond sombre : contraste AA dans les deux cas)
  */
-export function Rich({ text, tone = "light" }: { text: string; tone?: "light" | "dark" }) {
+export function Rich({ text, tone = "light" }: { text: string; tone?: "light" | "dark" | "red" }) {
   const parts = text.split(/\*\*(.+?)\*\*/g);
-  const cls = tone === "dark" ? "font-bold text-[#FF9AA0]" : "font-bold text-locker";
+  const cls = tone === "dark" ? "font-bold text-[#FF9AA0]" : tone === "red" ? "font-bold text-[#FFC2C6]" : "font-bold text-locker";
   return (
     <>
       {parts.map((p, i) =>

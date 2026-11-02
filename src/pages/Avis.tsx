@@ -84,7 +84,7 @@ export default function Avis({ crumbs }: { crumbs: { name: string; path: string 
         </ul>
       </Section>
 
-      <Section tone="butter" className="mt-3">
+      <Section tone="sky" className="mt-3">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-display-m">Vous avez <span className="text-locker">lu le guide</span> ?</h2>
           <p className="mt-3 text-lg leading-relaxed text-ink/85">
