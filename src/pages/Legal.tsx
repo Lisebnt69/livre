@@ -6,7 +6,7 @@ function LegalShell({ title, children }: { title: string; children: ReactNode })
   return (
     <div className="wrap py-14 sm:py-20">
       <div className="mx-auto max-w-3xl">
-        <h1 className="text-display-xl !text-[clamp(2.2rem,5vw,3.8rem)]">{title}</h1>
+        <h1 className="text-display-xl !text-[clamp(2.2rem,5vw,3.6rem)]">{title}</h1>
         <div className="mt-10 space-y-10 text-[17px] leading-relaxed text-ink/90 [&_h2]:mb-2 [&_h2]:text-2xl">{children}</div>
       </div>
     </div>

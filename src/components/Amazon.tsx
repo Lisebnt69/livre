@@ -63,9 +63,9 @@ export function BuyBox({ placement, dark = false }: { placement: string; dark?: 
     ? "bg-card text-ink border-transparent"
     : "bg-card border-rule shadow-lift";
   return (
-    <div className={`rounded-2xl border p-5 sm:p-6 ${box}`}>
+    <div className={`rounded-4xl border p-6 sm:p-7 ${box}`}>
       <div className="flex items-baseline justify-between gap-4">
-        <p className="font-display text-xl font-extrabold leading-tight" style={{ fontStretch: "82%" }}>
+        <p className="text-xl font-bold leading-tight">
           Le guide, {book.pages} pages
         </p>
         <p className="text-sm text-muted">Broché · Kindle</p>

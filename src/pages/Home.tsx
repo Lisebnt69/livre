@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Quote } from "lucide-react";
 import { book } from "../data/book";
 import { guides } from "../data/guides";
 import { AmazonButton } from "../components/Amazon";
@@ -7,6 +7,8 @@ import { Cover } from "../components/Cover";
 import { Faq, Section, SectionHead, Tldr } from "../components/Ui";
 import { FinalCta, Toc, WorryTable } from "../components/Blocks";
 import type { FaqItem } from "../lib/schema";
+import { Rich } from "../lib/rich";
+import { StarRow, StripesBand, UsFlag } from "../components/Us";
 
 export const homeFaq: FaqItem[] = [
   {
@@ -38,26 +40,44 @@ export const homeFaq: FaqItem[] = [
 const phases = [
   {
     label: "Avant",
+    tone: "bg-butter",
     chapters: "Chapitres 1 à 4",
-    text: "Choisir entre J-1 et F-1, comprendre le rôle de l’organisme, monter le dossier, gérer assurances, budget, santé, valise et premiers mots d’anglais.",
+    text: "Choisir entre **J-1 et F-1**, comprendre le rôle de l’organisme, monter le dossier, gérer assurances, budget, santé, valise et premiers mots d’anglais.",
     to: "/j1-ou-f1/",
     toLabel: "J-1 ou F-1 : le comparatif",
   },
   {
     label: "Pendant",
+    tone: "bg-mint",
     chapters: "Chapitres 5 à 8",
-    text: "Vivre en famille d’accueil, comprendre la High School américaine, se faire des amis, traverser le mal du pays et garder le lien à distance.",
+    text: "Vivre en **famille d’accueil**, comprendre la High School américaine, se faire des amis, traverser le **mal du pays** et garder le lien à distance.",
     to: "/famille-d-accueil/",
     toLabel: "La vie en famille d’accueil",
   },
   {
     label: "Après",
+    tone: "bg-rose",
     chapters: "Chapitre 9",
-    text: "Gérer le choc du retour, retrouver sa place à la maison, reprendre le lycée en France et valoriser l’année.",
+    text: "Gérer le **choc du retour**, retrouver sa place à la maison, reprendre le lycée en France et valoriser l’année.",
     to: "/retour-en-france/",
     toLabel: "Préparer le retour",
   },
 ];
+
+const usWords = [
+  { term: "Locker", text: "Le casier de chaque élève, décor emblématique des High Schools américaines.", ref: "" },
+  { term: "Dress code", text: "Ce qu’on peut porter, ou pas, à l’école. Mieux vaut le savoir avant de faire sa valise.", ref: "Chap. 7 · p.109" },
+  { term: "Cafeteria", text: "Le déjeuner à l’américaine : où, comment et avec qui on mange.", ref: "Chap. 7 · p.108" },
+  { term: "Team spirit", text: "L’esprit d’équipe et la fierté de son école, au cœur de la vie lycéenne.", ref: "Chap. 7 · p.110" },
+  { term: "Drama", text: "Les histoires entre élèves : les connaître avant d’être mêlé à l’une d’elles.", ref: "Chap. 7 · p.112" },
+  { term: "Prom & co", text: "Les grands moments de l’année, du football au bal de fin d’année.", ref: "Chap. 7 · p.114" },
+];
+
+const personaCards: Record<string, { label: string; tone: string }> = {
+  parents: { label: "Je suis parent", tone: "bg-peach" },
+  lyceens: { label: "Je suis lycéen", tone: "bg-mint" },
+  "sport-etudes": { label: "Je suis sportif", tone: "bg-rose" },
+};
 
 export default function Home() {
   const parents = guides.find((g) => g.slug === "parents")!;
@@ -65,72 +85,100 @@ export default function Home() {
 
   return (
     <>
-      {/* HERO */}
-      <section className="border-b border-rule">
-        <div className="wrap grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-12 lg:gap-14 lg:py-24">
-          <div className="lg:col-span-7">
-            <h1 className="text-display-xl">
-              Une année de High School aux <span className="whitespace-nowrap">États-Unis</span> : partez préparés, pas à l’aveugle.
-            </h1>
-            <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-ink/85 sm:text-xl">
-              Le guide pratique des lycéens et de leurs parents : visa J-1 ou F-1, famille d’accueil, budget, vie au lycée,
-              retour en France. Écrit par une maman dont les deux fils sont partis.
-            </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <AmazonButton placement="hero" className="!py-3.5 !text-base">
-                Acheter sur Amazon
-              </AmazonButton>
-              <Link to="/extrait/" className="btn-ghost !py-3.5 !text-base">
-                Lire un extrait gratuit
-              </Link>
-            </div>
-            <p className="mt-4 text-sm text-muted">
-              Broché et Kindle · {book.pages} pages · Paiement et livraison par Amazon.fr
-            </p>
-          </div>
+      {/* HERO : bloc pastel arrondi, boîte d'achat et preuve sociale à portée de clic */}
+      <section className="pt-3 sm:pt-4">
+        <div className="wrap">
+          <div className="relative overflow-hidden rounded-4xl bg-lav px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-24 lg:pt-20">
+            <StripesBand className="absolute inset-x-0 bottom-0 !h-3.5" />
+            <div className="grid items-center gap-12 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <h1 className="text-display-xl">
+                  Une année de High School aux <span className="whitespace-nowrap">États-Unis</span> : <Rich text="**partez préparés**" />, pas à l’aveugle.
+                </h1>
+                <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-ink/85 sm:text-xl">
+                  Le guide pratique des <strong className="font-semibold">lycéens et de leurs parents</strong> : visa J-1 ou F-1, famille
+                  d’accueil, budget, vie au lycée, retour en France. Écrit par une maman dont les deux fils sont partis.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <AmazonButton placement="hero" className="!py-4 !text-base">
+                    Acheter sur Amazon
+                  </AmazonButton>
+                  <Link to="/extrait/" className="btn-ghost !py-4 !text-base">
+                    Lire un extrait gratuit
+                  </Link>
+                </div>
+                <p className="mt-4 text-sm text-ink/70">
+                  Broché et Kindle · {book.pages} pages · Paiement et livraison par Amazon.fr
+                </p>
 
-          <div className="relative mx-auto w-[min(72vw,340px)] lg:col-span-5 lg:w-full lg:max-w-[400px] lg:justify-self-end">
-            <div aria-hidden="true" className="absolute -bottom-4 -right-4 h-full w-full rounded-[10px] bg-mist" />
-            <Cover priority className="relative" />
+                <figure className="mt-8 flex max-w-lg items-start gap-3 rounded-3xl bg-card p-4 shadow-lift">
+                  <Quote size={22} className="mt-0.5 shrink-0 text-locker" aria-hidden="true" />
+                  <div>
+                    <blockquote className="text-[16px] leading-snug text-ink">
+                      <strong className="font-bold text-locker">Ce guide manquait sincèrement.</strong> J’aurais tellement aimé en avoir
+                      un avant le départ de ma fille.
+                    </blockquote>
+                    <figcaption className="mt-1 text-sm text-muted">Parent, groupe d’échange · Février 2026</figcaption>
+                  </div>
+                </figure>
+              </div>
+
+              <div className="relative mx-auto w-[min(70vw,330px)] lg:col-span-5 lg:w-full lg:max-w-[390px] lg:justify-self-end">
+                <Cover priority className="relative !rounded-[10px]" />
+                <span aria-hidden="true" className="absolute -left-3 top-[38%] flex -rotate-6 items-center gap-2 rounded-full bg-card py-2 pl-2.5 pr-4 text-sm font-bold text-ink shadow-lift sm:-left-10">
+                  <UsFlag className="h-[18px] w-[34px] rounded-[3px] ring-1 ring-ink/10" />
+                  High School USA
+                </span>
+                <span aria-hidden="true" className="absolute -right-2 top-[64%] rotate-3 rounded-full bg-butter px-4 py-2 text-sm font-bold text-ink shadow-lift sm:-right-8">
+                  {book.pages} pages
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* « JE SUIS… » */}
-      <nav aria-label="Choisir son profil" className="border-b border-rule bg-card">
-        <ul className="wrap grid divide-y divide-rule md:grid-cols-3 md:divide-x md:divide-y-0">
-          {personas.map((g) => (
-            <li key={g.slug}>
-              <Link to={g.path} className="group flex h-full items-start justify-between gap-4 py-6 md:px-6 md:first:pl-0 md:last:pr-0">
-                <span>
-                  <span className="block font-display text-2xl font-extrabold text-ink group-hover:text-locker" style={{ fontStretch: "82%" }}>
-                    {g.slug === "parents" ? "Je suis parent" : g.slug === "lyceens" ? "Je suis lycéen" : "Je suis sportif"}
-                  </span>
-                  <span className="mt-1 block max-w-xs text-[15px] leading-snug text-muted">{g.forWho}</span>
-                </span>
-                <ArrowRight className="mt-1.5 shrink-0 text-locker transition-transform group-hover:translate-x-1" size={22} aria-hidden="true" />
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
+      <Section>
+        <SectionHead title="Le guide, **selon votre situation**." center />
+        <nav aria-label="Choisir son profil" className="mt-10">
+          <ul className="grid gap-4 md:grid-cols-3">
+            {personas.map((g) => {
+              const c = personaCards[g.slug];
+              return (
+                <li key={g.slug}>
+                  <Link to={g.path} className={`group flex h-full min-h-[220px] flex-col justify-between rounded-4xl p-7 transition-transform hover:-translate-y-1 ${c.tone}`}>
+                    <span>
+                      <span className="block text-3xl font-bold leading-tight tracking-tight text-ink">{c.label}</span>
+                      <span className="mt-2 block text-[16px] leading-snug text-ink/80">{g.forWho}</span>
+                    </span>
+                    <span className="mt-6 flex h-11 w-11 items-center justify-center self-end rounded-full bg-card text-locker">
+                      <ArrowRight size={20} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </Section>
 
       {/* L'ESSENTIEL */}
-      <Section>
-        <div className="grid gap-12 lg:grid-cols-12">
+      <Section className="!pt-0">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-5">
             <SectionHead
-              title="Ce que les brochures ne racontent pas."
-              lead="Les moments plus délicats, les organismes les dévoilent rarement. Les parents et les jeunes les découvrent une fois sur place. Ce guide en parle sans filtre, et avec des solutions."
+              title="Ce que les brochures **ne racontent pas**."
+              lead="Les moments plus délicats, les organismes les dévoilent rarement. Les parents et les jeunes les découvrent une fois sur place. Ce guide en parle **sans filtre**, et avec des solutions."
             />
           </div>
           <div className="lg:col-span-7">
             <Tldr
               items={[
-                "J-1 ou F-1, ce n’est pas qu’un visa : c’est un budget, un type de famille, un degré de liberté. À comprendre avant de choisir un organisme.",
-                "En J-1, le jeune ne choisit ni son État ni son école. En F-1, souvent oui, mais le budget est bien plus élevé.",
-                "Une famille d’accueil se construit : communication, attentes dites, patience. Et le mal du pays existe, même chez les motivés.",
-                "Le retour est le grand oublié. Il se prépare dès le départ.",
+                "**J-1 ou F-1**, ce n’est pas qu’un visa : c’est un budget, un type de famille, un degré de liberté. À comprendre avant de choisir un organisme.",
+                "En J-1, le jeune **ne choisit ni son État ni son école**. En F-1, souvent oui, mais le budget est bien plus élevé.",
+                "Une famille d’accueil se construit : communication, attentes dites, patience. Et le **mal du pays** existe, même chez les motivés.",
+                "**Le retour** est le grand oublié. Il se prépare dès le départ.",
               ]}
             />
           </div>
@@ -138,57 +186,78 @@ export default function Home() {
       </Section>
 
       {/* PROBLÈME -> RÉPONSE */}
-      <Section tone="mist">
-        <WorryTable
-          title="Les questions que se posent les familles, et où le livre y répond"
-          worries={parents.worries.slice(0, 6)}
-        />
-        <p className="mt-6 text-[15px] text-muted">
+      <Section className="!pt-0">
+        <WorryTable title="Les questions que se posent les familles, et **où le livre y répond**" worries={parents.worries.slice(0, 6)} />
+        <p className="mt-6 text-center text-[15px] text-muted">
           Les numéros de chapitre et de page renvoient au sommaire réel du livre.{" "}
           <Link to="/livre/" className="link">Voir le sommaire détaillé</Link>
         </p>
+        <div className="mt-8 flex justify-center">
+          <AmazonButton placement="home-worries">Lire les réponses dans le livre</AmazonButton>
+        </div>
       </Section>
 
       {/* AVANT / PENDANT / APRÈS */}
-      <Section>
-        <SectionHead title="Avant, pendant, après : toute l’année est couverte." />
-        <ol className="mt-12 divide-y divide-rule border-y border-rule">
+      <Section className="!pt-0">
+        <SectionHead title="Avant, pendant, après : **toute l’année est couverte**." center />
+        <ol className="mt-10 grid gap-4 md:grid-cols-3">
           {phases.map((p) => (
-            <li key={p.label} className="grid gap-4 py-8 md:grid-cols-12 md:gap-8">
-              <div className="md:col-span-3">
-                <h3 className="font-display text-4xl font-extrabold text-ink sm:text-5xl" style={{ fontStretch: "78%" }}>
-                  {p.label}
-                </h3>
-                <p className="mt-1 text-sm text-muted">{p.chapters}</p>
-              </div>
-              <p className="text-lg leading-relaxed text-ink/90 md:col-span-6">{p.text}</p>
-              <div className="md:col-span-3 md:text-right">
-                <Link to={p.to} className="link">{p.toLabel}</Link>
-              </div>
+            <li key={p.label} className={`flex flex-col rounded-4xl p-7 sm:p-8 ${p.tone}`}>
+              <h3 className="text-5xl font-bold tracking-tight text-ink">{p.label}</h3>
+              <p className="mt-1 text-sm font-medium text-ink/70">{p.chapters}</p>
+              <p className="mt-5 flex-1 text-[17px] leading-relaxed text-ink/90">
+                <Rich text={p.text} />
+              </p>
+              <Link to={p.to} className="link mt-6 self-start">{p.toLabel}</Link>
             </li>
           ))}
         </ol>
       </Section>
 
+      {/* L'AMÉRIQUE CÔTÉ LYCÉE */}
+      <Section tone="ink" className="!mt-0">
+        <div className="mx-auto max-w-3xl text-center">
+          <StarRow className="mx-auto h-5 w-[118px] text-[#FF9AA0]" />
+          <h2 className="mt-5 text-display-l !text-card">
+            <Rich text="L’Amérique côté lycée : **le vocabulaire** et les codes" tone="dark" />
+          </h2>
+          <p className="mt-4 text-lg leading-relaxed text-card/80">
+            Casiers, football, bal de fin d’année : le lycée américain a ses mots et ses règles. Mieux vaut les connaître
+            avant d’atterrir. Le chapitre 7 du guide les passe en revue.
+          </p>
+        </div>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {usWords.map((w, i) => (
+            <li key={w.term} className={`flex flex-col rounded-4xl p-7 ${["bg-peach", "bg-mint", "bg-butter", "bg-rose", "bg-lav", "bg-peach"][i]}`}>
+              <h3 className="text-3xl font-bold tracking-tight text-ink">{w.term}</h3>
+              <p className="mt-2 flex-1 text-[16px] leading-snug text-ink/85">{w.text}</p>
+              {w.ref && (
+                <span className="mt-5 self-start rounded-full bg-card px-3 py-1 text-[13px] font-bold text-locker">{w.ref}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </Section>
+
       {/* SOMMAIRE + EXTRAIT */}
-      <Section tone="card">
+      <Section tone="card" className="mt-3">
         <div className="grid items-start gap-12 lg:grid-cols-12">
           <div className="lg:col-span-7">
-            <SectionHead title="10 chapitres, 145 pages, un seul objectif : être prêt." />
+            <SectionHead title="10 chapitres, 145 pages, un seul objectif : **être prêt**." />
             <div className="mt-8">
               <Toc />
             </div>
             <Link to="/livre/" className="link mt-6 inline-block">Voir le détail de chaque chapitre</Link>
           </div>
           <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-rule bg-paper p-6 sm:p-8">
-              <h3 className="text-display-m">Feuilletez avant d’acheter</h3>
+            <div className="rounded-4xl bg-lav p-6 sm:p-8">
+              <h3 className="text-display-m">Feuilletez <span className="text-locker">avant d’acheter</span></h3>
               <p className="mt-3 text-[17px] leading-relaxed text-ink/85">
                 Préface, sommaire et premières pages en lecture libre, sans compte ni e-mail.
               </p>
               <div className="mt-6 flex gap-3" aria-hidden="true">
                 {["/flip/page-01.jpg", "/flip/page-02.jpg"].map((src) => (
-                  <img key={src} src={src} alt="" loading="lazy" width={131} height={200} className="h-auto w-1/2 rounded-[4px] border border-rule shadow-lift" />
+                  <img key={src} src={src} alt="" loading="lazy" width={131} height={200} className="h-auto w-1/2 rounded-[6px] bg-card shadow-lift" />
                 ))}
               </div>
               <Link to="/extrait/" className="btn-ink mt-6 w-full">
@@ -200,7 +269,7 @@ export default function Home() {
       </Section>
 
       {/* AUTRICE */}
-      <Section tone="mist">
+      <Section tone="peach" className="mt-3">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-4">
             <img
@@ -209,11 +278,13 @@ export default function Home() {
               width={900}
               height={854}
               loading="lazy"
-              className="aspect-[4/5] w-full max-w-sm rounded-[8px] object-cover object-[40%_30%] shadow-lift"
+              className="aspect-[4/5] w-full max-w-sm rounded-4xl object-cover object-[40%_30%] shadow-lift"
             />
           </div>
           <div className="lg:col-span-7 lg:col-start-6">
-            <h2 className="text-display-l">Écrit par une maman qui a vécu l’expérience sous plusieurs formes.</h2>
+            <h2 className="text-display-l">
+              Écrit par une maman qui <span className="text-locker">a vécu l’expérience</span> sous plusieurs formes.
+            </h2>
             <p className="mt-5 max-w-prose text-lg leading-relaxed text-ink/90">
               Un fils en famille d’accueil (visa J-1), un autre en internat sport-études (visa F-1), des années d’échanges
               avec des centaines de parents concernés, et une partie de l’année passée aux États-Unis. Ce livre est le guide
@@ -225,14 +296,14 @@ export default function Home() {
       </Section>
 
       {/* AVIS */}
-      <Section>
+      <Section tone="rose" className="mt-3">
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <figure className="lg:col-span-7">
-            <blockquote className="font-display text-display-m font-bold leading-snug text-ink" style={{ fontStretch: "92%" }}>
-              « Ce guide manquait sincèrement. J’aurais tellement aimé en avoir un avant le départ de ma fille. Un support
-              concret, basé sur du vécu réel… c’est précieux. »
+            <blockquote className="text-display-m font-semibold leading-snug text-ink">
+              « <span className="text-locker">Ce guide manquait sincèrement.</span> J’aurais tellement aimé en avoir un avant le
+              départ de ma fille. Un support concret, basé sur du <span className="text-locker">vécu réel</span>… c’est précieux. »
             </blockquote>
-            <figcaption className="mt-5 text-muted">Parent, commentaire dans un groupe d’échange · Février 2026</figcaption>
+            <figcaption className="mt-5 text-ink/70">Parent, commentaire dans un groupe d’échange · Février 2026</figcaption>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/avis/" className="btn-ghost">Lire les retours des familles</Link>
               <AmazonButton placement="home-avis" variant="ink">Voir sur Amazon</AmazonButton>
@@ -245,18 +316,18 @@ export default function Home() {
               width={720}
               height={1280}
               loading="lazy"
-              className="mx-auto max-h-[420px] w-auto rounded-[8px] border border-rule object-cover object-top shadow-lift"
+              className="mx-auto max-h-[420px] w-auto rounded-3xl object-cover object-top shadow-lift"
             />
-            <p className="mt-2 text-center text-sm text-muted">Capture d’écran d’un commentaire réel</p>
+            <p className="mt-2 text-center text-sm text-ink/70">Capture d’écran d’un commentaire réel</p>
           </div>
         </div>
       </Section>
 
       {/* FAQ */}
-      <Section tone="card">
+      <Section>
         <div className="grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-4">
-            <SectionHead title="Questions fréquentes" lead="Les réponses courtes. Le livre détaille le reste." />
+            <SectionHead title="Questions **fréquentes**" lead="Les réponses courtes. Le livre détaille le reste." />
           </div>
           <div className="lg:col-span-8">
             <Faq items={homeFaq} />

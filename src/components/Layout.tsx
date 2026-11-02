@@ -5,6 +5,8 @@ import { book } from "../data/book";
 import { AffiliateNote, AmazonButton } from "./Amazon";
 import { openCookiePreferences } from "../lib/cookieConsent";
 import { trackPageView } from "../lib/analytics";
+import { Rich } from "../lib/rich";
+import { StripesBand, UsFlag } from "./Us";
 
 const nav = [
   { to: "/livre/", label: "Le livre" },
@@ -31,21 +33,22 @@ function Header() {
   useEffect(() => setOpen(false), [pathname]);
 
   const link = ({ isActive }: { isActive: boolean }) =>
-    `relative py-2 text-[15px] font-semibold transition-colors ${
-      isActive ? "text-ink" : "text-ink/70 hover:text-ink"
-    } ${isActive ? "after:absolute after:inset-x-0 after:-bottom-px after:h-0.5 after:bg-locker" : ""}`;
+    `rounded-full px-4 py-2 text-[15px] font-semibold transition-colors ${
+      isActive ? "bg-lav text-ink" : "text-ink/75 hover:bg-lav/60 hover:text-ink"
+    }`;
 
   return (
-    <header className="sticky top-0 z-40 border-b border-rule bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/85">
+    <header className="sticky top-0 z-40 border-b border-rule/80 bg-paper/95 backdrop-blur supports-[backdrop-filter]:bg-paper/85">
       <div className="wrap flex h-16 items-center justify-between gap-6">
-        <Link to="/" className="flex flex-col leading-none" aria-label="Accueil, Guide High School USA">
-          <span className="font-display text-[19px] font-extrabold tracking-tight text-ink" style={{ fontStretch: "80%" }}>
-            Guide High School USA
+        <Link to="/" className="flex items-center gap-3 leading-none" aria-label="Accueil, Guide High School USA">
+          <UsFlag className="h-[26px] w-[49px] shrink-0 rounded-[5px] shadow-lift ring-1 ring-ink/10" />
+          <span className="flex flex-col">
+            <span className="text-[19px] font-bold tracking-tight text-ink">Guide High School USA</span>
+            <span className="mt-1 text-[12px] text-muted">par {book.author}</span>
           </span>
-          <span className="mt-1 text-[12px] text-muted">par {book.author}</span>
         </Link>
 
-        <nav aria-label="Navigation principale" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Navigation principale" className="hidden items-center gap-1 lg:flex">
           {nav.map((n) => (
             <NavLink key={n.to} to={n.to} className={link}>
               {n.label}
@@ -59,7 +62,7 @@ function Header() {
           </AmazonButton>
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] border border-rule lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-rule bg-card lg:hidden"
             aria-label={open ? "Fermer le menu" : "Ouvrir le menu"}
             aria-expanded={open}
             aria-controls="mobile-nav"
@@ -100,12 +103,14 @@ function Footer() {
   const col = "space-y-2.5 text-[15px] text-card/75";
   const a = "hover:text-card hover:underline underline-offset-4";
   return (
-    <footer className="bg-ink pb-24 pt-16 text-card sm:pb-16">
+    <footer className="mt-6 overflow-hidden rounded-t-4xl bg-ink pb-24 text-card sm:rounded-t-5xl sm:pb-16">
+      <StripesBand className="!h-2.5" />
+      <div className="pt-14" />
       <div className="wrap">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-5">
-            <p className="font-display text-3xl font-extrabold leading-tight" style={{ fontStretch: "80%" }}>
-              {book.title}
+            <p className="text-3xl font-bold leading-tight tracking-tight">
+              <Rich text="**Réussir son année** de High School aux États-Unis" tone="dark" />
             </p>
             <p className="mt-3 max-w-md text-card/75">
               Le guide concret pour les lycéens et leurs parents, avant, pendant et après une année scolaire aux États-Unis.
@@ -127,7 +132,7 @@ function Footer() {
           </div>
 
           <nav aria-label="Pages du livre" className="lg:col-span-3 lg:col-start-7">
-            <p className="mb-4 font-display text-lg font-bold" style={{ fontStretch: "85%" }}>Le livre</p>
+            <p className="mb-4 text-lg font-bold">Le livre</p>
             <ul className={col}>
               <li><Link className={a} to="/livre/">Sommaire et détails</Link></li>
               <li><Link className={a} to="/extrait/">Extrait gratuit</Link></li>
@@ -137,7 +142,7 @@ function Footer() {
           </nav>
 
           <nav aria-label="Guides par thème" className="lg:col-span-3">
-            <p className="mb-4 font-display text-lg font-bold" style={{ fontStretch: "85%" }}>Guides gratuits</p>
+            <p className="mb-4 text-lg font-bold">Guides gratuits</p>
             <ul className={col}>
               <li><Link className={a} to="/parents/">Pour les parents</Link></li>
               <li><Link className={a} to="/lyceens/">Pour les lycéens</Link></li>
@@ -187,7 +192,7 @@ function StickyBuyBar() {
       aria-hidden={!show}
     >
       <div className="flex items-center gap-3">
-        <img src="/cover-480.jpg" alt="" width={36} height={55} className="h-[55px] w-9 rounded-[3px] shadow-lift" />
+        <img src="/cover-480.jpg" alt="" width={36} height={55} className="h-[55px] w-9 rounded-[4px] shadow-lift" />
         <p className="min-w-0 flex-1 text-[13px] leading-tight text-ink">
           <span className="block font-bold">Le guide High School USA</span>
           <span className="text-muted">Broché ou Kindle</span>

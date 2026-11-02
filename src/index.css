@@ -13,39 +13,36 @@
   }
   body {
     @apply bg-paper text-ink font-sans antialiased;
-    font-feature-settings: "kern", "liga";
+    font-size: 17px;
+    line-height: 1.6;
     overflow-x: hidden;
   }
   h1, h2, h3 {
     @apply font-display text-ink;
-    font-stretch: 82%;
-    font-weight: 800;
+    font-weight: 650;
     text-wrap: balance;
   }
   p { text-wrap: pretty; }
-  ::selection { background: #A1232B; color: #FDFDFB; }
-  :focus-visible { outline: 2px solid #A1232B; outline-offset: 3px; border-radius: 4px; }
+  ::selection { background: #A1232B; color: #FFFFFF; }
+  :focus-visible { outline: 2px solid #A1232B; outline-offset: 3px; border-radius: 6px; }
 }
 
 @layer components {
   .wrap { @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-10; }
 
+  /* Boutons en pilule, comme chez Alan */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[10px] px-5 py-3 text-[15px] font-semibold;
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3.5 text-[15px] font-semibold;
     transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
   }
   .btn:active { transform: translateY(1px); }
   .btn-buy { @apply btn bg-locker text-card hover:bg-locker-dark; }
   .btn-ink { @apply btn bg-ink text-card hover:bg-navy; }
-  .btn-ghost { @apply btn border border-ink/20 text-ink hover:border-ink/50 bg-transparent; }
-  .btn-light { @apply btn bg-card text-ink hover:bg-mist; }
+  .btn-ghost { @apply btn border border-ink/20 bg-card text-ink hover:border-ink/50; }
+  .btn-light { @apply btn bg-card text-ink hover:bg-lav; }
 
   .link {
     @apply font-semibold text-ink underline decoration-locker decoration-2 underline-offset-[5px] hover:text-locker;
-  }
-
-  .label {
-    @apply text-[13px] font-semibold text-muted;
   }
 }
 
@@ -54,7 +51,7 @@
 
 /* Bandeau cookies aux couleurs du site (variables officielles vanilla-cookieconsent v3) */
 #cc-main {
-  --cc-font-family: "Public Sans Variable", Helvetica, Arial, sans-serif;
+  --cc-font-family: "Figtree Variable", Helvetica, Arial, sans-serif;
   --cc-bg: #FDFDFB;
   --cc-primary-color: #1B2350;
   --cc-secondary-color: #545B7A;

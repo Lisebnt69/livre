@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { ChevronRight, Plus } from "lucide-react";
 import type { Crumb, FaqItem } from "../lib/schema";
+import { Rich } from "../lib/rich";
 
 export function Breadcrumb({ items }: { items: Crumb[] }) {
   return (
@@ -11,7 +12,7 @@ export function Breadcrumb({ items }: { items: Crumb[] }) {
           <li key={c.path} className="flex items-center gap-1.5">
             {i > 0 && <ChevronRight size={14} aria-hidden="true" />}
             {i < items.length - 1 ? (
-              <Link to={c.path} className="hover:text-ink hover:underline underline-offset-4">
+              <Link to={c.path} className="underline-offset-4 hover:text-ink hover:underline">
                 {c.name}
               </Link>
             ) : (
@@ -28,36 +29,36 @@ export function Breadcrumb({ items }: { items: Crumb[] }) {
 
 export function Faq({ items, id }: { items: FaqItem[]; id?: string }) {
   return (
-    <div id={id} className="divide-y divide-rule border-y border-rule">
+    <div id={id} className="space-y-3">
       {items.map((f) => (
-        <details key={f.q} className="group">
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5 text-left [&::-webkit-details-marker]:hidden">
-            <h3 className="text-lg font-bold leading-snug text-ink sm:text-xl" style={{ fontStretch: "90%" }}>
-              {f.q}
-            </h3>
-            <Plus
-              size={22}
-              aria-hidden="true"
-              className="mt-0.5 shrink-0 text-locker transition-transform duration-200 group-open:rotate-45"
-            />
+        <details key={f.q} className="group rounded-3xl bg-card shadow-lift open:bg-card">
+          <summary className="flex cursor-pointer list-none items-start justify-between gap-6 px-6 py-5 text-left sm:px-7 [&::-webkit-details-marker]:hidden">
+            <h3 className="text-lg font-semibold leading-snug text-ink sm:text-xl">{f.q}</h3>
+            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-lav text-ink transition-colors group-open:bg-locker group-open:text-card">
+              <Plus size={18} aria-hidden="true" className="transition-transform duration-200 group-open:rotate-45" />
+            </span>
           </summary>
-          <p className="max-w-prose pb-6 pr-10 text-[17px] leading-relaxed text-ink/85">{f.a}</p>
+          <p className="max-w-prose px-6 pb-6 pr-12 text-[17px] leading-relaxed text-ink/85 sm:px-7">{f.a}</p>
         </details>
       ))}
     </div>
   );
 }
 
-/** Bloc "L'essentiel en 30 secondes" : réponse directe, citable par Google et les moteurs IA. */
+/** Bloc « L'essentiel en 30 secondes » : réponse directe, citable par Google et les moteurs IA. */
 export function Tldr({ items, title = "L’essentiel en 30 secondes" }: { items: string[]; title?: string }) {
   return (
-    <aside aria-label={title} className="rounded-2xl border border-navy/15 bg-mist p-6 sm:p-8">
-      <h2 className="text-2xl sm:text-3xl">{title}</h2>
+    <aside aria-label={title} className="rounded-4xl bg-butter p-6 sm:p-9">
+      <h2 className="text-2xl sm:text-3xl">
+        <Rich text={title} />
+      </h2>
       <ul className="mt-5 space-y-3.5">
         {items.map((t) => (
           <li key={t} className="flex gap-3 text-[17px] leading-relaxed text-ink">
-            <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-locker" />
-            <span>{t}</span>
+            <span aria-hidden="true" className="mt-[11px] h-2 w-2 shrink-0 rounded-full bg-locker" />
+            <span>
+              <Rich text={t} />
+            </span>
           </li>
         ))}
       </ul>
@@ -65,6 +66,23 @@ export function Tldr({ items, title = "L’essentiel en 30 secondes" }: { items:
   );
 }
 
+type Tone = "paper" | "lav" | "peach" | "rose" | "butter" | "mint" | "card" | "ink" | "mist";
+
+const PANEL: Record<Exclude<Tone, "paper">, string> = {
+  lav: "bg-lav",
+  mist: "bg-lav",
+  peach: "bg-peach",
+  rose: "bg-rose",
+  butter: "bg-butter",
+  mint: "bg-mint",
+  card: "bg-card shadow-lift",
+  ink: "bg-ink text-card",
+};
+
+/**
+ * Section de page. Fond crème par défaut ; toute autre tonalité s'affiche en bloc arrondi inséré,
+ * comme les grands blocs pastel d'Alan.
+ */
 export function Section({
   children,
   tone = "paper",
@@ -72,14 +90,22 @@ export function Section({
   id,
 }: {
   children: ReactNode;
-  tone?: "paper" | "mist" | "ink" | "card";
+  tone?: Tone;
   className?: string;
   id?: string;
 }) {
-  const bg = { paper: "bg-paper", mist: "bg-mist", card: "bg-card", ink: "bg-ink text-card" }[tone];
+  if (tone === "paper") {
+    return (
+      <section id={id} className={`py-14 sm:py-20 lg:py-24 ${className}`}>
+        <div className="wrap">{children}</div>
+      </section>
+    );
+  }
   return (
-    <section id={id} className={`${bg} py-16 sm:py-20 lg:py-24 ${className}`}>
-      <div className="wrap">{children}</div>
+    <section id={id} className={`py-3 sm:py-4 ${className}`}>
+      <div className="wrap">
+        <div className={`rounded-4xl px-5 py-12 sm:rounded-5xl sm:px-10 sm:py-16 lg:px-16 lg:py-20 ${PANEL[tone]}`}>{children}</div>
+      </div>
     </section>
   );
 }
@@ -88,16 +114,23 @@ export function SectionHead({
   title,
   lead,
   tone = "paper",
+  center = false,
 }: {
   title: string;
   lead?: string;
   tone?: "paper" | "ink";
+  center?: boolean;
 }) {
+  const dark = tone === "ink";
   return (
-    <header className="max-w-3xl">
-      <h2 className={`text-display-l ${tone === "ink" ? "!text-card" : ""}`}>{title}</h2>
+    <header className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
+      <h2 className={`text-display-l ${dark ? "!text-card" : ""}`}>
+        <Rich text={title} tone={dark ? "dark" : "light"} />
+      </h2>
       {lead && (
-        <p className={`mt-4 text-lg leading-relaxed sm:text-xl ${tone === "ink" ? "text-card/80" : "text-muted"}`}>{lead}</p>
+        <p className={`mt-4 text-lg leading-relaxed sm:text-xl ${dark ? "text-card/80" : "text-muted"}`}>
+          <Rich text={lead} tone={dark ? "dark" : "light"} />
+        </p>
       )}
     </header>
   );

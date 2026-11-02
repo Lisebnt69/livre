@@ -20,7 +20,7 @@ export function ExtractViewer() {
   return (
     <div className="mx-auto grid max-w-3xl grid-cols-2 gap-4" aria-busy="true">
       {PAGES.slice(0, 2).map((src, i) => (
-        <img key={src} src={src} alt={i === 0 ? "Couverture du livre" : "Page de l’extrait"} width={420} height={640} loading={i === 0 ? "eager" : "lazy"} className="h-auto w-full rounded-[4px] border border-rule shadow-lift" />
+        <img key={src} src={src} alt={i === 0 ? "Couverture du livre" : "Page de l’extrait"} width={420} height={640} loading={i === 0 ? "eager" : "lazy"} className="h-auto w-full rounded-[6px] bg-card shadow-lift" />
       ))}
     </div>
   );
@@ -28,9 +28,9 @@ export function ExtractViewer() {
 
 export function ExtractEnd() {
   return (
-    <div className="mt-10 rounded-2xl border border-rule bg-card p-6 text-center sm:p-8">
-      <p className="font-display text-2xl font-extrabold" style={{ fontStretch: "85%" }}>
-        La suite est dans le livre : {book.pages} pages, 10 chapitres.
+    <div className="mt-10 rounded-4xl bg-lav p-7 text-center sm:p-10">
+      <p className="text-2xl font-bold sm:text-3xl">
+        La suite est dans le livre : <span className="text-locker">{book.pages} pages, 10 chapitres</span>.
       </p>
       <div className="mt-5 flex flex-col justify-center gap-3 sm:flex-row">
         <AmazonButton placement="extrait-fin">Acheter le broché</AmazonButton>

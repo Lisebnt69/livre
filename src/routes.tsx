@@ -3,6 +3,7 @@ import { guides } from "./data/guides";
 import { book } from "./data/book";
 import { abs } from "./data/site";
 import type { PageMeta } from "./lib/seo";
+import { plain } from "./lib/rich";
 import {
   bookSchema,
   breadcrumbSchema,
@@ -51,7 +52,7 @@ export const routes: RouteDef[] = [
       path: "/",
       title: "Réussir son année de High School aux États-Unis | Guide complet",
       description:
-        "Le guide pratique des lycéens et de leurs parents : visa J-1 ou F-1, famille d’accueil, budget, vie au lycée, retour. Par Stéphanie Oyarsabal, maman de deux étudiants d’échange.",
+        "Guide pratique des lycéens et de leurs parents : visa J-1 ou F-1, famille d’accueil, budget, vie au lycée, retour. Par Stéphanie Oyarsabal, maman de deux fils.",
       jsonLd: [
         websiteSchema(),
         ...bookAndPerson,
@@ -135,7 +136,7 @@ export const routes: RouteDef[] = [
         jsonLd: [
           personSchema(),
           bookSchema(),
-          webPageSchema({ path: g.path, name: g.h1, description: g.description, about: true }),
+          webPageSchema({ path: g.path, name: plain(g.h1), description: g.description, about: true }),
           breadcrumbSchema(crumbs),
           faqSchema(g.faq),
         ],

@@ -1,43 +1,44 @@
 /** @type {import('tailwindcss').Config} */
-// Palette tirée de la couverture du livre : bleu marine du titre,
-// rouge des casiers, bleu denim de la veste. Neutres teintés (jamais #000 / #fff purs).
+// DA inspirée d'Alan : fond crème, blocs pastel arrondis, une seule famille de police, titres en graisse moyenne.
+// Couleurs de marque tirées de la couverture : marine (titre) et bordeaux (casiers) pour les mots importants.
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        ink: "#1B2350", // texte principal, marine profond
-        navy: "#273472", // marine de la couverture
-        locker: "#A1232B", // rouge casier (CTA)
+        ink: "#1B2350", // texte, marine profond
+        navy: "#273472",
+        locker: "#A1232B", // bordeaux : mots importants + CTA Amazon
         "locker-dark": "#7E1A21",
-        denim: "#5D7FB0", // bleu veste en jean
-        mist: "#E4E9F3", // fond bleuté clair
-        paper: "#F6F6F3", // fond de page
-        card: "#FDFDFB", // surfaces
-        rule: "#D5D8E2", // filets
-        muted: "#545B7A", // texte secondaire (AA sur paper)
-
-        // alias historiques (encore utilisés par quelques composants)
+        paper: "#FFFCF5", // crème (fond de page)
+        card: "#FFFFFF",
+        rule: "#EBE3D3", // filets chauds
+        muted: "#545B7A",
+        // blocs pastel
+        lav: "#E3E8FF",
+        peach: "#FFE5D0",
+        rose: "#FFE1E3",
+        butter: "#FFF3B8",
+        mint: "#D6F5E6",
+        mist: "#E3E8FF", // alias de lav
+        // alias historiques
         primaryRed: "#A1232B",
         primaryBlue: "#273472",
       },
       fontFamily: {
-        display: ['"Archivo Variable"', "Arial Narrow", "sans-serif"],
-        sans: ['"Public Sans Variable"', "Helvetica Neue", "Arial", "sans-serif"],
+        display: ['"Figtree Variable"', "Helvetica Neue", "Arial", "sans-serif"],
+        sans: ['"Figtree Variable"', "Helvetica Neue", "Arial", "sans-serif"],
       },
       fontSize: {
-        // échelle avec de vrais écarts
-        "display-xl": ["clamp(2.4rem, 5.2vw, 4.6rem)", { lineHeight: "0.98", letterSpacing: "-0.015em" }],
-        "display-l": ["clamp(2rem, 4.2vw, 3.6rem)", { lineHeight: "1.02", letterSpacing: "-0.01em" }],
-        "display-m": ["clamp(1.5rem, 2.6vw, 2.25rem)", { lineHeight: "1.1" }],
+        "display-xl": ["clamp(2.5rem, 5.6vw, 4.6rem)", { lineHeight: "1.04", letterSpacing: "-0.028em" }],
+        "display-l": ["clamp(2rem, 3.9vw, 3.3rem)", { lineHeight: "1.08", letterSpacing: "-0.024em" }],
+        "display-m": ["clamp(1.5rem, 2.4vw, 2.1rem)", { lineHeight: "1.15", letterSpacing: "-0.018em" }],
       },
-      maxWidth: {
-        page: "76rem",
-        prose: "38rem",
-      },
+      maxWidth: { page: "76rem", prose: "38rem" },
+      borderRadius: { "4xl": "2rem", "5xl": "2.5rem" },
       boxShadow: {
-        book: "0 1px 1px rgba(27,35,80,.08), 0 18px 40px -12px rgba(27,35,80,.35), 0 40px 80px -40px rgba(27,35,80,.35)",
-        lift: "0 1px 0 rgba(27,35,80,.06), 0 8px 24px -16px rgba(27,35,80,.35)",
+        book: "0 2px 4px rgba(27,35,80,.1), 0 24px 48px -16px rgba(27,35,80,.35)",
+        lift: "0 1px 2px rgba(27,35,80,.06), 0 12px 28px -18px rgba(27,35,80,.3)",
       },
     },
   },

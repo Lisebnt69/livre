@@ -18,6 +18,7 @@ npm run typecheck
 - **Pré-rendu statique** (`scripts/prerender.mjs`) : chaque route devient un vrai fichier HTML (`dist/parents/index.html`…) avec
   son contenu, son `<title>`, sa description, sa canonical, ses balises Open Graph et son JSON-LD. Google lit tout sans exécuter
   de JavaScript. React « hydrate » ensuite la page. `sitemap.xml` et `404.html` sont générés au build.
+- **Direction artistique** : inspirée d’Alan (fond crème, blocs pastel arrondis, une seule police Figtree, pilules). Jetons dans `tailwind.config.js`. Écrire `**mot**` dans un texte met le mot en bordeaux (`src/lib/rich.tsx`).
 - **Routes et SEO** : `src/routes.tsx` (une entrée par page : titre, description, schema.org).
 - **Pages guides par persona** : `src/data/guides.ts` (parents, lycéens, sport-études, J-1/F-1, famille d'accueil, mal du pays,
   retour). Ajouter une page = ajouter un objet dans ce tableau : route, sitemap, maillage interne, FAQ et schema se créent seuls.
