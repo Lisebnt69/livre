@@ -1,73 +1,53 @@
-export type ReviewKind = "screenshot" | "text";
-
-export type ReviewItem = {
+export type Review = {
   id: string;
-  kind: ReviewKind;
-  source: "Amazon" | "Réseaux" | "Proche";
-  rating?: 4 | 5;
-  name?: string; // optionnel si tu veux anonymiser
-  role?: "Parent" | "Étudiant" | "Famille";
-  text?: string; // pour les avis texte
-  image?: string; // pour screenshots (path public)
-  dateLabel?: string; // ex: "Fév. 2026"
-  highlight?: boolean; // pour l’avis hero
+  source: "Amazon" | "Groupe Facebook" | "Message privé";
+  role: "Parent" | "Étudiant" | "Proche";
+  text: string;
+  dateLabel?: string;
+  image?: string;
 };
 
-export const reviews: ReviewItem[] = [
-  
-
-  // Avis texte (SEO + lisible)
+/** Retours réels. Pas de note chiffrée : ce sont des commentaires, pas des avis Amazon notés. */
+export const reviews: Review[] = [
   {
-    id: "text-1",
-    kind: "text",
-    source: "Réseaux",
-    rating: 5,
+    id: "fb-1",
+    source: "Groupe Facebook",
     role: "Parent",
-    name: "Parent (témoignage)",
     text:
       "Ce guide manquait sincèrement. J’aurais tellement aimé en avoir un avant le départ de ma fille. Un support concret, basé sur du vécu réel, des conseils authentiques et l’expérience de parents déjà passés par là… c’est précieux.",
-    dateLabel: "Fév. 2026",
+    dateLabel: "Février 2026",
+    image: "/reviews/avis-parent.jpg",
   },
   {
-  id: "text-parent-short-1",
-  kind: "text",
-  source: "Réseaux",
-  rating: 5,
-  role: "Parent",
-  name: "Parent (groupe d’échange facebook))",
-  text: "Bravo pour cette initiative 👏 Je suis sûre que votre guide aidera de nombreuses familles. Un tel ouvrage manquait !",
-  dateLabel: "Fév. 2026",
-},
-{
-  id: "text-parent-short-2",
-  kind: "text",
-  source: "Réseaux",
-  rating: 5,
-  role: "Parent",
-  name: "Parent (groupe d’échange facebook)",
-  text: "Bravo pour ce livre : à part ce groupe, on se sent un peu seul quand on démarre cette aventure. Ce guide va aider les prochaines familles.",
-  dateLabel: "Fév. 2026",
-},
-{
-  id: "amazon-1",
-  kind: "text",
-  source: "Amazon",
-  rating: 5,
-  role: "Étudiant",
-  name: "Anonyme",
-  dateLabel: "Fév. 2026",
-},
-{
-  id: "text-parent-short-3",
-  kind: "text",
-  source: "Réseaux",
-  rating: 5,
-  role: "Parent",
-  name: "Parent (groupe d’échange facebook)",
-  text: "Commandé par ma fille qui part cet été, elle est ravie !",
-  dateLabel: "Fév. 2026",
-},
+    id: "fb-2",
+    source: "Groupe Facebook",
+    role: "Parent",
+    text: "Bravo pour cette initiative. Je suis sûre que votre guide aidera de nombreuses familles. Un tel ouvrage manquait !",
+    dateLabel: "Février 2026",
+  },
+  {
+    id: "fb-3",
+    source: "Groupe Facebook",
+    role: "Parent",
+    text:
+      "Bravo pour ce livre : à part ce groupe, on se sent un peu seul quand on démarre cette aventure. Ce guide va aider les prochaines familles.",
+    dateLabel: "Février 2026",
+  },
+  {
+    id: "fb-4",
+    source: "Groupe Facebook",
+    role: "Parent",
+    text: "Commandé par ma fille qui part cet été, elle est ravie !",
+    dateLabel: "Février 2026",
+  },
+];
 
-
-
+export const stories = [
+  "/reviews/story-1.web.jpg",
+  "/reviews/story-2.web.jpg",
+  "/reviews/story-3.web.jpg",
+  "/reviews/story-4.web.jpg",
+  "/reviews/story-5.web.jpg",
+  "/reviews/story-6.web.jpg",
+  "/reviews/story-7.web.jpg",
 ];

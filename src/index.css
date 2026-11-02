@@ -2,91 +2,72 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body, #root {
-  margin: 0; padding: 0; width: 100vw; height: 100vh; background-color: #FAF8F2; /* bgLight */
-  font-family: 'Inter', sans-serif; overflow-x: hidden;
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 17px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  h1, h2, h3 {
+    @apply font-display text-ink;
+    font-weight: 650;
+    text-wrap: balance;
+  }
+  p { text-wrap: pretty; }
+  ::selection { background: #A1232B; color: #FFFFFF; }
+  :focus-visible { outline: 2px solid #A1232B; outline-offset: 3px; border-radius: 6px; }
 }
 
-/* =========================
-   CookieConsent theme (site style)
-   ========================= */
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-page px-4 sm:px-6 lg:px-10; }
 
-:root {
-  --cc-bg: rgba(255,255,255,.92);
-  --cc-text: #0b1b4b; /* primaryBlue */
-  --cc-border: rgba(11,27,75,.18);
-  --cc-shadow: 0 20px 50px rgba(0,0,0,.18);
+  /* Boutons en pilule, comme chez Alan */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full px-6 py-3.5 text-[15px] font-semibold;
+    transition: background-color .15s ease, color .15s ease, border-color .15s ease, transform .15s ease;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn-buy { @apply btn bg-locker text-card hover:bg-locker-dark; }
+  .btn-ink { @apply btn bg-ink text-card hover:bg-navy; }
+  .btn-ghost { @apply btn border border-ink/20 bg-card text-ink hover:border-ink/50; }
+  .btn-light { @apply btn bg-card text-ink hover:bg-lav; }
 
-  --cc-btn-primary-bg: #0b1b4b;   /* primaryBlue */
-  --cc-btn-primary-text: #ffffff;
-  --cc-btn-primary-border: #0b1b4b;
-
-  --cc-btn-secondary-bg: #ffffff;
-  --cc-btn-secondary-text: #0b1b4b;
-  --cc-btn-secondary-border: rgba(11,27,75,.25);
-
-  --cc-radius: 18px;
+  .link {
+    @apply font-semibold text-ink underline decoration-locker decoration-2 underline-offset-[5px] hover:text-locker;
+  }
 }
 
-/* container */
-#cc-main .cm,
-#cc-main .pm {
-  background: var(--cc-bg) !important;
-  color: var(--cc-text) !important;
-  border: 1px solid var(--cc-border) !important;
-  border-radius: var(--cc-radius) !important;
-  box-shadow: var(--cc-shadow) !important;
-  backdrop-filter: blur(12px);
-}
+/* Chiffres alignés */
+.tnum { font-variant-numeric: tabular-nums; }
 
-/* titles/text */
-#cc-main .cm__title,
-#cc-main .pm__title {
-  color: var(--cc-text) !important;
-  font-weight: 800 !important;
-}
-
-#cc-main .cm__desc,
-#cc-main .pm__desc,
-#cc-main .pm__section-desc {
-  color: rgba(11,27,75,.8) !important;
-}
-
-/* buttons */
-#cc-main .cm__btn,
-#cc-main .pm__btn {
-  border-radius: 14px !important;
-  font-weight: 700 !important;
-  padding: 10px 14px !important;
-  border: 1px solid transparent !important;
-  transition: transform .15s ease, box-shadow .15s ease !important;
-}
-
-#cc-main .cm__btn:hover,
-#cc-main .pm__btn:hover {
-  transform: translateY(-1px) !important;
-}
-
-/* primary button */
-#cc-main .cm__btn--accept,
-#cc-main .pm__btn--accept {
-  background: var(--cc-btn-primary-bg) !important;
-  color: var(--cc-btn-primary-text) !important;
-  border-color: var(--cc-btn-primary-border) !important;
-}
-
-/* secondary buttons */
-#cc-main .cm__btn--reject,
-#cc-main .cm__btn--manage,
-#cc-main .pm__btn--reject,
-#cc-main .pm__btn--save {
-  background: var(--cc-btn-secondary-bg) !important;
-  color: var(--cc-btn-secondary-text) !important;
-  border-color: var(--cc-btn-secondary-border) !important;
-}
-
-/* links */
-#cc-main a {
-  color: #d11f3a !important; /* primaryRed */
-  font-weight: 700 !important;
+/* Bandeau cookies aux couleurs du site (variables officielles vanilla-cookieconsent v3) */
+#cc-main {
+  --cc-font-family: "Figtree Variable", Helvetica, Arial, sans-serif;
+  --cc-bg: #FDFDFB;
+  --cc-primary-color: #1B2350;
+  --cc-secondary-color: #545B7A;
+  --cc-btn-primary-bg: #1B2350;
+  --cc-btn-primary-color: #FDFDFB;
+  --cc-btn-primary-border-color: #1B2350;
+  --cc-btn-primary-hover-bg: #273472;
+  --cc-btn-primary-hover-border-color: #273472;
+  --cc-btn-secondary-bg: #E4E9F3;
+  --cc-btn-secondary-color: #1B2350;
+  --cc-btn-secondary-border-color: #E4E9F3;
+  --cc-btn-secondary-hover-bg: #D5D8E2;
+  --cc-btn-secondary-hover-border-color: #D5D8E2;
+  --cc-btn-border-radius: 10px;
+  --cc-modal-border-radius: 14px;
+  --cc-separator-border-color: #D5D8E2;
+  --cc-toggle-on-bg: #A1232B;
+  --cc-link-color: #A1232B;
 }

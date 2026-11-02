@@ -1,19 +1,34 @@
-# Site Vitrine - Stéphanie Oyarsabal : Guide High School USA
+# Guide High School USA : site du livre de Stéphanie Oyarsabal
 
-Site vitrine moderne 2026 pour l'autrice Stéphanie Oyarsabal, entièrement front-end avec Vite, React, TypeScript, TailwindCSS, React Router et Framer Motion.
+Site vitrine d'un seul livre, dont la seule mission est de **pousser le clic vers la fiche Amazon** et de **ranker en SEO**.
+Vite + React + TypeScript + Tailwind. Pas de backend.
 
-## Fonctionnalités
+## Commandes
 
-- **Pages multi-routes** : Accueil, Où trouver le livre, Information sur le livre, Lire les premières pages, Auteur, Avis.
-- **Flipbook obligatoire** : Utilise react-pageflip pour un effet page-turn sur les premières pages du PDF.
-- **Fallback PDF** : react-pdf si les images du flipbook ne sont pas disponibles.
-- **Design premium** : Style Apple/Stripe/Notion avec animations Framer Motion.
-- **Responsive** : Mobile-first avec burger menu animé.
-- **SEO de base** : Meta tags et OpenGraph.
+```bash
+npm install
+npm run dev        # développement (rendu client)
+npm run build      # build + pré-rendu statique de toutes les pages dans dist/
+npm run preview    # servir dist/ en local
+npm run typecheck
+```
 
-## Installation
+## Comment ça marche
 
-1. **Cloner ou créer le projet** :
-   ```bash
-   npm create vite@latest site-vitrine-stephanie -- --template react-ts
-   cd site-vitrine-stephanie
+- **Pré-rendu statique** (`scripts/prerender.mjs`) : chaque route devient un vrai fichier HTML (`dist/parents/index.html`…) avec
+  son contenu, son `<title>`, sa description, sa canonical, ses balises Open Graph et son JSON-LD. Google lit tout sans exécuter
+  de JavaScript. React « hydrate » ensuite la page. `sitemap.xml` et `404.html` sont générés au build.
+- **Direction artistique** : inspirée d’Alan (fond crème, blocs pastel arrondis, une seule police Figtree, pilules). Jetons dans `tailwind.config.js`. Écrire `**mot**` dans un texte met le mot en bordeaux (`src/lib/rich.tsx`).
+- **Routes et SEO** : `src/routes.tsx` (une entrée par page : titre, description, schema.org).
+- **Pages guides par persona** : `src/data/guides.ts` (parents, lycéens, sport-études, J-1/F-1, famille d'accueil, mal du pays,
+  retour). Ajouter une page = ajouter un objet dans ce tableau : route, sitemap, maillage interne, FAQ et schema se créent seuls.
+- **Le livre** : `src/data/book.ts` (liens Amazon, sommaire réel avec numéros de page).
+- **Liens Amazon** : composant `AmazonButton` (`src/components/Amazon.tsx`) : `rel="sponsored"`, suivi GA4 `click_amazon`
+  avec le `placement` du clic. Mention d'affiliation officielle sous chaque boîte d'achat et en pied de page.
+- **RGPD** : Consent Mode v2 (tout refusé par défaut, `index.html`) + bandeau `vanilla-cookieconsent`. Polices auto-hébergées
+  (aucune requête vers Google Fonts).
+
+## Règles Amazon Partenaires à respecter
+
+Ne jamais afficher de prix, de note ni d'avis Amazon sur le site. Ne pas ajouter de `AggregateRating`. Ne pas masquer ou
+raccourcir les liens affiliés. Ne rien offrir en échange d'un clic ou d'un avis.

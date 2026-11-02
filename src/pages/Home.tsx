@@ -1,386 +1,362 @@
-import { motion } from "framer-motion";
-import CTAButton from "../components/CTAButton";
-import { home } from "../data/home";
+import { Link } from "react-router-dom";
+import { ArrowRight, Quote } from "lucide-react";
 import { book } from "../data/book";
-import FAQAccordion from "../components/FAQAccordion";
+import { guides } from "../data/guides";
+import { AmazonButton } from "../components/Amazon";
+import { Cover } from "../components/Cover";
+import { Faq, Section, SectionHead, Tldr } from "../components/Ui";
+import { FinalCta, Toc, WorryTable } from "../components/Blocks";
+import type { FaqItem } from "../lib/schema";
+import { Rich } from "../lib/rich";
+import { Bunting, STAR_PATTERN, StarRow, StripesBand, UsFlag, VarsityPatch } from "../components/Us";
 
+export const homeFaq: FaqItem[] = [
+  {
+    q: "Quelle est la différence entre un visa J-1 et un visa F-1 ?",
+    a: "Le J-1 est un programme d’échange supervisé par le Département d’État : famille d’accueil bénévole, lycée public sans frais de scolarité, mais ni l’État ni l’école ne se choisissent et le séjour dure dix mois maximum. Le F-1 correspond à une scolarité classique : école privée ou publique payante, choix de l’établissement souvent possible, plusieurs années possibles, internat ou famille rémunérée, et un budget bien plus élevé.",
+  },
+  {
+    q: "Comment sont choisies les familles d’accueil ?",
+    a: "Un coordinateur local, mandaté par l’organisme américain, rencontre chaque famille, visite la maison et vérifie que l’environnement est chaleureux et sécurisé. Les familles J-1 sont bénévoles et de profils variés. Le dossier du jeune (lettre, photos, résultats) sert à trouver une famille aux valeurs proches.",
+  },
+  {
+    q: "L’assurance santé est-elle importante pour étudier aux États-Unis ?",
+    a: "Oui. Les frais médicaux sont élevés : une simple visite aux urgences peut coûter plusieurs centaines de dollars. La plupart des programmes incluent une couverture de base, mais soins dentaires, sports à risque ou certaines franchises peuvent rester à votre charge. Une assurance complémentaire ou une option rapatriement est souvent recommandée.",
+  },
+  {
+    q: "Quand faut-il commencer à se préparer ?",
+    a: "Plusieurs mois à l’avance. Plus vous anticipez, plus vous gardez le contrôle sur les démarches. S’y prendre à la dernière minute, c’est ajouter du stress inutile.",
+  },
+  {
+    q: "Le livre est-il utile si mon enfant part avec un organisme ?",
+    a: "Oui. L’organisme gère le cadre, pas tous les détails du quotidien. Le guide vous aide à comprendre les règles, anticiper les situations classiques et savoir quoi faire si ça se complique.",
+  },
+  {
+    q: "Où acheter le livre, et en quels formats ?",
+    a: "Le livre est vendu sur Amazon.fr en version broché et en version Kindle. Le broché est idéal pour annoter et surligner ; le Kindle se lit sur téléphone, tablette ou liseuse. Prix, paiement et livraison sont gérés par Amazon.",
+  },
+];
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 26 },
-  visible: (custom = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: custom * 0.12, duration: 0.6, ease: "easeOut" },
-  }),
+const phases = [
+  {
+    label: "Avant",
+    tone: "bg-blue text-card",
+    fg: "dark" as const,
+    chapters: "Chapitres 1 à 4",
+    text: "Choisir entre **J-1 et F-1**, comprendre le rôle de l’organisme, monter le dossier, gérer assurances, budget, santé, valise et premiers mots d’anglais.",
+    to: "/j1-ou-f1/",
+    toLabel: "J-1 ou F-1 : le comparatif",
+  },
+  {
+    label: "Pendant",
+    tone: "bg-sky text-ink",
+    fg: "light" as const,
+    chapters: "Chapitres 5 à 8",
+    text: "Vivre en **famille d’accueil**, comprendre la High School américaine, se faire des amis, traverser le **mal du pays** et garder le lien à distance.",
+    to: "/famille-d-accueil/",
+    toLabel: "La vie en famille d’accueil",
+  },
+  {
+    label: "Après",
+    tone: "bg-locker text-card",
+    fg: "red" as const,
+    chapters: "Chapitre 9",
+    text: "Gérer le **choc du retour**, retrouver sa place à la maison, reprendre le lycée en France et valoriser l’année.",
+    to: "/retour-en-france/",
+    toLabel: "Préparer le retour",
+  },
+];
+
+const usWords = [
+  { term: "Locker", text: "Le casier de chaque élève, décor emblématique des High Schools américaines.", ref: "" },
+  { term: "Dress code", text: "Ce qu’on peut porter, ou pas, à l’école. Mieux vaut le savoir avant de faire sa valise.", ref: "Chap. 7 · p.109" },
+  { term: "Cafeteria", text: "Le déjeuner à l’américaine : où, comment et avec qui on mange.", ref: "Chap. 7 · p.108" },
+  { term: "Team spirit", text: "L’esprit d’équipe et la fierté de son école, au cœur de la vie lycéenne.", ref: "Chap. 7 · p.110" },
+  { term: "Drama", text: "Les histoires entre élèves : les connaître avant d’être mêlé à l’une d’elles.", ref: "Chap. 7 · p.112" },
+  { term: "Prom & co", text: "Les grands moments de l’année, du football au bal de fin d’année.", ref: "Chap. 7 · p.114" },
+];
+
+const personaCards: Record<string, { label: string; tone: string; solid: boolean }> = {
+  parents: { label: "Je suis parent", tone: "bg-blue", solid: true },
+  lyceens: { label: "Je suis lycéen", tone: "bg-sky", solid: false },
+  "sport-etudes": { label: "Je suis sportif", tone: "bg-locker", solid: true },
 };
 
-const sectionView = {
-  initial: "hidden",
-  whileInView: "visible",
-  viewport: { once: true, amount: 0.25 },
-};
+export default function Home() {
+  const parents = guides.find((g) => g.slug === "parents")!;
+  const personas = ["parents", "lyceens", "sport-etudes"].map((s) => guides.find((g) => g.slug === s)!);
 
-const Home = () => {
   return (
-    <main className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-primaryBlue font-sans">
-    
+    <>
+      {/* HERO : bloc pastel arrondi, boîte d'achat et preuve sociale à portée de clic */}
+      <section className="pt-3 sm:pt-4">
+        <div className="wrap">
+          <div className="relative overflow-hidden rounded-4xl bg-lav px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-24 lg:pt-20">
+            <StripesBand className="absolute inset-x-0 bottom-0 !h-3.5" />
+            <Bunting className="pointer-events-none absolute inset-x-0 top-0 h-7 w-full opacity-95 sm:h-9" />
+            <div className="grid items-center gap-12 pt-6 lg:grid-cols-12">
+              <div className="lg:col-span-7">
+                <h1 className="text-display-xl">
+                  Une année de High School aux <span className="whitespace-nowrap">États-Unis</span> : <Rich text="**partez préparés**" />, pas à l’aveugle.
+                </h1>
+                <p className="mt-6 max-w-[34rem] text-lg leading-relaxed text-ink/85 sm:text-xl">
+                  Le guide pratique des <strong className="font-semibold">lycéens et de leurs parents</strong> : visa J-1 ou F-1, famille
+                  d’accueil, budget, vie au lycée, retour en France. Écrit par une maman dont les deux fils sont partis.
+                </p>
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <AmazonButton placement="hero" className="!py-4 !text-base">
+                    Acheter sur Amazon
+                  </AmazonButton>
+                  <Link to="/extrait/" className="btn-ghost !py-4 !text-base">
+                    Lire un extrait gratuit
+                  </Link>
+                </div>
+                <p className="mt-4 text-sm text-ink/70">
+                  Broché et Kindle · {book.pages} pages · Paiement et livraison par Amazon.fr
+                </p>
 
-      {/* HERO */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 pt-16 md:pt-24 pb-14"
-        variants={fadeUp}
-        {...sectionView}
-        custom={0}
-      >
-        <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
-          <motion.div variants={fadeUp} custom={1} className="text-center md:text-left">
-            <span className="inline-flex items-center gap-2 bg-primaryRed text-white px-4 py-1.5 rounded-full font-semibold text-sm mb-6 md:mb-8">
-              {home.hero.badge}
-            </span>
+                <figure className="mt-8 flex max-w-lg items-start gap-3 rounded-3xl bg-card p-4 shadow-lift">
+                  <Quote size={22} className="mt-0.5 shrink-0 text-locker" aria-hidden="true" />
+                  <div>
+                    <blockquote className="text-[16px] leading-snug text-ink">
+                      <strong className="font-bold text-locker">Ce guide manquait sincèrement.</strong> J’aurais tellement aimé en avoir
+                      un avant le départ de ma fille.
+                    </blockquote>
+                    <figcaption className="mt-1 text-sm text-muted">Parent, groupe d’échange · Février 2026</figcaption>
+                  </div>
+                </figure>
+              </div>
 
-            <span className="max-w-3xl text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.08] md:leading-[1.02] mb-6 text-primaryBlue">
-              {home.hero.title}
-              <span className="block text-primaryRed mt-4 text-4xl sm:text-5xl md:text-6xl lg:text-7xl">
-                {home.hero.titleEmphasis}
-              </span>
-            </span>
-
-            <p className="max-w-xl text-base sm:text-lg md:text-xl text-textDark mb-10 leading-relaxed">
-              {home.hero.lead}
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <CTAButton
-                label={home.hero.ctaPrimary}
-                href="/livre"
-                eventName="click_amazon"
-                className="bg-red-900 hover:bg-red-700 shadow-lg hover:shadow-xl transition"
-              />
-              <CTAButton
-                label={home.hero.ctaSecondary}
-                href={book.amazonUrl}
-                eventName="click_amazon"
-                className="border border-black/10 hover:border-black/20 transition"
-              />
+              <div className="relative mx-auto w-[min(70vw,330px)] lg:col-span-5 lg:w-full lg:max-w-[390px] lg:justify-self-end">
+                <UsFlag className="absolute -inset-x-6 -inset-y-5 h-[calc(100%+2.5rem)] w-[calc(100%+3rem)] rotate-[4deg] rounded-[18px] shadow-book sm:-inset-x-10" />
+                <Cover priority className="relative !rounded-[10px]" />
+                <VarsityPatch className="absolute -top-[72px] right-0 w-[88px] rotate-12 drop-shadow-lg sm:-top-[96px] sm:-right-2 sm:w-[112px]" />
+                <span aria-hidden="true" className="absolute -left-3 top-[38%] flex -rotate-6 items-center gap-2 rounded-full bg-card py-2 pl-2.5 pr-4 text-sm font-bold text-ink shadow-lift sm:-left-10">
+                  <UsFlag className="h-[18px] w-[34px] rounded-[3px] ring-1 ring-ink/10" />
+                  High School USA
+                </span>
+                <span aria-hidden="true" className="absolute -right-2 top-[64%] rotate-3 rounded-full bg-locker px-4 py-2 text-sm font-bold text-card shadow-lift sm:-right-8">
+                  {book.pages} pages
+                </span>
+              </div>
             </div>
-          </motion.div>
-
-          <motion.div variants={fadeUp} custom={2} className="flex justify-center md:justify-end">
-            <img
-              src="/cover.jpg"
-              alt="Couverture du livre"
-              className="rounded-3xl shadow-2xl w-[320px] md:w-[380px] lg:w-[420px] hover:-translate-y-1 hover:scale-[1.02] transition duration-500"
-              draggable={false}
-            />
-          </motion.div>
-        </div>
-      </motion.section>
-      
-{/* STATS */}
-      <motion.section
-        className="py-20 px-6 md:px-10"
-        variants={fadeUp}
-        {...sectionView}
-        custom={0}
-      >
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-black text-[#384c8b] mb-14">
-            Un guide construit sur le réel
-          </h2>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              { big: "+650", small: "Retours d’expérience de Familles" },
-              { big: "+50", small: "Situations concrètes & conseils actionnables" },
-              { big: "Préparer + rassurer", small: "L’objectif du livre", bigClass: "text-2xl md:text-3xl" },
-            ].map((s, idx) => (
-              <motion.div
-                key={s.small}
-                variants={fadeUp}
-                custom={idx + 1}
-                className="bg-white rounded-2xl shadow-xl p-10"
-              >
-                <p className={`${s.bigClass ?? "text-5xl"} font-black text-primaryRed mb-4`}>
-                  {s.big}
-                </p>
-                <p className="text-sm font-semibold text-[#384c8b]">
-                  {s.small}
-                </p>
-              </motion.div>
-            ))}
           </div>
         </div>
-      </motion.section>
-      {/* INTRO CONTEXT */}
-      <motion.section
-        className="max-w-4xl mx-auto px-6 md:px-10 pb-20 text-center"
-        variants={fadeUp}
-        {...sectionView}
-        custom={3}
-      >
-        <p className="text-lg md:text-xl leading-relaxed text-primaryBlue/85">
-          Une année de High School aux États-Unis est une expérience unique : immersion linguistique,
-          découverte d’une nouvelle culture, autonomie et confiance en soi.
-        </p>
+      </section>
 
-        <p className="mt-5 text-lg md:text-xl leading-relaxed text-primaryBlue/80">
-          Entre moments dignes d’un film américain et situations qui demandent adaptation et résilience,
-          cette aventure se prépare en famille et s’accompagne tout au long de l’année.
-        </p>
+      {/* « JE SUIS… » */}
+      <Section>
+        <SectionHead title="Le guide, **selon votre situation**." center />
+        <nav aria-label="Choisir son profil" className="mt-10">
+          <ul className="grid gap-4 md:grid-cols-3">
+            {personas.map((g) => {
+              const c = personaCards[g.slug];
+              return (
+                <li key={g.slug}>
+                  <Link to={g.path} className={`group flex h-full min-h-[220px] flex-col justify-between rounded-4xl p-7 transition-transform hover:-translate-y-1 ${c.tone}`}>
+                    <span>
+                      <span className={`block text-3xl font-bold leading-tight tracking-tight ${c.solid ? "text-card" : "text-ink"}`}>{c.label}</span>
+                      <span className={`mt-2 block text-[16px] leading-snug ${c.solid ? "text-card/85" : "text-ink/80"}`}>{g.forWho}</span>
+                    </span>
+                    <span className="mt-6 flex h-11 w-11 items-center justify-center self-end rounded-full bg-card text-locker">
+                      <ArrowRight size={20} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      </Section>
 
-        <p className="mt-5 text-lg md:text-xl leading-relaxed font-semibold text-primaryBlue">
-          Ce guide très concret vous aide à anticiper la réalité du quotidien et à aborder cette expérience
-          avec sérénité, dès aujourd’hui.
-        </p>
-      </motion.section>
-
-
-      {/* STORYTELLING (sans cards) */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 pb-16"
-        variants={fadeUp}
-        {...sectionView}
-        custom={0}
-      >
-        <div className="mb-10">
-          <p className="text-xs font-semibold tracking-widest uppercase text-[#384c8b]/70">
-            Pourquoi ce guide existe
-          </p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-black text-[#384c8b] leading-tight">
-            Du vécu. Des réponses. Un plan clair.
-          </h2>
+      {/* L'ESSENTIEL */}
+      <Section className="!pt-0">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-5">
+            <SectionHead
+              title="Ce que les brochures **ne racontent pas**."
+              lead="Les moments plus délicats, les organismes les dévoilent rarement. Les parents et les jeunes les découvrent une fois sur place. Ce guide en parle **sans filtre**, et avec des solutions."
+            />
+          </div>
+          <div className="lg:col-span-7">
+            <Tldr
+              items={[
+                "**J-1 ou F-1**, ce n’est pas qu’un visa : c’est un budget, un type de famille, un degré de liberté. À comprendre avant de choisir un organisme.",
+                "En J-1, le jeune **ne choisit ni son État ni son école**. En F-1, souvent oui, mais le budget est bien plus élevé.",
+                "Une famille d’accueil se construit : communication, attentes dites, patience. Et le **mal du pays** existe, même chez les motivés.",
+                "**Le retour** est le grand oublié. Il se prépare dès le départ.",
+              ]}
+            />
+          </div>
         </div>
+      </Section>
 
-        <div className="space-y-12">
-          <article className="pl-6 border-l-4 border-primaryRed">
-            <h3 className="text-2xl md:text-3xl font-black text-[#384c8b] leading-snug">
-              Anticiper pour être correctement préparé et
-              <span className="text-primaryRed"> éviter les soucis</span>
-            </h3>
-
-            <div className="mt-6 flex flex-wrap gap-2">
-              {[
-                "Solitude / isolement en famille d’accueil",
-                "Choc culturel + perte de repères",
-                "Démarches et règles mal comprises",
-                "Retour en France plus difficile que prévu",
-              ].map((t) => (
-                <span
-                  key={t}
-                  className="text-sm font-semibold text-[#384c8b] bg-white/70 border border-[#384c8b]/10 rounded-full px-4 py-2"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-
-            <p className="mt-6 text-base md:text-lg text-[#384c8b]/80 leading-relaxed max-w-3xl">
-              Vous ne pouvez pas tout contrôler. Mais vous pouvez{" "}
-              <span className="font-bold text-[#384c8b]">comprendre</span>,{" "}
-              <span className="font-bold text-[#384c8b]">anticiper</span> et{" "}
-              <span className="font-bold text-[#384c8b]">accompagner</span>. Ce livre vous donne des repères clairs et des solutions concrètes.
-            </p>
-          </article>
-
-          <article className="pl-6 border-l-4 border-[#384c8b]/20">
-            <h3 className="text-2xl md:text-3xl font-black text-[#384c8b] leading-snug">
-              Un guide, pas un livre promotionnel.
-              <span className="text-primaryRed"> Du vécu. Du vrai.</span>
-            </h3>
-
-            <p className="mt-6 text-base md:text-lg text-[#384c8b]/80 leading-relaxed max-w-3xl">
-              Les moments plus délicats que les organismes ne dévoilent pas souvent, les étudiants et leurs parents les découvriront une fois le jeune sur place.
-            </p>
-
-            <p className="mt-4 text-base md:text-lg text-[#384c8b]/80 leading-relaxed max-w-3xl">
-              Ce guide répond à ces questions <span className="font-bold text-[#384c8b]">sans filtre</span> : ce qui est bien, et ce qui est difficile —{" "}
-              <span className="font-bold text-[#384c8b]">avec des solutions</span>.
-            </p>
-          </article>
-
-          <article className="pl-6 border-l-4 border-[#384c8b]/20">
-            <h3 className="text-2xl md:text-3xl font-black text-[#384c8b] leading-snug">
-              Écrit par une maman qui a vécu l’expérience
-              <span className="text-primaryRed"> sous plusieurs formes.</span>
-            </h3>
-
-            <p className="mt-6 text-base md:text-lg text-[#384c8b]/80 leading-relaxed max-w-3xl">
-              Un enfant en famille d’accueil (visa J-1), un autre en internat sport-études (visa F-1), des années d’échanges avec des centaines de parents concernés et elle vit une partie de l’année aux USA.
-            </p>
-
-            <p className="mt-4 text-base md:text-lg text-[#384c8b]/80 leading-relaxed max-w-3xl">
-              Ce livre est <span className="font-bold text-[#384c8b]">le guide concret que j’aurais aimé avoir </span> avant le départ de mes fils. »
-            </p>
-          </article>
-        </div>
-      </motion.section>
-
-      {/* ⭐ AVIS (HOME) — version + clean, + premium, + lisible */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 "
-        variants={fadeUp}
-        {...sectionView}
-        custom={0}
-      >
-          {/* Titre section avis */}
-      <div className="text-center mb-12">
-        <p className="text-xs font-semibold tracking-widest uppercase text-primaryBlue/60">
-          Preuve sociale
+      {/* PROBLÈME -> RÉPONSE */}
+      <Section className="!pt-0">
+        <WorryTable title="Les questions que se posent les familles, et **où le livre y répond**" worries={parents.worries.slice(0, 6)} />
+        <p className="mt-6 text-center text-[15px] text-muted">
+          Les numéros de chapitre et de page renvoient au sommaire réel du livre.{" "}
+          <Link to="/livre/" className="link">Voir le sommaire détaillé</Link>
         </p>
-        <h2 className="mt-3 text-3xl md:text-4xl font-black text-primaryBlue">
-          Avis lecteurs
-        </h2>
-        <p className="mt-4 text-base md:text-lg text-primaryBlue/75 max-w-2xl mx-auto">
-          Des retours authentiques partagés par des parents et des proches.
-        </p>
-      </div>
-
-        {/* HERO review */}
-        <div className="grid lg:grid-cols-12 gap-10 items-center">
-          {/* Screenshot (moins dominant, mieux “posé”) */}
-          <motion.div variants={fadeUp} custom={1} className="lg:col-span-5">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primaryRed/20 to-primaryBlue/20 blur-2xl opacity-50" />
-              <div className="relative rounded-3xl bg-white/70 border border-black/10 shadow-2xl p-3">
-                <img
-                  src="/reviews/avis-parent.png"
-                  alt="Avis parent (capture)"
-                  className="w-full rounded-2xl"
-                  loading="lazy"
-                  draggable={false}
-                />
-              </div>
-            </div>
-
-            <p className="mt-3 text-xs text-primaryBlue/60">
-              Capture d’écran d’un avis réel (groupe de parents / réseaux).
-            </p>
-          </motion.div>
-
-          {/* Texte (devient l’élément principal) */}
-          <motion.div variants={fadeUp} custom={2} className="lg:col-span-7">
-            <div className="bg-white rounded-3xl border border-black/10 shadow-xl p-7 md:p-9">
-              <div className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold bg-primaryBlue text-white">
-                  ★★★★★ <span className="opacity-80">Avis parent</span>
-                </span>
-
-                <span className="text-xs font-semibold text-primaryBlue/60">
-                  Groupe Facebook • Parent
-                </span>
-              </div>
-
-              <p className="mt-5 text-xl md:text-2xl text-primaryBlue leading-relaxed font-medium">
-                « Ce guide manquait sincèrement. J’aurais tellement aimé en avoir un avant le départ de ma fille.
-                Un support concret, basé sur du vécu réel… c’est précieux. »
-              </p>
-
-              <p className="mt-4 text-sm font-semibold text-primaryRed">
-                — Parent d’étudiant en échange
-              </p>
-
-              <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                <CTAButton
-                  label="Voir sur Amazon"
-                  href={book.amazonUrl}
-                  className="bg-primaryBlue text-white hover:bg-primaryBlue/90 border border-primaryBlue"
-                  eventName="click_amazon"
-                />
-
-                <a
-                  href="/avis"
-                  className="inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-white text-primaryBlue border border-primaryBlue/30 hover:border-primaryBlue/60 shadow-sm hover:shadow transition"
-                >
-                  Voir tous les avis →
-                </a>
-              </div>
-            </div>
-          </motion.div>
+        <div className="mt-8 flex justify-center">
+          <AmazonButton placement="home-worries">Lire les réponses dans le livre</AmazonButton>
         </div>
+      </Section>
 
-        {/* Mini reviews (centrées + cohérentes) */}
-        <div className="mt-14 max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
-          {[
-            {
-              source: "Groupe Facebook",
-              text: "Bravo pour cette initiative 👏 Je suis sûre que votre guide aidera de nombreuses familles. Un tel ouvrage manquait !",
-            },
-            {
-              source: "Groupe Facebook",
-              text: "Bravo pour ce livre : à part ce groupe, on se sent un peu seul quand on démarre cette aventure. Ce guide va aider les prochaines familles.",
-            },
-          ].map((r, idx) => (
-            <motion.article
-              key={idx}
-              variants={fadeUp}
-              custom={idx + 3}
-              className="bg-white rounded-2xl shadow-lg p-6 border border-black/5 hover:shadow-xl transition"
-            >
-              <p className="text-xs font-semibold text-primaryBlue/60 uppercase tracking-widest">
-                {r.source}
+      {/* AVANT / PENDANT / APRÈS */}
+      <Section className="!pt-0">
+        <SectionHead title="Avant, pendant, après : **toute l’année est couverte**." center />
+        <ol className="mt-10 grid gap-4 md:grid-cols-3">
+          {phases.map((p) => (
+            <li key={p.label} className={`flex flex-col rounded-4xl p-7 sm:p-8 ${p.tone}`}>
+              <h3 className={`text-5xl font-bold tracking-tight ${p.fg === "light" ? "text-ink" : "!text-card"}`}>{p.label}</h3>
+              <p className={`mt-1 text-sm font-medium ${p.fg === "light" ? "text-ink/70" : "text-card/75"}`}>{p.chapters}</p>
+              <p className={`mt-5 flex-1 text-[17px] leading-relaxed ${p.fg === "light" ? "text-ink/90" : "text-card/90"}`}>
+                <Rich text={p.text} tone={p.fg} />
               </p>
-              <p className="mt-4 text-primaryBlue/85 leading-relaxed">
-                “{r.text}”
-              </p>
-            </motion.article>
+              <Link
+                to={p.to}
+                className={`mt-6 self-start font-semibold underline decoration-2 underline-offset-[5px] ${
+                  p.fg === "light" ? "text-ink decoration-locker hover:text-locker" : "text-card decoration-[#FFC2C6] hover:text-[#FFC2C6]"
+                }`}
+              >
+                {p.toLabel}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ol>
+      </Section>
 
-        {/* micro CTA discret (ça finit propre) */}
-        <div className="text-center mt-10">
-          <a
-            href={book.amazonUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="text-sm font-semibold text-primaryBlue/70 hover:text-primaryBlue underline underline-offset-4"
+      {/* L'AMÉRIQUE CÔTÉ LYCÉE */}
+      <section className="py-3 sm:py-4">
+        <div className="wrap">
+          <div
+            className="relative overflow-hidden rounded-4xl bg-ink px-5 pb-16 pt-12 text-card sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-16 lg:px-16 lg:pb-24 lg:pt-20"
+            style={{ backgroundImage: STAR_PATTERN }}
           >
-            Lire les avis Amazon →
-          </a>
-        </div>
-        <br />
-      </motion.section>
-
-      <section>
-        <div className="mx-auto max-w-3xl px-6 text-center">
-
-         
-          <h2 className="mt-6 text-3xl text-primaryBlue font-extrabold sm:text-4xl ">
-            Pourquoi j’ai écrit ce livre
-          </h2>
-
-          <p className="mt-6  leading-relaxed sm:text-lg text-primaryBlue/85">
-            Parce qu’il n’existait aucun guide pour accompagner à la fois les jeunes
-            de 14 à 18 ans et leurs parents dans le cadre d’une année de scolarité
-            aux États-Unis. Pourtant, leurs interrogations, leurs défis comme leurs
-            moments inoubliables se ressemblent souvent.
-          </p>
-
-          <p className="mt-4 text-base leading-relaxed sm:text-lg text-primaryBlue/85">
-            J’ai voulu répondre à ce besoin en proposant un guide concret qui aide
-            les familles à aborder cette aventure avec confiance. Comprendre en
-            amont ce que l’on va vivre permet de mieux se préparer, de prendre du
-            recul et de profiter pleinement de cette expérience unique.
-          </p>
-          <br />
+            <StripesBand className="absolute inset-x-0 top-0 !h-3.5" />
+            <div className="mx-auto max-w-3xl text-center">
+              <StarRow className="mx-auto h-5 w-[118px] text-[#FF9AA0]" />
+              <h2 className="mt-5 text-display-l !text-card">
+                <Rich text="L’Amérique côté lycée : **le vocabulaire** et les codes" tone="dark" />
+              </h2>
+              <p className="mt-4 text-lg leading-relaxed text-card/80">
+                Casiers, football, bal de fin d’année : le lycée américain a ses mots et ses règles. Mieux vaut les connaître
+                avant d’atterrir. Le chapitre 7 du guide les passe en revue.
+              </p>
+            </div>
+        <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {usWords.map((w, i) => (
+            <li key={w.term} className={`flex flex-col rounded-4xl p-7 ${["bg-sky", "bg-rose", "bg-lav", "bg-rose", "bg-sky", "bg-lav"][i]}`}>
+              <h3 className="text-3xl font-bold tracking-tight text-ink">{w.term}</h3>
+              <p className="mt-2 flex-1 text-[16px] leading-snug text-ink/85">{w.text}</p>
+              {w.ref && (
+                <span className="mt-5 self-start rounded-full bg-card px-3 py-1 text-[13px] font-bold text-locker">{w.ref}</span>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
         </div>
       </section>
-      <FAQAccordion />
-      {/* CTA FINAL */}
-      <motion.section
-        className="max-w-6xl mx-auto px-6 md:px-10 pb-24"
-        variants={fadeUp}
-        {...sectionView}
-        custom={0}
-      >
-        <div className="bg-primaryRed text-white rounded-3xl py-16 px-8 md:px-12 text-center shadow-xl">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4">{home.finalCta.title}</h2>
-          <p className="text-lg mb-10 opacity-95">{home.finalCta.subtitle}</p>
-          <CTAButton href={book.amazonUrl} label={home.finalCta.button} eventName="click_amazon"/>
-        </div>
-      </motion.section>
-    </main>
-    
-  );
-};
 
-export default Home;
+      {/* SOMMAIRE + EXTRAIT */}
+      <Section tone="card" className="mt-3">
+        <div className="grid items-start gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <SectionHead title="10 chapitres, 145 pages, un seul objectif : **être prêt**." />
+            <div className="mt-8">
+              <Toc />
+            </div>
+            <Link to="/livre/" className="link mt-6 inline-block">Voir le détail de chaque chapitre</Link>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="rounded-4xl bg-sky p-6 sm:p-8">
+              <h3 className="text-display-m">Feuilletez <span className="text-locker">avant d’acheter</span></h3>
+              <p className="mt-3 text-[17px] leading-relaxed text-ink/85">
+                Préface, sommaire et premières pages en lecture libre, sans compte ni e-mail.
+              </p>
+              <div className="mt-6 flex gap-3" aria-hidden="true">
+                {["/flip/page-01.jpg", "/flip/page-02.jpg"].map((src) => (
+                  <img key={src} src={src} alt="" loading="lazy" width={131} height={200} className="h-auto w-1/2 rounded-[6px] bg-card shadow-lift" />
+                ))}
+              </div>
+              <Link to="/extrait/" className="btn-ink mt-6 w-full">
+                Lire l’extrait gratuit
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      {/* AUTRICE */}
+      <Section tone="rose" className="mt-3">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <img
+              src="/author.jpg"
+              alt={`${book.author}, autrice du guide`}
+              width={900}
+              height={854}
+              loading="lazy"
+              className="aspect-[4/5] w-full max-w-sm rounded-4xl object-cover object-[40%_30%] shadow-lift"
+            />
+          </div>
+          <div className="lg:col-span-7 lg:col-start-6">
+            <h2 className="text-display-l">
+              Écrit par une maman qui <span className="text-locker">a vécu l’expérience</span> sous plusieurs formes.
+            </h2>
+            <p className="mt-5 max-w-prose text-lg leading-relaxed text-ink/90">
+              Un fils en famille d’accueil (visa J-1), un autre en internat sport-études (visa F-1), des années d’échanges
+              avec des centaines de parents concernés, et une partie de l’année passée aux États-Unis. Ce livre est le guide
+              concret que {book.author.split(" ")[0]} aurait aimé avoir avant le départ de ses fils.
+            </p>
+            <Link to="/autrice/" className="link mt-6 inline-block">Faire connaissance avec l’autrice</Link>
+          </div>
+        </div>
+      </Section>
+
+      {/* AVIS */}
+      <Section tone="lav" className="mt-3">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+          <figure className="lg:col-span-7">
+            <blockquote className="text-display-m font-semibold leading-snug text-ink">
+              « <span className="text-locker">Ce guide manquait sincèrement.</span> J’aurais tellement aimé en avoir un avant le
+              départ de ma fille. Un support concret, basé sur du <span className="text-locker">vécu réel</span>… c’est précieux. »
+            </blockquote>
+            <figcaption className="mt-5 text-ink/70">Parent, commentaire dans un groupe d’échange · Février 2026</figcaption>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link to="/avis/" className="btn-ghost">Lire les retours des familles</Link>
+              <AmazonButton placement="home-avis" variant="ink">Voir sur Amazon</AmazonButton>
+            </div>
+          </figure>
+          <div className="lg:col-span-4 lg:col-start-9">
+            <img
+              src="/reviews/avis-parent.jpg"
+              alt="Capture d’écran du commentaire d’un parent dans un groupe Facebook d’échange scolaire"
+              width={720}
+              height={1280}
+              loading="lazy"
+              className="mx-auto max-h-[420px] w-auto rounded-3xl object-cover object-top shadow-lift"
+            />
+            <p className="mt-2 text-center text-sm text-ink/70">Capture d’écran d’un commentaire réel</p>
+          </div>
+        </div>
+      </Section>
+
+      {/* FAQ */}
+      <Section>
+        <div className="grid gap-10 lg:grid-cols-12">
+          <div className="lg:col-span-4">
+            <SectionHead title="Questions **fréquentes**" lead="Les réponses courtes. Le livre détaille le reste." />
+          </div>
+          <div className="lg:col-span-8">
+            <Faq items={homeFaq} />
+          </div>
+        </div>
+      </Section>
+
+      <FinalCta placement="home-final" />
+    </>
+  );
+}

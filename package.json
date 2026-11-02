@@ -1,23 +1,20 @@
 {
-  "name": "site-vitrine-stephanie",
+  "name": "site-livre-high-school-usa",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
+    "preview": "vite preview",
+    "typecheck": "tsc -p tsconfig.app.json --noEmit"
   },
   "dependencies": {
-    "@tailwindcss/typography": "^0.5.19",
-    "framer-motion": "^10.18.0",
+    "@fontsource-variable/figtree": "^5.3.0",
     "lucide-react": "^0.575.0",
-    "pdfjs-dist": "^3.11.174",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-helmet-async": "^2.0.5",
     "react-pageflip": "^2.0.3",
-    "react-pdf": "^7.7.3",
     "react-router-dom": "^6.30.3",
     "vanilla-cookieconsent": "^3.1.0"
   },
