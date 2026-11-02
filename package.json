@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
+    "build": "node scripts/build.mjs",
+    "build:minimal": "node scripts/build.mjs --minimal",
+    "build:full": "node scripts/build.mjs --full",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.app.json --noEmit"
   },
