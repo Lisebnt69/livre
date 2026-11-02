@@ -8,6 +8,8 @@ export type Guide = {
   path: string;
   /** Intitulé court (cartes, maillage) */
   short: string;
+  /** Libellé du lien en pied de page (sinon `short`) */
+  footer?: string;
   /** Pour qui / quel besoin, une ligne */
   forWho: string;
   title: string;
@@ -23,6 +25,8 @@ export type Guide = {
   ctaTitle: string;
   ctaText: string;
   quote?: { text: string; who: string };
+  /** Encadré d'avertissement affiché sous le titre */
+  notice?: { title: string; text: string };
   /** true : page écrite en tutoiement (lycéens) */
   tu?: boolean;
 };
@@ -33,6 +37,7 @@ export const guides: Guide[] = [
     slug: "parents",
     path: "/parents/",
     short: "Parents",
+    footer: "Pour les parents",
     forWho: "Votre enfant part, ou y pense : visa, organisme, famille d’accueil, budget, distance.",
     title: "Envoyer son enfant en High School aux USA : guide parents",
     description:
@@ -132,6 +137,7 @@ export const guides: Guide[] = [
     slug: "lyceens",
     path: "/lyceens/",
     short: "Lycéens",
+    footer: "Pour les lycéens",
     forWho: "Tu pars bientôt : école, amis, famille d’accueil, anglais, mal du pays.",
     title: "Partir en High School aux USA : le guide du lycéen",
     description:
@@ -214,6 +220,7 @@ export const guides: Guide[] = [
     slug: "sport-etudes",
     path: "/sport-etudes/",
     short: "Sportifs",
+    footer: "Sport-études et bourses",
     forWho: "Un jeune sportif vise une High School avec programme sport-études ou une bourse sportive.",
     title: "High School sport-études aux USA : visa F-1, internat, bourse",
     description:
@@ -284,6 +291,7 @@ export const guides: Guide[] = [
     slug: "j1-ou-f1",
     path: "/j1-ou-f1/",
     short: "J-1 ou F-1",
+    footer: "Visa J-1 ou F-1",
     forWho: "Vous comparez les deux visas et voulez comprendre ce qui change vraiment.",
     title: "Visa J-1 ou F-1 : les différences pour une High School aux USA",
     description:
@@ -357,6 +365,7 @@ export const guides: Guide[] = [
     slug: "famille-d-accueil",
     path: "/famille-d-accueil/",
     short: "Famille d’accueil",
+    footer: "Famille d’accueil",
     forWho: "Vous voulez comprendre comment les familles sont choisies et comment la vie s’y organise.",
     title: "Famille d’accueil aux USA : choix, vie quotidienne, changement",
     description:
@@ -429,6 +438,7 @@ export const guides: Guide[] = [
     slug: "mal-du-pays",
     path: "/mal-du-pays/",
     short: "Mal du pays",
+    footer: "Mal du pays",
     forWho: "Le mal du pays arrive, ou vous le redoutez : pour le jeune comme pour ses parents.",
     title: "Mal du pays pendant un échange aux USA : conseils aux parents",
     description:
@@ -492,6 +502,7 @@ export const guides: Guide[] = [
     slug: "retour-en-france",
     path: "/retour-en-france/",
     short: "Le retour",
+    footer: "Le retour en France",
     forWho: "L’année se termine : choc du retour, retrouver sa place, reprendre le lycée en France.",
     title: "Retour d’une année aux USA : choc du retour et réadaptation",
     description:
@@ -550,6 +561,103 @@ export const guides: Guide[] = [
     ctaTitle: "Le retour, **ce chapitre qu’on oublie d’écrire**",
     ctaText: "Choc du retour, retour scolaire, valoriser l’année, rôle des parents : le chapitre 9 du guide.",
   },
+  /* ----------------------------------------------------------------- BUDGET */
+  {
+    slug: "budget",
+    path: "/budget-high-school-usa/",
+    short: "Budget",
+    footer: "Budget d’une année",
+    forWho: "Vous voulez savoir quels frais prévoir, sans chiffres au hasard.",
+    title: "Budget High School USA : quels frais prévoir, simulateur",
+    description:
+      "Quels postes de dépense prévoir pour une année de High School aux USA (J-1 ou F-1) ? La liste des frais et un simulateur à remplir avec vos propres devis.",
+    notice: {
+      title: "Ce n’est pas une vérité générale",
+      text: "Cette page **ne donne aucun prix**, volontairement. Les montants d’une année de High School varient énormément d’une famille à l’autre : organisme, programme (J-1 ou F-1), école, durée, assurance, mode de vie sur place. Ce que vous lisez ici est une grille pour construire **votre** budget avec **vos** devis, pas un tarif de référence. Seuls les devis écrits de votre organisme ou de l’école font foi.",
+    },
+    h1: "Combien coûte une année de High School aux États-Unis ? **Ce qu’il faut budgéter**",
+    lead:
+      "Il n’existe pas de prix unique, et méfiez-vous des pages qui en annoncent un. Voici **les postes de dépense à prévoir**, ce qui change entre J-1 et F-1, et un simulateur à remplir avec vos propres devis.",
+    tldr: [
+      "**Ce n’est pas une vérité générale** : cette page ne donne aucun prix. Le coût varie selon l’organisme, le programme, l’école, l’assurance et la durée.",
+      "Le **J-1** et le **F-1** n’ont pas la même logique : en J-1, le lycée public est sans frais de scolarité et la famille d’accueil est bénévole ; en F-1, l’école est privée ou publique payante, l’hébergement se fait en internat ou en famille rémunérée, et le **budget est bien plus élevé**.",
+      "Le programme n’est pas tout : **assurance, voyage, santé, argent de poche, valise** et cadeaux pèsent aussi sur le total.",
+      "Avant de signer, **demandez les frais par écrit** et la liste de ce qui est inclus ou non.",
+    ],
+    worriesTitle: "Où le livre détaille **chaque ligne du budget**",
+    worries: [
+      { worry: "Combien coûte un séjour en famille ?", answer: "Le coût financier d’un séjour en famille, J-1 comparé à F-1.", chapter: 1, label: "Le coût financier (J-1 vs F-1)", page: 29 },
+      { worry: "Que contient le contrat d’inscription ?", answer: "Le contrat, les frais et ce qu’il faut vérifier avant de signer.", chapter: 1, label: "Contrat d’inscription et frais", page: 28 },
+      { worry: "Que couvre l’assurance, et pas ?", answer: "Assurances et garanties : ce qui est inclus, ce qui ne l’est pas.", chapter: 1, label: "Assurances et garanties", page: 26 },
+      { worry: "Et pour un séjour F-1 ?", answer: "Les aspects financiers d’un séjour F-1, sans langue de bois.", chapter: 2, label: "Les aspects financiers", page: 41 },
+      { worry: "Existe-t-il des aides ?", answer: "Obtenir une bourse sportive en High School américaine.", chapter: 2, label: "Obtenir une bourse sportive", page: 41 },
+      { worry: "Combien d’argent de poche prévoir ?", answer: "Argent de poche et budget global, carte bancaire.", chapter: 4, label: "Argent de poche et budget global", page: 64 },
+    ],
+    sections: [
+      {
+        id: "pas-un-prix-unique",
+        h2: "Pourquoi il n’existe **pas de prix unique**",
+        body: [
+          "Deux familles qui partent la même année peuvent payer des sommes très différentes. Le type de visa, l’organisme, l’école, la durée, le niveau d’assurance et même le mode de vie du jeune font bouger le total. Un chiffre lu sur un site ne vous dit rien de **votre** situation : c’est pourquoi cette page vous donne une méthode, pas un prix.",
+        ],
+      },
+      {
+        id: "postes",
+        h2: "Les **postes de dépense** à prévoir",
+        body: ["Pour ne rien oublier, passez en revue ces lignes, que le livre détaille dans ses chapitres 1, 2 et 4 :"],
+        list: [
+          "**Le programme** : frais d’inscription et d’organisme (J-1), ou scolarité et hébergement (F-1).",
+          "**L’assurance** : la couverture de base du programme, et un éventuel complément pour les soins dentaires, les sports à risque ou le rapatriement.",
+          "**Le visa et les formalités** administratives de votre dossier.",
+          "**Le voyage** aller-retour et les bagages.",
+          "**La santé** avant le départ : vaccins, dossier de santé, médicaments.",
+          "**L’argent de poche**, la carte bancaire et le téléphone américain.",
+          "**L’équipement**, la valise et les cadeaux pour la famille d’accueil.",
+          "**Les activités** (sport, clubs, sorties) : à demander à l’école ou à l’organisme.",
+        ],
+      },
+      {
+        id: "j1-f1",
+        h2: "Où va le budget en **J-1** et en **F-1**",
+        body: [
+          "En J-1, le lycée est public, sans frais de scolarité, et la famille d’accueil est bénévole : la plus grande part du budget est constituée des frais du programme, de l’assurance, du voyage et des dépenses personnelles. En F-1, la scolarité en école privée ou publique payante et l’hébergement en internat ou en famille rémunérée s’ajoutent : le budget est nettement plus élevé, et il s’étale souvent sur plusieurs années.",
+        ],
+      },
+      {
+        id: "questions",
+        h2: "Les questions à poser **avant de signer**",
+        body: ["Un devis n’a de valeur que s’il est complet. Posez ces questions à l’organisme ou à l’école, et gardez les réponses par écrit :"],
+        list: [
+          "Quels frais sont déjà dans le contrat, et lesquels viendront en plus ?",
+          "Qu’est-ce que l’assurance prend en charge, et qu’est-ce qui reste à ma charge ?",
+          "Que se passe-t-il, financièrement, si le séjour s’arrête plus tôt ou si le placement ne fonctionne pas ?",
+          "Quelles dépenses personnelles dois-je prévoir sur place, mois par mois ?",
+        ],
+      },
+    ],
+    faq: [
+      {
+        q: "Combien coûte une année de High School aux États-Unis ?",
+        a: "Il n’existe pas de prix unique, et ce site n’en annonce volontairement aucun : le coût dépend du type de visa, de l’organisme, de l’école, de la durée et de l’assurance. Un séjour en J-1 (lycée public sans frais de scolarité, famille d’accueil bénévole) coûte nettement moins qu’un séjour en F-1 (école privée ou publique payante, internat ou famille rémunérée). Le plus fiable est de demander des devis écrits et de les comparer poste par poste.",
+      },
+      {
+        q: "Quels frais prévoir en plus du programme ?",
+        a: "L’assurance complémentaire éventuelle, le voyage aller-retour, la santé avant le départ (vaccins, dossier de santé, médicaments), l’argent de poche, la carte bancaire et le téléphone, l’équipement et la valise, les cadeaux pour la famille d’accueil et certaines activités.",
+      },
+      {
+        q: "L’assurance santé est-elle comprise dans le programme ?",
+        a: "La plupart des programmes incluent une couverture de base (hospitalisation, urgences, responsabilité civile), mais certains postes comme les soins dentaires, les sports à risque ou certaines franchises peuvent rester à votre charge. Demandez le détail écrit du contrat.",
+      },
+      {
+        q: "Existe-t-il des bourses pour une High School américaine ?",
+        a: "Quelques établissements privés proposent des aides financières sportives, totales ou partielles. Elles exigent un niveau sportif remarquable, un bon dossier scolaire et le maintien des notes et de la conduite.",
+      },
+    ],
+    related: ["j1-ou-f1", "sport-etudes", "parents"],
+    ctaTitle: "Chaque ligne du budget, **expliquée** avant de signer",
+    ctaText: "Coût du séjour, contrat et frais, assurances, aspects financiers du F-1, bourse sportive, argent de poche : les chapitres 1, 2 et 4 du guide.",
+  },
+
 ];
 
 export const guideBySlug = (slug: string) => guides.find((g) => g.slug === slug)!;

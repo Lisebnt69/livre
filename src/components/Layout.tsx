@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { book } from "../data/book";
+import { guides } from "../data/guides";
 import { AffiliateNote, AmazonButton } from "./Amazon";
 import { openCookiePreferences } from "../lib/cookieConsent";
 import { trackEvent, trackPageView } from "../lib/analytics";
@@ -160,13 +161,11 @@ function Footer() {
           <nav aria-label="Guides par thème" className="lg:col-span-3">
             <p className="mb-4 text-lg font-bold">Guides gratuits</p>
             <ul className={col}>
-              <li><Link className={a} to="/parents/">Pour les parents</Link></li>
-              <li><Link className={a} to="/lyceens/">Pour les lycéens</Link></li>
-              <li><Link className={a} to="/sport-etudes/">Sport-études et bourses</Link></li>
-              <li><Link className={a} to="/j1-ou-f1/">Visa J-1 ou F-1</Link></li>
-              <li><Link className={a} to="/famille-d-accueil/">Famille d’accueil</Link></li>
-              <li><Link className={a} to="/mal-du-pays/">Mal du pays</Link></li>
-              <li><Link className={a} to="/retour-en-france/">Le retour en France</Link></li>
+              {guides.map((g) => (
+                <li key={g.slug}>
+                  <Link className={a} to={g.path}>{g.footer ?? g.short}</Link>
+                </li>
+              ))}
             </ul>
           </nav>
         </div>

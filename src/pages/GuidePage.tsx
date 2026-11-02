@@ -6,6 +6,8 @@ import { Cover } from "../components/Cover";
 import { StripesBand } from "../components/Us";
 import type { Guide } from "../data/guides";
 import { Rich, plain } from "../lib/rich";
+import { BudgetSimulator } from "../components/BudgetSimulator";
+import { TriangleAlert } from "lucide-react";
 
 const HERO_TONE: Record<string, string> = {
   parents: "bg-rose",
@@ -86,7 +88,18 @@ export default function GuidePage({ guide: g, crumbs }: { guide: Guide; crumbs: 
 
       {/* TL;DR */}
       <Section className="!pb-6">
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto max-w-3xl space-y-5">
+          {g.notice && (
+            <aside role="note" className="flex gap-4 rounded-4xl border-2 border-locker bg-rose p-6 sm:p-8">
+              <TriangleAlert size={28} className="mt-0.5 shrink-0 text-locker" aria-hidden="true" />
+              <div>
+                <p className="text-xl font-bold text-locker sm:text-2xl">{g.notice.title}</p>
+                <p className="mt-2 text-[17px] leading-relaxed text-ink">
+                  <Rich text={g.notice.text} />
+                </p>
+              </div>
+            </aside>
+          )}
           <Tldr items={g.tldr} />
         </div>
       </Section>
@@ -144,6 +157,12 @@ export default function GuidePage({ guide: g, crumbs }: { guide: Guide; crumbs: 
           </div>
         </div>
       </Section>
+
+      {g.slug === "budget" && (
+        <Section className="!py-6">
+          <BudgetSimulator />
+        </Section>
+      )}
 
       {/* OÙ LE LIVRE RÉPOND */}
       <Section className="mt-3">

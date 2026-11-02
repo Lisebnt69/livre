@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/sitemap.xml
