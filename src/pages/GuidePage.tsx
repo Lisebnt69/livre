@@ -5,9 +5,10 @@ import { FinalCta, GuideLinks, ShareToParents, WorryTable } from "../components/
 import { Cover } from "../components/Cover";
 import { StripesBand } from "../components/Us";
 import type { Guide } from "../data/guides";
+import { UPDATED_LABEL } from "../data/site";
 import { Rich, plain } from "../lib/rich";
 import { BudgetSimulator } from "../components/BudgetSimulator";
-import { TriangleAlert } from "lucide-react";
+import { Info, TriangleAlert } from "lucide-react";
 
 const HERO_TONE: Record<string, string> = {
   parents: "bg-rose",
@@ -17,6 +18,16 @@ const HERO_TONE: Record<string, string> = {
   "famille-d-accueil": "bg-lav",
   "mal-du-pays": "bg-rose",
   "retour-en-france": "bg-sky",
+  budget: "bg-sky",
+  bourses: "bg-rose",
+  "sans-organisme": "bg-sky",
+  "choisir-organisme": "bg-rose",
+  calendrier: "bg-sky",
+  assurance: "bg-rose",
+  "quel-livre": "bg-sky",
+  niveau: "bg-rose",
+  valise: "bg-sky",
+  cadeau: "bg-rose",
 };
 
 const COMPARISON: [string, string, string][] = [
@@ -71,6 +82,7 @@ export default function GuidePage({ guide: g, crumbs }: { guide: Guide; crumbs: 
           <div className="lg:col-span-8">
             <h1 className="text-display-xl !text-[clamp(2.2rem,4.8vw,4rem)]"><Rich text={g.h1} /></h1>
             <p className="mt-6 max-w-[40rem] text-lg leading-relaxed text-ink/85 sm:text-xl"><Rich text={g.lead} /></p>
+            <p className="mt-3 text-sm text-ink/65">Mis à jour le {UPDATED_LABEL}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <AmazonButton placement={`guide-${g.slug}-hero`} className="!py-3.5 !text-base">
                 Voir le guide sur Amazon
@@ -90,10 +102,19 @@ export default function GuidePage({ guide: g, crumbs }: { guide: Guide; crumbs: 
       <Section className="!pb-6">
         <div className="mx-auto max-w-3xl space-y-5">
           {g.notice && (
-            <aside role="note" className="flex gap-4 rounded-4xl border-2 border-locker bg-rose p-6 sm:p-8">
-              <TriangleAlert size={28} className="mt-0.5 shrink-0 text-locker" aria-hidden="true" />
+            <aside
+              role="note"
+              className={`flex gap-4 rounded-4xl p-6 sm:p-8 ${
+                g.notice.tone === "info" ? "bg-card shadow-lift ring-1 ring-ink/10" : "border-2 border-locker bg-rose"
+              }`}
+            >
+              {g.notice.tone === "info" ? (
+                <Info size={28} className="mt-0.5 shrink-0 text-navy" aria-hidden="true" />
+              ) : (
+                <TriangleAlert size={28} className="mt-0.5 shrink-0 text-locker" aria-hidden="true" />
+              )}
               <div>
-                <p className="text-xl font-bold text-locker sm:text-2xl">{g.notice.title}</p>
+                <p className={`text-xl font-bold sm:text-2xl ${g.notice.tone === "info" ? "text-ink" : "text-locker"}`}>{g.notice.title}</p>
                 <p className="mt-2 text-[17px] leading-relaxed text-ink">
                   <Rich text={g.notice.text} />
                 </p>

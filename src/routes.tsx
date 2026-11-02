@@ -1,7 +1,7 @@
 import type { ReactElement } from "react";
 import { guides } from "./data/guides";
 import { book } from "./data/book";
-import { abs } from "./data/site";
+import { abs, UPDATED_ISO } from "./data/site";
 import type { PageMeta } from "./lib/seo";
 import { plain } from "./lib/rich";
 import {
@@ -136,7 +136,7 @@ export const routes: RouteDef[] = [
         jsonLd: [
           personSchema(),
           bookSchema(),
-          webPageSchema({ path: g.path, name: plain(g.h1), description: g.description, about: true }),
+          webPageSchema({ path: g.path, name: plain(g.h1), description: g.description, about: true, dateModified: UPDATED_ISO }),
           breadcrumbSchema(crumbs),
           faqSchema(g.faq),
         ],

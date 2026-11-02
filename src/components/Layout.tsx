@@ -160,7 +160,7 @@ function Footer() {
 
           <nav aria-label="Guides par thème" className="lg:col-span-3">
             <p className="mb-4 text-lg font-bold">Guides gratuits</p>
-            <ul className={col}>
+            <ul className={`${col} sm:columns-2 lg:columns-1 xl:columns-2 [&>li]:break-inside-avoid`}>
               {guides.map((g) => (
                 <li key={g.slug}>
                   <Link className={a} to={g.path}>{g.footer ?? g.short}</Link>

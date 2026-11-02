@@ -63,13 +63,14 @@ export const faqSchema = (items: FaqItem[]) => ({
   })),
 });
 
-export const webPageSchema = (opts: { path: string; name: string; description: string; about?: boolean }) => ({
+export const webPageSchema = (opts: { path: string; name: string; description: string; about?: boolean; dateModified?: string }) => ({
   "@type": "WebPage",
   "@id": abs(opts.path) + "#page",
   url: abs(opts.path),
   name: opts.name,
   description: opts.description,
   inLanguage: "fr-FR",
+  ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
   isPartOf: { "@id": abs("/#website") },
   ...(opts.about ? { about: { "@id": abs("/livre/#book") } } : {}),
 });
