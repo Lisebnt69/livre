@@ -4,6 +4,9 @@
 et **masqué volontairement** : seule une page unique (couverture + lien Amazon) est publiée.
 Rien n'a été supprimé : tout le code, les textes et les images sont dans ce dépôt.
 
+**Retrouver exactement cette version** (au cas où) : `git checkout 3530082`, ou `git show 3530082 --stat` pour la
+liste des fichiers. Ce commit reste dans l'historique de `main` quoi qu'il arrive.
+
 ## Ce qui est en ligne maintenant
 
 Une page unique, `landing/index.html` : l'image du livre, un lien Amazon (broché et Kindle), la mention d'affiliation
