@@ -1,4 +1,5 @@
 import type { FaqItem } from "../lib/schema";
+import { guidesJeunes } from "./guides-jeunes";
 
 export type Worry = { worry: string; answer: string; chapter: number; label: string; page: number };
 export type GuideSection = { id: string; h2: string; body: string[]; list?: string[] };
@@ -31,7 +32,7 @@ export type Guide = {
   tu?: boolean;
 };
 
-export const guides: Guide[] = [
+const guidesBase: Guide[] = [
   /* ------------------------------------------------------------------ PARENTS */
   {
     slug: "parents",
@@ -210,7 +211,7 @@ export const guides: Guide[] = [
         a: "Pour vous deux. Tu y trouves des repères concrets sur la vie sur place, tes parents un plan clair pour t’accompagner à distance. Beaucoup de familles le lisent ensemble.",
       },
     ],
-    related: ["niveau", "valise", "famille-d-accueil", "mal-du-pays", "retour-en-france"],
+    related: ["amis", "vocabulaire", "entretien-anglais", "niveau", "famille-d-accueil", "mal-du-pays"],
     ctaTitle: "Un guide pour partir **sans être pris au dépourvu**",
     ctaText: "Demande-le à tes parents : ils le trouvent sur Amazon, en broché ou en Kindle. Tu peux aussi leur envoyer cette page.",
   },
@@ -428,7 +429,7 @@ export const guides: Guide[] = [
         a: "En visa J-1, elles sont bénévoles. En visa F-1, l’hébergement se fait en internat ou dans une famille d’accueil rémunérée.",
       },
     ],
-    related: ["cadeau", "mal-du-pays", "lyceens", "j1-ou-f1"],
+    related: ["regles-famille", "lettre-famille", "cadeau", "mal-du-pays", "j1-ou-f1"],
     ctaTitle: "Tout un chapitre sur **la vie en famille d’accueil**",
     ctaText: "Types de familles, communication, malentendus, changer de famille, créer un lien durable : le chapitre 5 en détail.",
   },
@@ -1516,5 +1517,7 @@ export const guides: Guide[] = [
   },
 
 ];
+
+export const guides: Guide[] = [...guidesBase, ...guidesJeunes];
 
 export const guideBySlug = (slug: string) => guides.find((g) => g.slug === slug)!;

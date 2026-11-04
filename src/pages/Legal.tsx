@@ -65,7 +65,7 @@ export function PolitiqueConfidentialite() {
         <h2>2) Données collectées</h2>
         <ul className="mt-2 list-disc space-y-2 pl-5">
           <li><strong>Cookies nécessaires</strong> : fonctionnement du site et du module de consentement.</li>
-          <li><strong>Mesure d’audience</strong> (optionnelle) : uniquement si vous l’acceptez.</li>
+          <li><strong>Mesure d’audience</strong> (optionnelle) : Google Analytics et Metricool, uniquement si vous l’acceptez.</li>
         </ul>
         <p className="mt-3 text-muted">Aucun compte, aucun paiement sur le site, pas de ciblage publicitaire via ce site. Les polices de caractères sont hébergées sur le site : aucune requête vers un service de polices tiers.</p>
       </section>

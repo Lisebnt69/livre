@@ -28,6 +28,11 @@ const HERO_TONE: Record<string, string> = {
   niveau: "bg-rose",
   valise: "bg-sky",
   cadeau: "bg-rose",
+  "lettre-famille": "bg-sky",
+  "entretien-anglais": "bg-rose",
+  amis: "bg-sky",
+  vocabulaire: "bg-rose",
+  "regles-famille": "bg-sky",
 };
 
 const COMPARISON: [string, string, string][] = [
@@ -101,6 +106,13 @@ export default function GuidePage({ guide: g, crumbs }: { guide: Guide; crumbs: 
       {/* TL;DR */}
       <Section className="!pb-6">
         <div className="mx-auto max-w-3xl space-y-5">
+          <img
+            src={`/illustrations/guide-${g.slug}.svg`}
+            alt=""
+            width={1200}
+            height={500}
+            className="w-full rounded-4xl shadow-lift"
+          />
           {g.notice && (
             <aside
               role="note"

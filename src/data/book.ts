@@ -22,7 +22,7 @@ export const book = {
   instagram: "https://www.instagram.com/highschoolauxusa/",
   youtube: "https://www.youtube.com/@HighSchoolauxUSA",
   tiktok: "https://www.tiktok.com/@high_school_aux_usa",
-  facebook: "https://www.facebook.com/profile.php?id=61590448146259&locale=fr_FR",
+  facebook: "https://www.facebook.com/profile.php?id=61590448146259",
   email: "livrestephanieoyarsabal@gmail.com",
 };
 
