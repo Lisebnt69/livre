@@ -48,6 +48,7 @@ Amazon et réseaux, et que les clics remontent dans GA4 (`click_amazon`, `click_
 - **Technique** : pré-rendu statique (`scripts/prerender.mjs`), schema.org (`Book`, `Person`, `FAQPage`,
   `BreadcrumbList`), `sitemap.xml`, `robots.txt`, `llms.txt` et `llms-full.txt` générés au build, Consent Mode v2 +
   bandeau cookies, suivi GA4 par emplacement de clic.
+- **Illustrations low poly** : `public/illustrations/*.svg`, générées par `node scripts/lowpoly.mjs` (palette de la couverture, rendu reproductible).
 - **DA** : inspirée d'Alan (fond crème, blocs arrondis, Figtree), palette bleu et rouge de la couverture, éléments
   américains en SVG (drapeau, écusson, fanions, bande rayée), mots importants en bordeaux (`**mot**` dans les textes).
 

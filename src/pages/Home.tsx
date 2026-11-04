@@ -291,7 +291,18 @@ export default function Home() {
 
       {/* AUTRICE */}
       <Section tone="rose" className="mt-3">
-        <div className="max-w-3xl">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
+          <div className="lg:col-span-4">
+            <img
+              src="/illustrations/lycee-usa.svg"
+              alt=""
+              width={640}
+              height={800}
+              loading="lazy"
+              className="aspect-[4/5] w-full max-w-sm rounded-4xl object-cover shadow-lift"
+            />
+          </div>
+          <div className="lg:col-span-7 lg:col-start-6">
           <h2 className="text-display-l">
             Écrit par une maman qui <span className="text-locker">a vécu l’expérience</span> sous plusieurs formes.
           </h2>
@@ -301,6 +312,7 @@ export default function Home() {
             concret qu’elle aurait aimé avoir avant le départ de ses fils.
           </p>
           <Link to="/autrice/" className="link mt-6 inline-block">Pourquoi ce livre</Link>
+          </div>
         </div>
       </Section>
 

@@ -13,7 +13,7 @@ export default function Autrice({ crumbs }: { crumbs: { name: string; path: stri
          <div className="relative overflow-hidden rounded-4xl bg-rose px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-20 lg:pt-16">
           <StripesBand className="absolute inset-x-0 bottom-0 !h-3" />
           <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-9">
+            <div className="lg:col-span-7">
               <h1 className="text-display-xl !text-[clamp(2.2rem,4.8vw,4rem)]">
                 <Rich text={`Une **maman** derrière le guide.`} />
               </h1>
@@ -21,6 +21,15 @@ export default function Autrice({ crumbs }: { crumbs: { name: string; path: stri
                 « Je ne suis ni une agence, ni un organisme. <strong className="font-bold text-locker">Je suis une maman.</strong> J’ai vécu les moments de joie, les doutes, les
                 difficultés et les réussites. »
               </p>
+            </div>
+            <div className="lg:col-span-4 lg:col-start-9">
+              <img
+                src="/illustrations/depart.svg"
+                alt=""
+                width={640}
+                height={800}
+                className="aspect-[4/5] w-full max-w-sm rounded-4xl object-cover shadow-lift"
+              />
             </div>
           </div>
          </div>
@@ -37,6 +46,20 @@ export default function Autrice({ crumbs }: { crumbs: { name: string; path: stri
                 avec des centaines de parents concernés, et une partie de l’année vécue aux États-Unis : ce guide s’appuie sur
                 du vécu réel, pas sur une brochure.
               </p>
+              <figure className="mt-8">
+                <img
+                  src="/illustrations/deux-chemins.svg"
+                  alt="Deux chemins : une maison de famille d’accueil d’un côté, un internat avec son terrain de sport de l’autre"
+                  width={1200}
+                  height={520}
+                  loading="lazy"
+                  className="w-full rounded-4xl shadow-lift"
+                />
+                <figcaption className="mt-3 flex justify-between gap-4 text-sm text-muted">
+                  <span><strong className="text-ink">Visa J-1</strong> · en famille d’accueil</span>
+                  <span className="text-right"><strong className="text-ink">Visa F-1</strong> · en internat sport-études</span>
+                </figcaption>
+              </figure>
             </section>
             <section>
               <h2 className="text-display-m">Pourquoi <span className="text-locker">ce livre</span></h2>
