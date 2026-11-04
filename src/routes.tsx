@@ -52,7 +52,7 @@ export const routes: RouteDef[] = [
       path: "/",
       title: "Réussir son année de High School aux États-Unis | Guide complet",
       description:
-        "Guide pratique des lycéens et de leurs parents : visa J-1 ou F-1, famille d’accueil, budget, vie au lycée, retour. Par Stéphanie Oyarsabal, maman de deux fils.",
+        "Guide pratique des lycéens et de leurs parents : visa J-1 ou F-1, famille d’accueil, budget, vie au lycée, retour. Écrit par une maman de deux fils partis en échange.",
       jsonLd: [
         websiteSchema(),
         ...bookAndPerson,
@@ -104,11 +104,10 @@ export const routes: RouteDef[] = [
     element: <Autrice crumbs={autriceCrumbs} />,
     meta: {
       path: "/autrice/",
-      title: "Stéphanie Oyarsabal, autrice du guide High School USA",
+      title: "L’autrice du guide High School USA : une maman de deux lycéens d’échange",
       description:
-        "Maman de deux étudiants d’échange (visa J-1 et visa F-1), Stéphanie Oyarsabal a écrit le guide qu’elle aurait voulu avoir avant le départ de ses fils.",
-      image: "/author.jpg",
-      jsonLd: [personSchema(), webPageSchema({ path: "/autrice/", name: "L’autrice", description: "Qui est Stéphanie Oyarsabal." }), breadcrumbSchema(autriceCrumbs)],
+        "Maman de deux étudiants d’échange (visa J-1 et visa F-1), l’autrice a écrit le guide qu’elle aurait voulu avoir avant le départ de ses fils.",
+      jsonLd: [personSchema(), webPageSchema({ path: "/autrice/", name: "L’autrice", description: "Qui a écrit le guide." }), breadcrumbSchema(autriceCrumbs)],
     },
   },
   {

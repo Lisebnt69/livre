@@ -1,11 +1,11 @@
 // Aiguillage du build, piloté par SITE_MODE (ou --full / --minimal).
-//   minimal (défaut) : une seule page (couverture + lien Amazon), voir scripts/build-minimal.mjs
-//   full             : site complet pré-rendu (24 pages, sitemap, robots.txt, llms.txt)
+//   minimal          : une seule page (couverture + lien Amazon), voir scripts/build-minimal.mjs
+//   full (défaut)    : site complet pré-rendu (24 pages, sitemap, robots.txt, llms.txt)
 // Mode d'emploi pour revenir au site complet : docs/ARCHIVE-SITE-COMPLET.md
 import { spawnSync } from "node:child_process";
 
 const flag = process.argv.includes("--full") ? "full" : process.argv.includes("--minimal") ? "minimal" : null;
-const mode = flag ?? process.env.SITE_MODE ?? "minimal";
+const mode = flag ?? process.env.SITE_MODE ?? "full";
 
 const run = (cmd) => {
   const r = spawnSync(cmd, { stdio: "inherit", shell: true });

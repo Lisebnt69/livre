@@ -9,7 +9,6 @@ export const personSchema = () => ({
   "@id": abs("/autrice/#stephanie"),
   name: book.author,
   url: abs("/autrice/"),
-  image: abs("/author.jpg"),
   sameAs: [book.instagram, book.youtube, book.tiktok, book.facebook],
   jobTitle: "Autrice",
   description:

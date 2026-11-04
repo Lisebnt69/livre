@@ -1,4 +1,3 @@
-import { book } from "../data/book";
 import { reviews, stories } from "../data/reviews";
 import { Breadcrumb, Section, SectionHead } from "../components/Ui";
 import { AmazonButton } from "../components/Amazon";
@@ -98,7 +97,7 @@ export default function Avis({ crumbs }: { crumbs: { name: string; path: string 
         </div>
       </Section>
 
-      <FinalCta placement="avis-final" title={`Lire le guide de ${book.author}`} />
+      <FinalCta placement="avis-final" title="Lire le guide" />
     </>
   );
 }
