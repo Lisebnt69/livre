@@ -453,6 +453,108 @@ const scenes = {
     s.add([[118, 458], [178, 446], [186, 486], [126, 496]], "#BFD0FF");
     s.add([[150, 486], [156, 452], [162, 486]], NAVY);
   },
+  // Lettre à la famille d'accueil : la lettre, l'enveloppe timbrée, les photos.
+  "lettre-famille"(s) {
+    studio(s);
+    s.add([[330, 470], [700, 440], [680, 120], [320, 140]], "#FFFFFF");
+    s.text(510, 200, "Dear Host Family,", 30, NAVY, { rotate: -4, weight: 600 });
+    for (let i = 0; i < 6; i++) s.add([[352, 250 + i * 34], [660, 228 + i * 34], [660, 231 + i * 34], [352, 253 + i * 34]], "#C3CAE0");
+    s.add([[740, 470], [1010, 440], [1000, 300], [730, 320]], "#F4EBDD");
+    s.add([[730, 320], [1000, 300], [870, 400]], "#E6DCC4");
+    s.add([[930, 330], [990, 324], [994, 372], [934, 378]], "#FFFFFF");
+    s.flag(938, 336, 48, 30);
+    s.add([[120, 300], [270, 284], [286, 434], [136, 450]], "#FFFFFF");
+    s.add([[134, 312], [258, 298], [270, 400], [146, 414]], "#BFD0FF");
+    s.add([[146, 414], [270, 400], [264, 360], [200, 330], [150, 380]], "#8FA3DD");
+    s.disc(232, 330, 14, "#FBD0D4");
+    s.add([[1040, 470], [1150, 360], [1160, 368], [1050, 478]], RED);
+    s.add([[1040, 470], [1036, 482], [1050, 478]], INK);
+  },
+
+  // Entretien et anglais : l'ordinateur en visio, les bulles de dialogue.
+  "entretien-anglais"(s) {
+    studio(s);
+    s.add([[330, 440], [870, 440], [930, 480], [270, 480]], "#C9CEDC");
+    s.box(370, 120, 460, 300, 12, INK);
+    s.grid(390, 140, 420, 260, 4, 2, vgrad([[140, "#BFD0FF"], [400, "#8FA3DD"]]), 0.3, 0.03);
+    s.facet([[560, 400], [560, 320], [600, 290], [640, 320], [640, 400]], NAVY, { k: 0.1 });
+    s.disc(600, 262, 32, "#F3D9C8");
+    s.facet([[120, 90], [330, 90], [330, 170], [190, 170], [160, 200], [166, 170], [120, 170]], "#FFFFFF", { k: 0.05 });
+    s.text(225, 145, "Hi!", 40, NAVY);
+    s.facet([[870, 70], [1110, 70], [1110, 150], [1050, 150], [1060, 182], [1020, 150], [870, 150]], RED, { k: 0.08 });
+    s.text(990, 124, "Why the USA?", 30, "#FFFFFF");
+    book(s, 980, 460, 140, 30, 24, "#FFFFFF", { stripe: NAVY });
+    s.text(1050, 452, "ABC", 18, NAVY);
+  },
+
+  // Se faire des amis : la table devant le lycée, les sacs posés, le panier de basket.
+  amis(s) {
+    outdoor(s);
+    s.sun(1060, 90, 40, "#FBD0D4");
+    s.box(80, 230, 330, 140, 20, RED, { split: 4 });
+    for (const x of [110, 170, 290, 350]) s.window(x, 260, 26, 34);
+    s.rect(230, 300, 40, 70, NAVY);
+    s.rect(1010, 180, 10, 260, "#9AA3C4");
+    s.box(950, 150, 120, 80, 8, "#FFFFFF");
+    s.rect(990, 196, 40, 30, RED);
+    s.add([[985, 232], [1035, 232], [1028, 270], [992, 270]], "#E6E9F2");
+    s.box(470, 390, 340, 16, 60, "#B7835B");
+    for (const x of [490, 780]) s.rect(x, 406, 12, 60, "#8C6A4F");
+    s.box(450, 450, 380, 10, 34, "#B7835B");
+    backpack(s, 520, 390, 0.6, NAVY);
+    backpack(s, 610, 390, 0.6, RED);
+    backpack(s, 700, 390, 0.6, "#5B6FB8");
+    s.disc(890, 460, 30, "#C2452F");
+    s.add([[860, 460], [920, 460], [920, 462], [860, 462]], "#5E141A");
+  },
+
+  // Vocabulaire : le gymnase décoré pour Homecoming, boule à facettes, ballons, couronne.
+  vocabulaire(s) {
+    s.grid(0, 0, W, 380, 8, 3, vgrad([[0, "#1F2A5E"], [380, "#3A4A8C"]]), 0.3, 0.03);
+    s.grid(0, 380, W, 120, 9, 2, vgrad([[380, "#C99A6B"], [500, "#A87A50"]]), 0.3, 0.03);
+    for (let i = 0; i < 14; i++) s.add([[i * 90, 10], [i * 90 + 90, 10], [i * 90 + 45, 56]], ["#A1232B", "#FFFFFF", "#8FA3DD"][i % 3]);
+    s.box(330, 90, 540, 80, 0, RED);
+    s.text(600, 146, "HOMECOMING", 52, "#FFFFFF");
+    s.rect(598, 170, 4, 30, "#C9C9D2");
+    const bx = 600, by = 250, r = 52, c = 13;
+    s.disc(bx, by, r, "#9AA3C4");
+    for (let gy = by - r; gy < by + r; gy += c)
+      for (let gx = bx - r; gx < bx + r; gx += c) {
+        const cx = gx + c / 2, cy = gy + c / 2;
+        if (Math.hypot(cx - bx, cy - by) > r - 8) continue;
+        const k = ((gx - bx) / c + (gy - by) / c) % 2 ? 0.25 : -0.05;
+        s.rect(gx + 1, gy + 1, c - 2, c - 2, shade("#B7BFD8", k - (cx - bx + cy - by) / (r * 6)));
+      }
+    for (const [x, y, c] of [[160, 250, RED], [230, 300, "#FFFFFF"], [110, 330, "#8FA3DD"], [1010, 260, "#FFFFFF"], [1080, 310, RED], [960, 330, "#8FA3DD"]]) {
+      s.disc(x, y, 34, c);
+      s.rect(x - 1, y + 34, 2, 380 - y - 34 + 40, "#C9C9D2");
+    }
+    s.add([[520, 470], [540, 420], [570, 450], [600, 410], [630, 450], [660, 420], [680, 470]], GOLD);
+    for (const x of [540, 600, 660]) s.disc(x, x === 600 ? 410 : 420, 7, RED);
+  },
+
+  // Règles de la famille : le frigo couvert de post-it, l'horloge, le téléphone qui charge.
+  "regles-famille"(s) {
+    studio(s, { wall: ["#D9E3FF", "#EEF2FF"], desk: "#E3E6EE", deskY: 380 });
+    s.box(150, 60, 240, 400, 30, "#F4F6FA", { split: 2 });
+    s.rect(150, 200, 240, 6, "#D3D7E6");
+    for (const y of [120, 250]) s.rect(360, y, 8, 60, "#C3CAE0");
+    s.add([[190, 90], [270, 90], [270, 160], [190, 160]], "#FFF1A8");
+    s.text(230, 135, "10 PM", 20, INK);
+    s.add([[200, 230], [280, 226], [284, 300], [204, 304]], "#FBD0D4");
+    s.text(242, 272, "Chores", 18, INK);
+    s.add([[290, 300], [350, 296], [352, 350], [292, 354]], "#BFD0FF");
+    s.disc(320, 324, 12, NAVY);
+    s.disc(640, 140, 70, INK);
+    s.disc(640, 140, 58, "#FFFFFF");
+    s.add([[638, 140], [642, 140], [642, 96], [638, 96]], INK);
+    s.add([[640, 138], [640, 142], [676, 156], [678, 152]], RED);
+    s.box(560, 370, 300, 12, 40, "#C9CEDC");
+    s.box(640, 330, 110, 40, 20, "#B7835B");
+    s.add([[668, 334], [712, 334], [714, 270], [670, 270]], INK);
+    s.add([[674, 278], [708, 278], [708, 328], [674, 328]], "#5B6FB8");
+    mug(s, 960, 380, "#FFFFFF", NAVY);
+  },
 };
 
 const ALT = {
@@ -473,6 +575,11 @@ const ALT = {
   niveau: "un tableau noir avec un A+, un bulletin, un crayon et une pomme",
   valise: "une grosse valise avec un drapeau américain, un sac à dos et un passeport",
   cadeau: "des paquets cadeaux, une tasse et une carte postale",
+  "lettre-famille": "une lettre « Dear Host Family », une enveloppe timbrée et une photo",
+  "entretien-anglais": "un ordinateur en visioconférence et des bulles de dialogue en anglais",
+  amis: "une table devant le lycée avec trois sacs à dos et un panier de basket",
+  vocabulaire: "un gymnase décoré pour Homecoming, avec boule à facettes, ballons et couronne",
+  "regles-famille": "un frigo couvert de post-it, une horloge et un téléphone posé dans une corbeille",
 };
 
 export const guideScenes = Object.entries(scenes).map(([slug, draw], i) => [

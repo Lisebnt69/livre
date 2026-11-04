@@ -28,6 +28,11 @@ const HERO_TONE: Record<string, string> = {
   niveau: "bg-rose",
   valise: "bg-sky",
   cadeau: "bg-rose",
+  "lettre-famille": "bg-sky",
+  "entretien-anglais": "bg-rose",
+  amis: "bg-sky",
+  vocabulaire: "bg-rose",
+  "regles-famille": "bg-sky",
 };
 
 const COMPARISON: [string, string, string][] = [

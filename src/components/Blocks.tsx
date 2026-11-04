@@ -1,3 +1,5 @@
+import type React from "react";
+import { trackEvent } from "../lib/analytics";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import { chapters } from "../data/book";
@@ -155,12 +157,21 @@ export function FinalCta({
 }
 
 export function ShareToParents() {
+  const url = "https://www.reussir-son-annee-de-high-school-aux-etats-unis.com/parents/";
+  const text =
+    "J’ai trouvé un guide pour préparer mon année de High School aux États-Unis (visa, famille d’accueil, budget, retour…). Il existe en broché et en Kindle sur Amazon.";
   const subject = encodeURIComponent("Un guide pour mon année de High School aux USA");
-  const body = encodeURIComponent(
-    `Salut,\n\nJ’ai trouvé un guide pour préparer mon année de High School aux États-Unis (visa, famille d’accueil, budget, retour…). Tu peux le regarder ici :\n\nhttps://www.reussir-son-annee-de-high-school-aux-etats-unis.com/parents/\n\nIl existe en broché et en Kindle sur Amazon.`
-  );
+  const body = encodeURIComponent(`Salut,\n\n${text}\n\n${url}`);
+  // Sur mobile, ouvre le menu de partage du téléphone (WhatsApp, SMS…) ; sinon, un e-mail prérempli.
+  const onClick = (e: React.MouseEvent) => {
+    trackEvent("click_share_parents", { page_path: window.location.pathname });
+    if (typeof navigator !== "undefined" && "share" in navigator) {
+      e.preventDefault();
+      navigator.share({ title: "Guide High School USA", text, url }).catch(() => {});
+    }
+  };
   return (
-    <a href={`mailto:?subject=${subject}&body=${body}`} className="btn-ghost">
+    <a href={`mailto:?subject=${subject}&body=${body}`} onClick={onClick} className="btn-ghost">
       Envoyer cette page à mes parents
     </a>
   );
