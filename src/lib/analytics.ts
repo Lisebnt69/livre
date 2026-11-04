@@ -12,8 +12,20 @@ export function trackEvent(name: string, params?: Record<string, unknown>) {
   window.gtag?.("event", name, params ?? {});
 }
 
+// Pixel Metricool : une image chargée à chaque page vue, seulement après acceptation de la mesure d'audience.
+const METRICOOL_PIXEL = "https://tracker.metricool.com/c3po.jpg?hash=ae4235e7a0dcebfe578e1671ef12fa48";
+let analyticsGranted = false;
+
+function metricoolHit() {
+  if (!analyticsGranted) return;
+  const img = new Image(1, 1);
+  img.referrerPolicy = "no-referrer-when-downgrade";
+  img.src = `${METRICOOL_PIXEL}&_=${Date.now()}`;
+}
+
 export function trackPageView(path: string, title: string) {
   if (typeof window === "undefined") return;
+  metricoolHit();
   window.gtag?.("event", "page_view", {
     page_path: path,
     page_title: title,
@@ -23,6 +35,9 @@ export function trackPageView(path: string, title: string) {
 
 export function setAnalyticsConsent(granted: boolean) {
   if (typeof window === "undefined") return;
+  const first = granted && !analyticsGranted;
+  analyticsGranted = granted;
+  if (first) metricoolHit(); // la page en cours, vue avant le choix
   window.gtag?.("consent", "update", {
     analytics_storage: granted ? "granted" : "denied",
   });
