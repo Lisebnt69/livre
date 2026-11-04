@@ -61,7 +61,7 @@ function Header() {
           <UsFlag className="h-[26px] w-[49px] shrink-0 rounded-[5px] shadow-lift ring-1 ring-ink/10" />
           <span className="flex flex-col">
             <span className="text-[19px] font-bold tracking-tight text-ink">Guide High School USA</span>
-            <span className="mt-1 text-[12px] text-muted">par {book.author}</span>
+            <span className="mt-1 text-[12px] text-muted">Le guide des lycéens et de leurs parents</span>
           </span>
         </Link>
 
@@ -170,7 +170,7 @@ function Footer() {
         <div className="mt-14 flex flex-col gap-4 border-t border-card/15 pt-6 text-sm text-card/60 lg:flex-row lg:items-center lg:justify-between">
           <div className="max-w-xl">
             <AffiliateNote className="!text-card/60" />
-            <p className="mt-1">© {new Date().getFullYear()} {book.author}. Tous droits réservés.</p>
+            <p className="mt-1">© {new Date().getFullYear()} Guide High School USA. Tous droits réservés.</p>
           </div>
           <ul className="flex flex-wrap gap-x-5 gap-y-2">
             <li><Link className={a} to="/mentions-legales/">Mentions légales</Link></li>

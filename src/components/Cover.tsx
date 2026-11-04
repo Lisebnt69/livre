@@ -8,7 +8,7 @@ export function Cover({ className = "", priority = false, sizes = "(min-width:10
       sizes={sizes}
       width={800}
       height={1219}
-      alt={`Couverture du livre ${book.title}, de ${book.author}`}
+      alt={`Couverture du livre ${book.title}`}
       className={`h-auto w-full rounded-[6px] shadow-book ${className}`}
       {...(priority ? ({ fetchpriority: "high" } as object) : { loading: "lazy" as const })}
       decoding={priority ? "sync" : "async"}

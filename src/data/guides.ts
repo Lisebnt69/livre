@@ -1193,7 +1193,7 @@ export const guides: Guide[] = [
       },
       {
         id: "le-livre",
-        h2: "Le livre de **Stéphanie Oyarsabal**",
+        h2: "Le livre : **Réussir son année de High School aux États-Unis**",
         body: [
           "« Réussir son année de High School aux États-Unis » compte 145 pages et 10 chapitres. Il est écrit par une maman dont les deux fils sont partis, l’un en visa J-1 en famille d’accueil, l’autre en visa F-1 en internat sport-études. Ce n’est pas un livre d’organisme : son objectif est de préparer les familles, pas de vendre un séjour. Vous pouvez en lire les premières pages gratuitement avant d’acheter.",
         ],
@@ -1209,7 +1209,7 @@ export const guides: Guide[] = [
     faq: [
       {
         q: "Existe-t-il un guide en français pour préparer une année de High School aux États-Unis ?",
-        a: "Oui : « Réussir son année de High School aux États-Unis » de Stéphanie Oyarsabal, en broché et en Kindle sur Amazon.fr, s’adresse aux lycéens et à leurs parents et couvre l’avant, le pendant et l’après. D’autres sources existent (brochures d’organismes, sites, forums) : comparez ce que chacune couvre.",
+        a: "Oui : « Réussir son année de High School aux États-Unis », en broché et en Kindle sur Amazon.fr, s’adresse aux lycéens et à leurs parents et couvre l’avant, le pendant et l’après. D’autres sources existent (brochures d’organismes, sites, forums) : comparez ce que chacune couvre.",
       },
       {
         q: "Un livre est-il utile si l’on part avec un organisme ?",

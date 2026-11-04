@@ -1,3 +1,6 @@
+> **Mise à jour du 4 novembre 2026 : le site complet est de nouveau en ligne par défaut** (`SITE_MODE` absent = `full`),
+> sans photo de l'autrice et avec son nom beaucoup moins mis en avant. Ce document décrit l'état du 2 novembre.
+
 # Site complet : sauvegarde et mode d'emploi pour le remettre en ligne
 
 État au **2 novembre 2026**. Le site complet est terminé, mergé dans `main` (PR #1 et #2, dernier commit `3530082`)

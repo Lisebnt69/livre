@@ -1,4 +1,3 @@
-import { book } from "../data/book";
 import { Breadcrumb, Section } from "../components/Ui";
 import { FinalCta } from "../components/Blocks";
 import { SocialLinks } from "../components/Social";
@@ -14,23 +13,14 @@ export default function Autrice({ crumbs }: { crumbs: { name: string; path: stri
          <div className="relative overflow-hidden rounded-4xl bg-rose px-5 pb-16 pt-10 sm:rounded-5xl sm:px-10 sm:pb-20 sm:pt-14 lg:px-16 lg:pb-20 lg:pt-16">
           <StripesBand className="absolute inset-x-0 bottom-0 !h-3" />
           <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-7">
+            <div className="lg:col-span-9">
               <h1 className="text-display-xl !text-[clamp(2.2rem,4.8vw,4rem)]">
-                <Rich text={`**${book.author}**, maman et autrice du guide.`} />
+                <Rich text={`Une **maman** derrière le guide.`} />
               </h1>
               <p className="mt-6 max-w-[38rem] text-lg leading-relaxed text-ink/85 sm:text-xl">
                 « Je ne suis ni une agence, ni un organisme. <strong className="font-bold text-locker">Je suis une maman.</strong> J’ai vécu les moments de joie, les doutes, les
                 difficultés et les réussites. »
               </p>
-            </div>
-            <div className="lg:col-span-4 lg:col-start-9">
-              <img
-                src="/author.jpg"
-                alt={`${book.author}, autrice de ${book.title}`}
-                width={900}
-                height={854}
-                className="aspect-[4/5] w-full max-w-sm rounded-4xl object-cover object-[40%_30%] shadow-lift"
-              />
             </div>
           </div>
          </div>

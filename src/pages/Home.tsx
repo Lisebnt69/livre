@@ -291,28 +291,16 @@ export default function Home() {
 
       {/* AUTRICE */}
       <Section tone="rose" className="mt-3">
-        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <img
-              src="/author.jpg"
-              alt={`${book.author}, autrice du guide`}
-              width={900}
-              height={854}
-              loading="lazy"
-              className="aspect-[4/5] w-full max-w-sm rounded-4xl object-cover object-[40%_30%] shadow-lift"
-            />
-          </div>
-          <div className="lg:col-span-7 lg:col-start-6">
-            <h2 className="text-display-l">
-              Écrit par une maman qui <span className="text-locker">a vécu l’expérience</span> sous plusieurs formes.
-            </h2>
-            <p className="mt-5 max-w-prose text-lg leading-relaxed text-ink/90">
-              Un fils en famille d’accueil (visa J-1), un autre en internat sport-études (visa F-1), des années d’échanges
-              avec des centaines de parents concernés, et une partie de l’année passée aux États-Unis. Ce livre est le guide
-              concret que {book.author.split(" ")[0]} aurait aimé avoir avant le départ de ses fils.
-            </p>
-            <Link to="/autrice/" className="link mt-6 inline-block">Faire connaissance avec l’autrice</Link>
-          </div>
+        <div className="max-w-3xl">
+          <h2 className="text-display-l">
+            Écrit par une maman qui <span className="text-locker">a vécu l’expérience</span> sous plusieurs formes.
+          </h2>
+          <p className="mt-5 max-w-prose text-lg leading-relaxed text-ink/90">
+            Un fils en famille d’accueil (visa J-1), un autre en internat sport-études (visa F-1), des années d’échanges
+            avec des centaines de parents concernés, et une partie de l’année passée aux États-Unis. Ce livre est le guide
+            concret qu’elle aurait aimé avoir avant le départ de ses fils.
+          </p>
+          <Link to="/autrice/" className="link mt-6 inline-block">Pourquoi ce livre</Link>
         </div>
       </Section>
 
